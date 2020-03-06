@@ -1,0 +1,16 @@
+<%= content_for :tusur_cdn_header_subtop do %>
+  <%= render partial: 'subtop_navigation' %>
+<% end %>
+
+<% content_for :tusur_cdn_header_menu do %>
+  <div class='container'>
+    <div class='row'>
+      <div class='col'>
+        <span class='tusur-cdn-header-menu-toggler d-block d-sm-none'>&#9776;</span>
+        <%= render_navigation %>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<%= render partial: 'tusur_header/tusur_header' %>

@@ -1,0 +1,19 @@
+<% if flash[:notice] %>
+  <div class='flash js-flash flash-notice'>
+    <div class='flash-body'>
+      <p class='flash-text'>
+        <%= flash[:notice] %>
+      </p>
+    </div>
+  </div>
+<% end %>
+
+<% if flash[:alert] %>
+  <div class='flash js-flash flash-alert'>
+    <div class='flash-body'>
+      <p class='flash-text'>
+        <%= flash[:alert] %>
+      </p>
+    </div>
+  </div>
+<% end %>
