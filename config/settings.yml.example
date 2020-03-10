@@ -1,0 +1,19 @@
+app:
+  secret:       SECRET
+  domain:       .domain
+
+directory:
+  url:          http://directory.url
+
+errors:
+  key:          KEY
+  url:          http://errors.url
+
+profile:
+  url:          http://profile.url
+
+session_store:
+  url:          redis://host:6379/0/sessions
+
+solr:
+  url:          http://solr.url

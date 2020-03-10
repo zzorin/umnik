@@ -1,0 +1,15 @@
+development:
+  adapter:  postgresql
+  encoding: unicode
+  database: umnik_development
+
+production:
+  adapter:  postgresql
+  encoding: unicode
+  database: umnik_production
+
+test:
+  adapter:  sqlite3
+  database: db/test.sqlite3
+
+
