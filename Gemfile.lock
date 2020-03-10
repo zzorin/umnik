@@ -81,9 +81,20 @@ GEM
       airbrake-ruby (~> 4.13)
     airbrake-ruby (4.13.3)
       rbtree3 (~> 0.5)
+    annotate (3.1.0)
+      activerecord (>= 3.2, < 7.0)
+      rake (>= 10.4, < 14.0)
+    attribute_normalizer (1.2.0)
+    autoprefixer-rails (9.7.4)
+      execjs
+    awesome_print (1.8.0)
     bindex (0.8.1)
     bootsnap (1.4.5)
       msgpack (~> 1.0)
+    bootstrap (4.4.1)
+      autoprefixer-rails (>= 9.1.0)
+      popper_js (>= 1.14.3, < 2)
+      sassc-rails (>= 2.0.0)
     builder (3.2.4)
     byebug (11.1.0)
     cancancan (3.0.2)
@@ -106,6 +117,7 @@ GEM
     domain_name (0.5.20190701)
       unf (>= 0.0.5, < 1.0.0)
     erubi (1.9.0)
+    execjs (2.7.0)
     ffi (1.12.1)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
@@ -156,6 +168,7 @@ GEM
       unicorn
       whenever
     pg (1.2.2)
+    popper_js (1.16.0)
     public_suffix (4.0.3)
     puma (4.3.1)
       nio4r (~> 2.0)
@@ -288,9 +301,13 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  annotate
+  attribute_normalizer
   auth_client!
   auth_redis_user_connector!
+  awesome_print
   bootsnap (>= 1.4.2)
+  bootstrap
   byebug
   cancancan
   capybara (>= 2.15)

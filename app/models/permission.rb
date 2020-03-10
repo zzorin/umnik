@@ -1,5 +1,9 @@
 class Permission < ActiveRecord::Base
   include AuthClient::Permission
 
-  acts_as_auth_client_permission roles: [:admin, :manager, :curator, :expert]
+  ROLES = %w(:administrator, :tusur_manager,
+             :university_manager, :expert
+            ).map(&:to_sym).freeze
+
+  acts_as_auth_client_permission roles: ROLES
 end
