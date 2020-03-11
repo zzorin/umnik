@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_11_072057) do
+ActiveRecord::Schema.define(version: 2020_03_11_082438) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,6 +19,14 @@ ActiveRecord::Schema.define(version: 2020_03_11_072057) do
     t.string "title"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "nominations", force: :cascade do |t|
+    t.string "title"
+    t.bigint "contest_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["contest_id"], name: "index_nominations_on_contest_id"
   end
 
   create_table "permissions", force: :cascade do |t|
@@ -32,4 +40,5 @@ ActiveRecord::Schema.define(version: 2020_03_11_072057) do
     t.index ["user_id", "role", "context_id", "context_type"], name: "by_user_and_role_and_context"
   end
 
+  add_foreign_key "nominations", "contests"
 end

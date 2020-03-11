@@ -1,0 +1,10 @@
+<p>
+  <strong>Название:</strong>
+  <%= nomination.title %>
+</p>
+
+<p>
+  <%= link_to 'Удалить', [nomination.contest, nomination],
+               method: :delete,
+               data: { confirm: 'Are you sure?' } %>
+</p>

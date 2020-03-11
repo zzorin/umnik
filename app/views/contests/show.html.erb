@@ -3,5 +3,11 @@
   <%= @contest.title %>
 </p>
 
+<h2> Номинации конкурса </h2>
+<%= render @contest.nominations %>
+
+<h2>Добавить номинацию:</h2>
+<%= render 'nominations/form' %>
+
 <%= link_to 'Edit', edit_contest_path(@contest) %> |
 <%= link_to 'Back', contests_path %>
