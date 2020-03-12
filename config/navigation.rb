@@ -10,6 +10,6 @@ SimpleNavigation::Configuration.run do |navigation|
   end
 end
 
-#SimpleNavigation.register_renderer first_renderer:       FirstRenderer
-#SimpleNavigation.register_renderer second_renderer:      SecondRenderer
-#SimpleNavigation.register_renderer mobile_menu_renderer: MobileMenuRenderer
+SimpleNavigation.register_renderer first_renderer:       FirstRenderer
+SimpleNavigation.register_renderer second_renderer:      SecondRenderer
+SimpleNavigation.register_renderer mobile_menu_renderer: MobileMenuRenderer
