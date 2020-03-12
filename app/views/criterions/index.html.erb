@@ -1,0 +1,22 @@
+<h1>Критерии отбора</h1>
+
+<table>
+  <tr>
+    <th>Название</th>
+    <th colspan="2"></th>
+  </tr>
+
+  <% @criterions.each do |criterion| %>
+    <tr>
+      <td><%= criterion.title %></td>
+      <td><%= link_to 'Изменить', edit_contest_criterion_path(criterion.contest.id, criterion) %></td>
+      <td><%= link_to 'Удалить', contest_criterion_path(criterion.contest, criterion),
+        method: :delete,
+        data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
+</table>
+
+<%= link_to 'Добавить критерий',
+  new_contest_criterion_path,
+  class: 'btn btn-blue'%>

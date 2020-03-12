@@ -1,23 +1,15 @@
 class ContestsController < ApplicationController
-  def index
-    @contests = Contest.all
-  end
+  load_and_authorize_resource
 
-  def show
-    @contest = Contest.find(params[:id])
-  end
+  def index; end
 
-  def new
-    @contest = Contest.new
-  end
+  def show; end
 
-  def edit
-    @contest = Contest.find(params[:id])
-  end
+  def new; end
+
+  def edit; end
 
   def create
-    @contest = Contest.new(contest_params)
-
     if @contest.save
       redirect_to @contest
     else
@@ -26,8 +18,6 @@ class ContestsController < ApplicationController
   end
 
   def update
-    @contest = Contest.find(params[:id])
-
     if @contest.update(contest_params)
       redirect_to @contest
     else
@@ -36,7 +26,6 @@ class ContestsController < ApplicationController
   end
 
   def destroy
-    @contest = Contest.find(params[:id])
     @contest.destroy
 
     redirect_to contests_path
