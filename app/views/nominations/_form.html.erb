@@ -1,9 +1,0 @@
-<%= form_with model: [ @contest, @contest.nominations.build ], local: true do |form| %>
-  <p>
-    <%= form.label :title %><br>
-    <%= form.text_field :title %>
-  </p>
-  <p>
-    <%= form.submit 'Добавить', :class => 'btn btn-green' %>
-  </p>
-<% end %>

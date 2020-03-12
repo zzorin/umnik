@@ -1,0 +1,25 @@
+<%= render partial: '/layouts/left_menu' %>
+<div class='col-xs-9'>
+  <h1>Номинации</h1>
+
+  <table>
+    <tr>
+      <th>Название</th>
+      <th colspan="2"></th>
+    </tr>
+
+    <% @nominations.each do |nomination| %>
+      <tr>
+        <td><%= nomination.title %></td>
+        <td><%= link_to 'Изменить', edit_contest_nomination_path(nomination.contest.id, nomination) %></td>
+        <td><%= link_to 'Удалить', contest_nomination_path(nomination.contest, nomination),
+          method: :delete,
+          data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </table>
+
+  <%= link_to 'Добавить критерий',
+    new_contest_nomination_path,
+    class: 'btn btn-blue'%>
+</div>

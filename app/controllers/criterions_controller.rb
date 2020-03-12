@@ -1,7 +1,9 @@
 class CriterionsController < ApplicationController
   load_and_authorize_resource
 
-  def index; end
+  def index
+    @contest = Contest.find(params[:contest_id])
+  end
 
   def show; end
 

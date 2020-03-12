@@ -1,13 +1,9 @@
+<%= render partial: '/layouts/left_menu' %>
+<h1>Конкурс</h1>
 <p>
   <strong>Title:</strong>
   <%= @contest.title %>
 </p>
-
-<h2> Номинации конкурса </h2>
-<%= render @contest.nominations %>
-
-<h2>Добавить номинацию:</h2>
-<%= render 'nominations/form' %>
 
 <%= link_to 'Редактировать', edit_contest_path(@contest), class: 'btn btn-blue' %>
 <%= link_to 'Назад', contests_path, class: 'btn btn-light-blue' %>
