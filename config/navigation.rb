@@ -4,7 +4,7 @@ SimpleNavigation::Configuration.run do |navigation|
   navigation.items do |primary|
     primary.item :main_page, 'Главная', root_path
 
-    if current_user
+    if current_user && current_user.administrator?
       primary.item :permissions_item, 'Управление правами', permissions_path #if can?(:manage, :spa)
     end
   end
