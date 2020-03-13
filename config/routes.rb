@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     resources :nominations
     resources :criterions
     resources :participants
+    resources :experts
   end
 
   resources :permissions

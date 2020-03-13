@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_13_084828) do
+ActiveRecord::Schema.define(version: 2020_03_13_093257) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,16 @@ ActiveRecord::Schema.define(version: 2020_03_13_084828) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["contest_id"], name: "index_criterions_on_contest_id"
+  end
+
+  create_table "experts", force: :cascade do |t|
+    t.string "surname"
+    t.string "name"
+    t.string "patronymic"
+    t.bigint "contest_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["contest_id"], name: "index_experts_on_contest_id"
   end
 
   create_table "nominations", force: :cascade do |t|
@@ -63,6 +73,7 @@ ActiveRecord::Schema.define(version: 2020_03_13_084828) do
   end
 
   add_foreign_key "criterions", "contests"
+  add_foreign_key "experts", "contests"
   add_foreign_key "nominations", "contests"
   add_foreign_key "participants", "nominations"
 end

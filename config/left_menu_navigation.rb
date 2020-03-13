@@ -6,6 +6,7 @@ SimpleNavigation::Configuration.run do |navigation|
     primary.item :criterions, 'Критерии отбора', contest_criterions_path(@contest)
     primary.item :nominations, 'Номинации', contest_nominations_path(@contest)
     primary.item :participants, 'Участники', contest_participants_path(@contest)
+    primary.item :experts, 'Эксперты', contest_experts_path(@contest)
   end
 end
 
