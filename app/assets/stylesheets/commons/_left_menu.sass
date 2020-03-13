@@ -1,15 +1,23 @@
 .left-menu
-  padding-right: 8px
+  padding-right: 20px
   
   ul
     border: 1px solid #ddd
     +border-radius(5px)
     margin: 25px 0 15px 0
+    display: block
+    margin-block-start: 1em
+    margin-block-end: 1em
+    margin-inline-start: 0px
+    margin-inline-end: 0px
 
     li
+      padding: 10px 15px 10px 10px
+      float: none
       &.active
+        background-color: #4888ca
         a
-          background-color: #4888ca
+          color: #fff
 
       a
         color: #4c4c4c

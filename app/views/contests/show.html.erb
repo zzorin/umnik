@@ -1,9 +1,11 @@
 <%= render partial: '/layouts/left_menu' %>
-<h1>Конкурс</h1>
-<p>
-  <strong>Title:</strong>
-  <%= @contest.title %>
-</p>
+<div class='col-xs-9'>
+  <h1>Конкурс</h1>
+  <p>
+    <strong>Title:</strong>
+    <%= @contest.title %>
+  </p>
 
-<%= link_to 'Редактировать', edit_contest_path(@contest), class: 'btn btn-blue' %>
-<%= link_to 'Назад', contests_path, class: 'btn btn-light-blue' %>
+  <%= link_to 'Редактировать', edit_contest_path(@contest), class: 'btn btn-blue' %>
+  <%= link_to 'Назад', contests_path, class: 'btn btn-light-blue' %>
+</div>
