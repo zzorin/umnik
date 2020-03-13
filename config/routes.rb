@@ -6,5 +6,5 @@ Rails.application.routes.draw do
     resources :criterions
   end
 
-  resources :permissions, only: [:create, :index, :destroy]
+  resources :permissions
 end
