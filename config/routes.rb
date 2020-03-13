@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :contests do
     resources :nominations
     resources :criterions
+    resources :participants
   end
 
   resources :permissions

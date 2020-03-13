@@ -1,0 +1,25 @@
+<%= render partial: '/layouts/left_menu' %>
+<div class='col-xs-9'>
+  <h1>Участники</h1>
+
+  <table>
+    <tr>
+      <th>Фамилия</th>
+      <th colspan="2"></th>
+    </tr>
+
+    <% @participants.each do |participant| %>
+      <tr>
+        <td><%= participant.surname %></td>
+        <td><%= link_to 'Изменить', edit_contest_participant_path(participant.contest.id, participant) %></td>
+        <td><%= link_to 'Удалить', contest_participant_path(participant.contest, participant),
+          method: :delete,
+          data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </table>
+
+  <%= link_to 'Добавить участника',
+    new_contest_participant_path,
+    class: 'btn btn-blue'%>
+</div>

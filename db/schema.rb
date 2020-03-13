@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_12_054756) do
+ActiveRecord::Schema.define(version: 2020_03_13_084828) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,6 +37,20 @@ ActiveRecord::Schema.define(version: 2020_03_12_054756) do
     t.index ["contest_id"], name: "index_nominations_on_contest_id"
   end
 
+  create_table "participants", force: :cascade do |t|
+    t.string "surname"
+    t.string "name"
+    t.string "patronymic"
+    t.string "project_title"
+    t.text "project_info"
+    t.string "organization"
+    t.string "contact_info"
+    t.bigint "nomination_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["nomination_id"], name: "index_participants_on_nomination_id"
+  end
+
   create_table "permissions", force: :cascade do |t|
     t.string "user_id"
     t.string "role"
@@ -50,4 +64,5 @@ ActiveRecord::Schema.define(version: 2020_03_12_054756) do
 
   add_foreign_key "criterions", "contests"
   add_foreign_key "nominations", "contests"
+  add_foreign_key "participants", "nominations"
 end
