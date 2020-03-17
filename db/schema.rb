@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_13_093257) do
+ActiveRecord::Schema.define(version: 2020_03_13_094738) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,6 +37,18 @@ ActiveRecord::Schema.define(version: 2020_03_13_093257) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["contest_id"], name: "index_experts_on_contest_id"
+  end
+
+  create_table "marks", force: :cascade do |t|
+    t.integer "grade", default: 0, null: false
+    t.bigint "criterion_id"
+    t.bigint "expert_id"
+    t.bigint "participant_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["criterion_id"], name: "index_marks_on_criterion_id"
+    t.index ["expert_id"], name: "index_marks_on_expert_id"
+    t.index ["participant_id"], name: "index_marks_on_participant_id"
   end
 
   create_table "nominations", force: :cascade do |t|
@@ -74,6 +86,9 @@ ActiveRecord::Schema.define(version: 2020_03_13_093257) do
 
   add_foreign_key "criterions", "contests"
   add_foreign_key "experts", "contests"
+  add_foreign_key "marks", "criterions"
+  add_foreign_key "marks", "experts"
+  add_foreign_key "marks", "participants"
   add_foreign_key "nominations", "contests"
   add_foreign_key "participants", "nominations"
 end

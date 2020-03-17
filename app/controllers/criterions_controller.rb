@@ -3,6 +3,7 @@ class CriterionsController < ApplicationController
 
   def index
     @contest = Contest.find(params[:contest_id])
+    @criterions = @contest.criterions
   end
 
   def show; end

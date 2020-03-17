@@ -3,6 +3,7 @@ class ParticipantsController < ApplicationController
 
   def index
     @contest = Contest.find(params[:contest_id])
+    @participants = @contest.participants
   end
 
   def show; end

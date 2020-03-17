@@ -3,6 +3,7 @@ class ExpertsController < ApplicationController
 
   def index
     @contest = Contest.find(params[:contest_id])
+    @experts = @contest.experts
   end
 
   def show; end

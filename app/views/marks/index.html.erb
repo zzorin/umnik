@@ -1,0 +1,42 @@
+<%= render partial: '/layouts/left_menu' %>
+<div class='col-xs-9'>
+  <h1>Оценки</h1>
+
+  <% @contest.nominations.each do |nomination|%>
+    <h2><%= nomination.title %></h2>
+    <%= link_to 'Поставить оценки',
+      new_contest_expert_mark_path,
+      class: 'btn btn-blue'%>
+    <table>
+      <tr>
+        <th colspan='5'>Участник, Название проекта</th>
+        <th colspan=<%= @contest.criterions.count + 1 %>>Тема проекта</th>
+      </tr>
+      <tr>
+        <th>№</th>
+        <th>время</th>
+        <th>организация</th>
+        <th>Ф.И.О.</th>
+        <th>Тема проекта</th>
+        <% @contest.criterions.each do |criterion| %>
+          <th><%= criterion.title %></th>
+        <% end %>
+        <th>Итого</th>
+      </tr>
+
+      <% nomination.participants.each_with_index do |participant, i| %>
+        <tr>
+          <td><%= i+1 %></td>
+          <td>время</td>
+          <td><%= participant.organization %></td>
+          <td><%= participant.shortname %></td>
+          <td><%= participant.project_title %></td>
+          <% @contest.criterions.each do |criterion| %>
+            <th><%= participant.marks.where(criterion_id: criterion, expert_id: @expert).first&.grade %></th>
+          <% end %>
+          <td></td>
+        </tr>
+      <% end %>
+    </table>
+  <% end %>
+</div>
