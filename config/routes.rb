@@ -1,5 +1,15 @@
 Rails.application.routes.draw do
-  root 'welcome#index'
+  root 'dashboard#index'
+
+  namespace :api do
+    namespace :v1 do
+      resources :contests, only: [] do
+        collection do
+          get :all
+        end
+      end
+    end
+  end
 
   resources :contests do
     resources :nominations
