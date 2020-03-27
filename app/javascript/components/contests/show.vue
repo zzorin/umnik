@@ -1,5 +1,37 @@
 <template>
   <div>
-    <h1>Конкурс</h1>
+    <div>
+      <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item">
+             <router-link :to="{name: 'criterions'}">
+               Критерии обзора
+             </router-link>
+        </li>
+      </ul>
+    </div>
+    <router-view></router-view>
   </div>
 </template>
+
+<script>
+  import { mapState, mapMutations, mapActions } from 'vuex'
+
+  export default {
+    computed: {
+      ...mapState( 'contests', ['contests']),
+      isContestIndex() {
+        return this.$route.name == 'contests'
+      }
+    },
+    methods: {
+      contestsRequester() {
+        this.request()
+      },
+      ...mapActions('contests', ['request'])
+    },
+    created() {
+      console.warn('Конкурс')
+      this.contestsRequester()
+    }
+  }
+</script>

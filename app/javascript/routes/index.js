@@ -1,22 +1,36 @@
 import Dashboard from 'components/dashboard'
-import ContestIndex from 'components/contests/index'
-import ShowContest from 'components/contests/show'
+import ContestsIndex from 'components/contests/index'
+import ContestShow from 'components/contests/show'
+import CriterionsIndex from 'components/criterions/index'
+import CriterionShow from 'components/criterions/show'
 
 export const routes = [
   {
-    name: 'Dashboard',
+    name: 'dashboard',
     path: '/',
     component: Dashboard,
     children: [
       {
         name: 'contests',
         path: 'contests',
-        component: ContestIndex,
+        component: ContestsIndex,
         children: [
           {
-            name: 'show_contest',
+            name: 'contest_show',
             path: '/contests/:id',
-            component: ShowContest
+            component: ContestShow,
+            children: [
+              {
+                name: 'criterions',
+                path: '/contests/:id/criterions',
+                component: CriterionsIndex
+              },
+              {
+                name: 'criterion_show',
+                path: '/contests/:id/criterions/',
+                component: CriterionShow
+              }
+            ]
           }
         ]
       }
