@@ -7,6 +7,11 @@
                Критерии обзора
              </router-link>
         </li>
+        <li class="nav-item">
+             <router-link :to="{name: 'participants'}">
+               Список участников
+             </router-link>
+        </li>
       </ul>
     </div>
     <router-view></router-view>

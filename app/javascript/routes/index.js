@@ -3,6 +3,7 @@ import ContestsIndex from 'components/contests/index'
 import ContestShow from 'components/contests/show'
 import CriterionsIndex from 'components/criterions/index'
 import CriterionShow from 'components/criterions/show'
+import ParticipantsIndex from 'components/participants/index'
 
 export const routes = [
   {
@@ -29,7 +30,12 @@ export const routes = [
                 name: 'criterion_show',
                 path: '/contests/:id/criterions/',
                 component: CriterionShow
-              }
+              },
+              {
+                name: 'participants',
+                path: '/contests/:id/participants',
+                component: ParticipantsIndex
+              },
             ]
           }
         ]
