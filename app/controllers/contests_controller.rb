@@ -26,9 +26,11 @@ class ContestsController < ApplicationController
   end
 
   def destroy
-    @contest.destroy
-
-    redirect_to contests_path
+    if @contest.destroy
+      render :destroy
+    else
+      render :errors
+    end
   end
 
   private

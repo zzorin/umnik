@@ -38,6 +38,14 @@ export const contestsStore = {
       return new Promise((resolve, reject) => {
         commit('createContest', { params, resolve, reject })
       })
+    },
+    deleteContest({ state }, params) {
+      let { contest } = params
+      return new Promise((resolve, reject) => {
+        Vue.http.delete(`contests/${contest.id}`).then(data => {
+          if (data.status && data.body.status == 200) resolve(data.body)
+        })
+      })
     }
   }
 }

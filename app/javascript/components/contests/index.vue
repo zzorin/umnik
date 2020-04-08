@@ -14,6 +14,11 @@
               {{ contest.title }}
             </router-link>
           </td>
+          <td>
+            <span class='btn btn-blue mt-3' @click='selfDeleteContest(contest)'>
+              Удалить
+            </span>
+          </td>
         </tr>
       </table>
     </div>
@@ -32,7 +37,7 @@
       ...mapState( 'contests', ['contests', 'newContest'])
     },
     methods: {
-      ...mapActions('contests', ['clearNewContest', 'getContests', 'createContest']),
+      ...mapActions('contests', ['clearNewContest', 'getContests', 'createContest', 'deleteContest']),
       contestsRequester() {
         this.getContests()
       },
@@ -49,7 +54,13 @@
           }
 
         })
-      }
+      },
+      selfDeleteContest(contest) {
+        if (!confirm('Точно хотите удалить?')) return
+        this.deleteContest({ contest }).then(data => {
+          this.getContests()
+        })
+      },
     },
     created() {
       console.warn('Конкурсы')
