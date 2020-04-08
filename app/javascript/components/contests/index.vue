@@ -1,13 +1,13 @@
 <template>
   <div>
     <div v-if='isCurrentPage("contests")'>
-      <h1>Конкурсы</h1>
+      <h1>Список конкурсов</h1>
+      <h2>Название конкурса</h2>
+      <input type="text" v-model='newContest.title'/>
+      <span class='btn btn-blue mt-3' @click='selfCreateContest' :class="{'disabled': !newContest.title}">
+        Добавить конкурс
+      </span>
       <table>
-        <tr>
-          <th>Название</th>
-          <th colspan="2"></th>
-        </tr>
-
         <tr v-for='contest in contests'>
           <td>
             <router-link :to="{name: 'criterions', params: { id: contest.id }}">
@@ -23,18 +23,33 @@
 
 <script>
   import { CommonMixin } from 'mixins/common'
+  import { NotificationsMixin } from 'mixins/notifications'
   import { mapState, mapMutations, mapActions } from 'vuex'
 
   export default {
-    mixins: [CommonMixin],
+    mixins: [CommonMixin, NotificationsMixin],
     computed: {
-      ...mapState( 'contests', ['contests'])
+      ...mapState( 'contests', ['contests', 'newContest'])
     },
     methods: {
+      ...mapActions('contests', ['clearNewContest', 'getContests', 'createContest']),
       contestsRequester() {
-        this.request()
+        this.getContests()
       },
-      ...mapActions('contests', ['request'])
+      selfCreateContest() {
+        let params = { contest: this.newContest }
+        this.createContest(params).then(data => {
+          if (data.status == 200) {
+            this.notificate({
+              title: data.body.notifications.title,
+              text: data.body.notifications.text
+            })
+            this.clearNewContest()
+            this.getContests()
+          }
+
+        })
+      }
     },
     created() {
       console.warn('Конкурсы')

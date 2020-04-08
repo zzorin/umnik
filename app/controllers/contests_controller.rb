@@ -11,9 +11,9 @@ class ContestsController < ApplicationController
 
   def create
     if @contest.save
-      redirect_to @contest
+      render :create
     else
-      render 'new'
+      render :errors
     end
   end
 

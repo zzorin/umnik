@@ -1,3 +1,10 @@
 ru:
   app:
     title: 'Умник'
+  notifications:
+    contests:
+      create:
+        title: 'Добавление конкурса'
+        text: 'Конкурс успешно добавлен!'
+        errors:
+          title: 'Возникли ошибки при добавлении конкурса'

@@ -30,9 +30,9 @@
     },
     methods: {
       contestsRequester() {
-        this.request()
+        this.getContests()
       },
-      ...mapActions('contests', ['request'])
+      ...mapActions('contests', ['getContests'])
     },
     created() {
       console.warn('Конкурс')
