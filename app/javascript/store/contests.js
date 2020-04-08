@@ -34,6 +34,14 @@ export const contestsStore = {
         })
       })
     },
+    getContest({ state }, params) {
+      let { id } = params
+      return new Promise((resolve, reject) => {
+        Vue.http.get(`contests/${id}`, params).then(data => {
+          if (data.status && data.status == 200) resolve(data.body)
+        })
+      })
+    },
     createContest({ commit }, params) {
       return new Promise((resolve, reject) => {
         commit('createContest', { params, resolve, reject })
