@@ -40,6 +40,14 @@ export const criterionsStore = {
         commit('createCriterion', { params, resolve, reject })
       })
     },
+    updateCriterion({ state }, params) {
+      let { criterion } = params
+      return new Promise((resolve, reject) => {
+        Vue.http.put(`contests/${criterion.contest_id}/criterions/${criterion.id}`, params).then(data => {
+          if (data.status) resolve(data.body)
+        })
+      })
+    },
     deleteCriterion({ state }, params) {
       let { criterion } = params
       return new Promise((resolve, reject) => {

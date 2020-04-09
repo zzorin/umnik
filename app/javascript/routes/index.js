@@ -2,7 +2,6 @@ import Dashboard from 'components/dashboard'
 import ContestsIndex from 'components/contests/index'
 import ContestShow from 'components/contests/show'
 import CriterionsIndex from 'components/criterions/index'
-import CriterionShow from 'components/criterions/show'
 import ParticipantsIndex from 'components/participants/index'
 
 export const routes = [
@@ -25,11 +24,6 @@ export const routes = [
                 name: 'criterions',
                 path: '/contests/:id/criterions',
                 component: CriterionsIndex
-              },
-              {
-                name: 'criterion_show',
-                path: '/contests/:id/criterions/',
-                component: CriterionShow
               },
               {
                 name: 'participants',

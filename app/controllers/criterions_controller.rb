@@ -24,9 +24,9 @@ class CriterionsController < ApplicationController
 
   def update
     if @criterion.update(criterion_params)
-      redirect_to contest_criterions_path
+      render :update
     else
-      render 'edit'
+      render :errors
     end
   end
 
