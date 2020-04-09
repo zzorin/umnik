@@ -1,26 +1,33 @@
 <template>
   <div>
-    <div v-if='isCurrentPage("contests")'>
+    <div v-if='isCurrentPage("contests")' class="contests-list">
       <h1>Список конкурсов</h1>
-      <h2>Название конкурса</h2>
-      <input type="text" v-model='newContest.title'/>
-      <span class='btn btn-blue mt-3' @click='selfCreateContest' :class="{'disabled': !newContest.title}">
-        Добавить конкурс
-      </span>
-      <table>
-        <tr v-for='contest in contests'>
-          <td>
-            <router-link :to="{name: 'criterions', params: { id: contest.id }}">
-              {{ contest.title }}
-            </router-link>
-          </td>
-          <td>
-            <span class='btn btn-blue mt-3' @click='selfDeleteContest(contest)'>
-              Удалить
-            </span>
-          </td>
-        </tr>
-      </table>
+      <div class="mb-1"><strong>Название конкурса</strong></div>
+      <div class="d-flex">
+        <input type="text" class="contest-title-input form-control" v-model='newContest.title'/>
+        <span class='btn btn-blue' @click='selfCreateContest' :class="{'disabled': !newContest.title}">
+          Добавить конкурс
+        </span>
+      </div>
+      <div class="contests-list-table">
+        <table>
+          <tr v-for='contest in contests'>
+            <td>
+              <router-link :to="{name: 'criterions', params: { id: contest.id }}">
+                {{ contest.title }}
+              </router-link>
+            </td>
+            <td>
+              <span @click='selfDeleteContest(contest)' class='cursor-pointer'>
+                <svg class="bi bi-x" width="26px" height="26px" viewBox="0 0 16 16" fill="#0390C8" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" d="M11.854 4.146a.5.5 0 010 .708l-7 7a.5.5 0 01-.708-.708l7-7a.5.5 0 01.708 0z" clip-rule="evenodd"/>
+                  <path fill-rule="evenodd" d="M4.146 4.146a.5.5 0 000 .708l7 7a.5.5 0 00.708-.708l-7-7a.5.5 0 00-.708 0z" clip-rule="evenodd"/>
+                </svg>
+              </span>
+            </td>
+          </tr>
+        </table>
+      </div>
     </div>
     <router-view></router-view>
   </div>
