@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>{{contest.title}}</h1>
+    <h1>{{currentContest.title}}</h1>
     <div>
       <ul class="nav nav-tabs" id="myTab" role="tablist">
         <li class="nav-item">
@@ -15,7 +15,8 @@
         </li>
       </ul>
     </div>
-    <router-view></router-view>
+    <router-view v-if='currentContest.id'></router-view>
+
   </div>
 </template>
 
@@ -23,13 +24,8 @@
   import { mapState, mapMutations, mapActions } from 'vuex'
 
   export default {
-    data() {
-      return {
-        contest: {}
-      }
-    },
     computed: {
-      ...mapState( 'contests', ['contests']),
+      ...mapState( 'contests', ['currentContest']),
       isContestIndex() {
         return this.$route.name == 'contests'
       },
@@ -41,9 +37,7 @@
       ...mapActions('contests', ['getContest']),
       selfGetContest() {
         let params = { id: this.id }
-        this.getContest(params).then(data => {
-          this.$set(this, 'contest', data.contest)
-        })
+        this.getContest(params)
       }
     },
     created() {

@@ -16,9 +16,9 @@ class CriterionsController < ApplicationController
     @contest = Contest.find(params[:contest_id])
     @criterion = @contest.criterions.build(criterion_params)
     if @criterion.save
-      redirect_to contest_criterions_path
+      render :create
     else
-      render 'new'
+      render :errors
     end
   end
 
@@ -31,9 +31,11 @@ class CriterionsController < ApplicationController
   end
 
   def destroy
-    @criterion.destroy
-
-    redirect_to contest_criterions_path
+    if @criterion.destroy
+      render :destroy
+    else
+      render :errors
+    end
   end
 
   private

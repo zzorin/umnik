@@ -3,6 +3,7 @@ import Vue from 'vue'
 export const contestsStore = {
   state: {
     newContest: {},
+    currentContest: {},
     contests: []
   },
   mutations: {
@@ -11,6 +12,10 @@ export const contestsStore = {
     },
     setContests(state, contests) {
       state.contests = contests
+    },
+    setCurrentContest(state, params) {
+      let { contest } = params
+      state.currentContest = contest
     },
     createContest(state, params) {
       let { resolve, reject } = params
@@ -34,11 +39,13 @@ export const contestsStore = {
         })
       })
     },
-    getContest({ state }, params) {
+    getContest({ commit, state }, params) {
       let { id } = params
       return new Promise((resolve, reject) => {
         Vue.http.get(`contests/${id}`, params).then(data => {
-          if (data.status && data.status == 200) resolve(data.body)
+          if (data.status && data.status == 200) {
+            commit('setCurrentContest', data.body)
+          }
         })
       })
     },
@@ -54,6 +61,11 @@ export const contestsStore = {
           if (data.status && data.body.status == 200) resolve(data.body)
         })
       })
+    }
+  },
+  getters: {
+    currentContest(state) {
+      return state.currentContest
     }
   }
 }
