@@ -4,12 +4,12 @@
     <div>
       <ul class="nav nav-tabs" id="myTab" role="tablist">
         <li class="nav-item">
-             <router-link :to="{name: 'criterions'}">
+             <router-link :to="{name: 'criterions'}" class="nav-link" v-bind:class="{active: isCurrentPage('criterions')}">
                Критерии обзора
              </router-link>
         </li>
         <li class="nav-item">
-             <router-link :to="{name: 'participants'}">
+             <router-link :to="{name: 'participants'}" class="nav-link" v-bind:class="{active: isCurrentPage('participants')}">
                Список участников
              </router-link>
         </li>
@@ -21,6 +21,7 @@
 </template>
 
 <script>
+  import { CommonMixin } from 'mixins/common'
   import { mapState, mapMutations, mapActions } from 'vuex'
 
   export default {
@@ -33,12 +34,13 @@
         return this.$route.params.id
       }
     },
+    mixins: [CommonMixin],
     methods: {
       ...mapActions('contests', ['getContest']),
       selfGetContest() {
         let params = { id: this.id }
         this.getContest(params)
-      }
+      },
     },
     created() {
       console.warn('Конкурс')

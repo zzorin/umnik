@@ -4,7 +4,7 @@
       <h1>Список конкурсов</h1>
       <div class="mb-1"><strong>Название конкурса</strong></div>
       <div class="d-flex">
-        <input type="text" class="contest-title-input form-control" v-model='newContest.title'/>
+        <input type="text" class="input-with-button form-control" v-model='newContest.title'/>
         <span class='btn btn-blue' @click='selfCreateContest' :class="{'disabled': !newContest.title}">
           Добавить конкурс
         </span>

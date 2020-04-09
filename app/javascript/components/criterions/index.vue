@@ -1,38 +1,45 @@
 <template>
   <div>
     <div v-if='isCurrentPage("criterions")'>
-      <h2>Название критерия</h2>
-      <input type="text" v-model='newCriterion.title'/>
-      <span class='btn btn-blue mt-3' @click='selfCreateCriterion' :class="{'disabled': !newCriterion.title}">
-        Добавить критерий
-      </span>
-      <table>
-        <tr v-for='criterion in criterions'>
-          <td v-if='editableCriterion.id == criterion.id'>
-            <input type="text" v-model='editableCriterion.title'/>
+      <div class="mt-4 mb-1"><strong>Название критерия</strong></div>
+      <div class="d-flex">
+        <input type="text" class="form-control input-with-button" v-model='newCriterion.title'/>
+        <span class='btn btn-blue' @click='selfCreateCriterion' :class="{'disabled': !newCriterion.title}">
+            Добавить критерий
+        </span>
+      </div>
+
+      <div class="criterions-list">
+        <div v-for='criterion in criterions'>
+          <div v-if='editableCriterion.id == criterion.id'>
+            <input type="text" class="form-control" v-model='editableCriterion.title'/>
             <span class='btn btn-blue mt-3' @click='selfUpdateCriterion(editableCriterion)'>
               Сохранить
             </span>
             <span class='btn btn-blue mt-3' @click='clearEditableCriterion'>
               Отменить
             </span>
-          </td>
-          <td v-if='!(editableCriterion.id == criterion.id)'>
+          </div>
+
+          <span v-if='!(editableCriterion.id == criterion.id)'>
             {{ criterion.title }}
-          </td>
-          <td>
-            <span class='btn btn-blue mt-3' @click='setEditableCriterion(criterion)'>
-              Редактировать
-            </span>
-          </td>
-          <td>
-            <span class='btn btn-blue mt-3' @click='selfDeleteCriterion(criterion)'>
-              Удалить
-            </span>
-          </td>
-        </tr>
-      </table>
+          </span>
+          <span class='cursor-pointer' @click='setEditableCriterion(criterion)'>
+            <svg class="bi bi-pencil" width="16px" height="16px" viewBox="0 0 16 16" fill="#0390C8" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" d="M11.293 1.293a1 1 0 011.414 0l2 2a1 1 0 010 1.414l-9 9a1 1 0 01-.39.242l-3 1a1 1 0 01-1.266-1.265l1-3a1 1 0 01.242-.391l9-9zM12 2l2 2-9 9-3 1 1-3 9-9z" clip-rule="evenodd"/>
+              <path fill-rule="evenodd" d="M12.146 6.354l-2.5-2.5.708-.708 2.5 2.5-.707.708zM3 10v.5a.5.5 0 00.5.5H4v.5a.5.5 0 00.5.5H5v.5a.5.5 0 00.5.5H6v-1.5a.5.5 0 00-.5-.5H5v-.5a.5.5 0 00-.5-.5H3z" clip-rule="evenodd"/>
+            </svg>
+          </span>
+          <span class='cursor-pointer' @click='selfDeleteCriterion(criterion)'>
+            <svg class="bi bi-x" width="26px" height="26px" viewBox="0 0 16 16" fill="#0390C8" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" d="M11.854 4.146a.5.5 0 010 .708l-7 7a.5.5 0 01-.708-.708l7-7a.5.5 0 01.708 0z" clip-rule="evenodd"/>
+              <path fill-rule="evenodd" d="M4.146 4.146a.5.5 0 000 .708l7 7a.5.5 0 00.708-.708l-7-7a.5.5 0 00-.708 0z" clip-rule="evenodd"/>
+            </svg>
+          </span>
+        </div>
+      </div>
     </div>
+
     <router-view></router-view>
   </div>
 </template>
