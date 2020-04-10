@@ -1,14 +1,16 @@
 <template>
   <div v-if='isCurrentPage("participant_new")'>
-    <h1>Добавить участника</h1>
-    <participant-form>
-    </participant-form>
-    <span class='btn btn-green' @click='selfCreateParticipant'>
-      Сохранить
-    </span>
-    <span class='btn btn-blue' @click='redirectBack'>
-      Отменить
-    </span>
+    <h3 class="mt-4">Добавить участника</h3>
+    <div class="margin-bottom-40">
+      <participant-form>
+      </participant-form>
+      <span class='btn btn-green' @click='selfCreateParticipant'>
+        Сохранить
+      </span>
+      <span class='btn btn-blue' @click='redirectBack'>
+        Отменить
+      </span>
+    </div>
   </div>
 </template>
 

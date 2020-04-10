@@ -1,6 +1,6 @@
 <template>
-  <div v-if='isCurrentPage("participant_edit")'>
-    <h1>Изменить информацию об участнике</h1>
+  <div v-if='isCurrentPage("participant_edit")' class="margin-bottom-40">
+    <h3 class="mt-4">Изменить информацию об участнике</h3>
     <participant-form>
     </participant-form>
     <span class='btn btn-green' @click='selfUpdateParticipant'>

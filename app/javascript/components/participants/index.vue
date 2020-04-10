@@ -1,10 +1,11 @@
 <template>
   <div>
     <div v-if='isCurrentPage("participants")'>
-        <router-link tag="span" class="btn btn-blue" :to="{name: 'participant_new', params: { id: currentContest.id }} ">
+        <router-link tag="span" class="btn btn-blue mt-4 mb-3" :to="{name: 'participant_new', params: { id: currentContest.id }} ">
           Добавить участника
         </router-link>
-      <table>
+
+      <table v-if="participants.length" class="table" >
         <tr>
           <th>Организация</th>
           <th>ФИО</th>

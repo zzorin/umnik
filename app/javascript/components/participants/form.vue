@@ -1,38 +1,69 @@
 <template>
-  <div>
-    {{participant}}
+  <div class="participant-form background-gray with-paddings mb-4">
     <form>
       <div class="form-group">
-        <b><label for="">Фамилия</label><span class="necessary-field">*</span></b>
-        <input type="text" v-model='participant.surname' />
-        <b><label for="">Имя</label><span class="necessary-field">*</span></b>
-        <input type="text" v-model='participant.name' />
-        <b><label for="">Отчество</label></b>
-        <input type="text" v-model='participant.patronymic' />
+        <div class="row">
+          <div class="col-lg-4">
+            <b><label for="">Фамилия</label><span class="necessary-field text-danger">*</span></b>
+            <input type="text" class="form-control" v-model='participant.surname' />
+          </div>
+          <div class="col-lg-4">
+            <b><label for="">Имя</label><span class="necessary-field text-danger">*</span></b>
+            <input type="text" class="form-control" v-model='participant.name' />
+          </div>
+          <div class="col-lg-4">
+            <b><label for="">Отчество</label></b>
+            <input type="text" class="form-control" v-model='participant.patronymic' />
+          </div>
+        </div>
       </div>
       <div class="form-group">
-        <b><label for="">Полное название доклада участника</label><span class="necessary-field">*</span></b>
-        <input type="text" v-model='participant.project_title' />
+        <div class="row">
+          <div class="col">
+            <b><label for="">Полное название доклада участника</label><span class="necessary-field text-danger">*</span></b>
+            <input type="text" class="form-control"v-model='participant.project_title' />
+          </div>
+        </div>
       </div>
+
       <div class="form-group">
-        <b><label for="">Направление</label><span class="necessary-field">*</span></b>
-        <select v-model='participant.nomination_id'>
-          <option v-for="nomination in nominations" v-bind:value="nomination.id">
-            {{ nomination.code +' '+nomination.title}}
-          </option>
-        </select>
+        <div class="row">
+          <div class="col-lg-8">
+            <b><label for="">Направление</label><span class="necessary-field text-danger">*</span></b>
+            <select v-model='participant.nomination_id' class="form-control dark-grey-select">
+              <option v-for="nomination in nominations" v-bind:value="nomination.id" class="dark-grey-select dark-grey-option">
+                {{ nomination.code +' '+nomination.title}}
+              </option>
+            </select>
+          </div>
+        </div>
       </div>
+
       <div class="form-group">
-        <b><label for="">Принадлежность к организации (ВУЗ, институт и пр.)</label><span class="necessary-field">*</span></b>
-        <input type="text" v-model='participant.organization' />
+        <div class="row">
+          <div class="col">
+            <b><label for="">Принадлежность к организации (ВУЗ, институт и пр.)</label><span class="necessary-field text-danger">*</span></b>
+            <input type="text" v-model='participant.organization' class="form-control" />
+          </div>
+        </div>
       </div>
+
       <div class="form-group">
-        <b><label for="">Контактная информация</label><span class="necessary-field">*</span></b>
-        <input type="text" v-model='participant.contact_info' />
+        <div class="row">
+          <div class="col">
+            <b><label for="">Контактная информация</label><span class="necessary-field text-danger">*</span></b>
+            <input type="text" v-model='participant.contact_info' class="form-control" />
+          </div>
+        </div>
       </div>
+
       <div class="form-group">
-        <b><label for="">Описание проекта</label><span class="necessary-field">*</span></b>
-        <textarea type="text" v-model='participant.project_info' />
+        <div class="row">
+          <div class="col">
+            <b><label for="">Описание проекта</label><span class="necessary-field text-danger">*</span></b>
+            <textarea type="text" v-model='participant.project_info' class="form-control" />
+          </div>
+        </div>
       </div>
     </form>
   </div>
