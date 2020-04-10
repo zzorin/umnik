@@ -11,7 +11,7 @@
           <input type="text" class="form-control" v-model='newNomination.title'/>
         </div>
         <div class="col-lg-3">
-          <span class='btn btn-blue' @click='selfCreateNomination' :class="{'disabled': (!newNomination.title || !newNomination.code)}">
+          <span class='btn btn-blue margin-top-30' @click='selfCreateNomination' :class="{'disabled': (!newNomination.title || !newNomination.code)}">
               Добавить номинацию
           </span>
         </div>
