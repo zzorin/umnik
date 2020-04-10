@@ -19,7 +19,7 @@
 
       <div class="nominations-list">
         <div v-for='nomination in nominations'>
-          <div  v-if='!(editableNomination.id == nomination.id)'>
+          <div  v-if='!(editableNomination.id == nomination.id)' class="mb-2">
             <span>
               {{ nomination.code }}
               {{ nomination.title }}
@@ -38,7 +38,7 @@
             </span>
           </div>
 
-          <div v-if='editableNomination.id == nomination.id'>
+          <div v-if='editableNomination.id == nomination.id' class="mb-2">
             <div class="row">
               <div class="col-lg-3"><input type="text" class="form-control" v-model='editableNomination.code'/></div>
               <div class="col-lg-6"><input type="text" class="form-control" v-model='editableNomination.title'/></div>
