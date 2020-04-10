@@ -54,17 +54,17 @@ export const participantsStore = {
       })
     },
     updateParticipant({ state }, params) {
-      let { participant } = params
+      let { participant, contest_id } = params
       return new Promise((resolve, reject) => {
-        Vue.http.put(`contests/${participant.contest_id}/participants/${participant.id}`, params).then(data => {
+        Vue.http.put(`contests/${contest_id}/participants/${participant.id}`, params).then(data => {
           if (data.status) resolve(data.body)
         })
       })
     },
     deleteParticipant({ state }, params) {
-      let { participant } = params
+      let { participant, contest_id } = params
       return new Promise((resolve, reject) => {
-        Vue.http.delete(`contests/${participant.contest_id}/participants/${participant.id}`).then(data => {
+        Vue.http.delete(`contests/${contest_id}/participants/${participant.id}`).then(data => {
           if (data.status && data.body.status == 200) resolve(data.body)
         })
       })

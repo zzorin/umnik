@@ -64,7 +64,11 @@
       },
       selfDeleteParticipant(participant) {
         if (!confirm('Точно хотите удалить?')) return
-        this.deleteParticipant({ participant }).then(data => {
+        let params = {
+          contest_id: this.currentContest.id,
+          participant : participant
+        }
+        this.deleteParticipant(params).then(data => {
           this.selfGetParticipants()
         })
       }

@@ -30,7 +30,11 @@
     methods: {
       ...mapActions('participants', ['updateParticipant', 'getParticipants', 'clearParticipant']),
       selfUpdateParticipant() {
-        this.updateParticipant({participant: this.participant} ).then(data => {
+        let params = {
+          contest_id: this.currentContest.id,
+          participant: this.participant
+        }
+        this.updateParticipant(params).then(data => {
           if (data.status == 'error') {
             this.notificate({
               title: data.errors.title,
