@@ -13,6 +13,11 @@
                Список участников
              </router-link>
         </li>
+        <li class="nav-item">
+             <router-link :to="{name: 'nominations'}" class="nav-link" v-bind:class="{active: isCurrentPage('nominations')}">
+               Номинации
+             </router-link>
+        </li>
       </ul>
     </div>
     <router-view v-if='currentContest.id'></router-view>

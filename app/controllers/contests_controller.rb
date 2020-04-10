@@ -5,10 +5,6 @@ class ContestsController < ApplicationController
 
   def show; end
 
-  def new; end
-
-  def edit; end
-
   def create
     if @contest.save
       render :create

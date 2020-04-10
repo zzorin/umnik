@@ -6,38 +6,34 @@ class NominationsController < ApplicationController
     @nominations = @contest.nominations
   end
 
-  def show; end
-
-  def new; end
-
-  def edit; end
-
   def create
     @contest = Contest.find(params[:contest_id])
     @nomination = @contest.nominations.build(nomination_params)
     if @nomination.save
-      redirect_to contest_nominations_path
+      render :create
     else
-      render 'new'
+      render :errors
     end
   end
 
   def update
     if @nomination.update(nomination_params)
-      redirect_to contest_nominations_path
+      render :update
     else
-      render 'edit'
+      render :errors
     end
   end
 
   def destroy
-    @nomination.destroy
-
-    redirect_to contest_nominations_path
+    if @nomination.destroy
+      render :destroy
+    else
+      render :errors
+    end
   end
 
   private
     def nomination_params
-      params.require(:nomination).permit(:title, :contest_id)
+      params.require(:nomination).permit(:code, :title, :contest_id)
     end
 end

@@ -6,12 +6,6 @@ class CriterionsController < ApplicationController
     @criterions = @contest.criterions
   end
 
-  def show; end
-
-  def new; end
-
-  def edit; end
-
   def create
     @contest = Contest.find(params[:contest_id])
     @criterion = @contest.criterions.build(criterion_params)
