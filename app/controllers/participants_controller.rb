@@ -15,24 +15,26 @@ class ParticipantsController < ApplicationController
   def create
     @contest = Contest.find(params[:contest_id])
     if @participant.save
-      redirect_to contest_participants_path
+      render :create
     else
-      render 'new'
+      render :errors
     end
   end
 
   def update
     if @participant.update(participant_params)
-      redirect_to contest_participants_path
+      render :update
     else
-      render 'edit'
+      render :errors
     end
   end
 
   def destroy
-    @participant.destroy
-
-    redirect_to contest_participants_path
+    if @participant.destroy
+      render :destroy
+    else
+      render :errors
+    end
   end
 
   private

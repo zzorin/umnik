@@ -10,7 +10,7 @@
         </li>
         <li class="nav-item">
              <router-link :to="{name: 'participants'}" class="nav-link" v-bind:class="{active: isCurrentPage('participants')}">
-               Список участников
+               Участники
              </router-link>
         </li>
         <li class="nav-item">
@@ -32,9 +32,6 @@
   export default {
     computed: {
       ...mapState( 'contests', ['currentContest']),
-      isContestIndex() {
-        return this.$route.name == 'contests'
-      },
       id() {
         return this.$route.params.id
       }

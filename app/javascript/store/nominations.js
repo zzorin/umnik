@@ -56,5 +56,10 @@ export const nominationsStore = {
         })
       })
     }
+  },
+  getters: {
+    nominations(state) {
+      return state.nominations
+    }
   }
 }
