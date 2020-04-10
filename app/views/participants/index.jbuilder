@@ -4,6 +4,7 @@ json.array! @participants do |participant|
   json.name participant.name
   json.patronymic participant.patronymic
   json.fullname participant.fullname
+  json.shortname participant.shortname
   json.organization participant.organization
   json.project_title participant.project_title
   json.nomination do

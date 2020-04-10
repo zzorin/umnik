@@ -8,32 +8,30 @@ class ExpertsController < ApplicationController
 
   def show; end
 
-  def new; end
-
-  def edit; end
-
   def create
     @contest = Contest.find(params[:contest_id])
     @expert = @contest.experts.build(expert_params)
     if @expert.save
-      redirect_to contest_experts_path
+      render :create
     else
-      render 'new'
+      render :errors
     end
   end
 
   def update
     if @expert.update(expert_params)
-      redirect_to contest_experts_path
+      render :update
     else
-      render 'edit'
+      render :errors
     end
   end
 
   def destroy
-    @expert.destroy
-
-    redirect_to contest_experts_path
+    if @expert.destroy
+      render :destroy
+    else
+      render :errors
+    end
   end
 
   private

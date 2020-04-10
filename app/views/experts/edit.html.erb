@@ -1,8 +1,0 @@
-<%= simple_form_for @expert, url: :contest_expert do |f| %>
-  <%= f.input :surname %>
-  <%= f.input :name %>
-  <%= f.input :patronymic %>
-  <%= f.button :submit, class: 'btn-green' %>
-<% end %>
-
-<%= link_to 'Отменить', contest_experts_path, class: 'btn btn-light-blue' %>

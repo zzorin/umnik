@@ -8,10 +8,6 @@ class ParticipantsController < ApplicationController
 
   def show; end
 
-  def new; end
-
-  def edit; end
-
   def create
     @contest = Contest.find(params[:contest_id])
     if @participant.save

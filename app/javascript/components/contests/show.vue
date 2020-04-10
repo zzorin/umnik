@@ -14,6 +14,11 @@
              </router-link>
         </li>
         <li class="nav-item">
+             <router-link :to="{name: 'experts'}" class="nav-link" v-bind:class="{active: isCurrentPage('experts')}">
+               Эксперты
+             </router-link>
+        </li>
+        <li class="nav-item">
              <router-link :to="{name: 'nominations'}" class="nav-link" v-bind:class="{active: isCurrentPage('nominations')}">
                Номинации
              </router-link>

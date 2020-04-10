@@ -5,6 +5,9 @@ import CriterionsIndex from 'components/criterions/index'
 import ParticipantsIndex from 'components/participants/index'
 import ParticipantNew from 'components/participants/new'
 import ParticipantEdit from 'components/participants/edit'
+import ExpertsIndex from 'components/experts/index'
+import ExpertNew from 'components/experts/new'
+import ExpertEdit from 'components/experts/edit'
 import NominationsIndex from 'components/nominations/index'
 
 export const routes = [
@@ -42,6 +45,23 @@ export const routes = [
                     name: 'participant_edit',
                     path: '/contests/:id/participants/:participant_id/edit',
                     component: ParticipantEdit
+                  }
+                ]
+              },
+              {
+                name: 'experts',
+                path: '/contests/:id/experts',
+                component: ExpertsIndex,
+                children: [
+                  {
+                    name: 'expert_new',
+                    path: '/contests/:id/experts/new',
+                    component: ExpertNew
+                  },
+                  {
+                    name: 'expert_edit',
+                    path: '/contests/:id/experts/:expert_id/edit',
+                    component: ExpertEdit
                   }
                 ]
               },
