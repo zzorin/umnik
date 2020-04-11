@@ -1,6 +1,6 @@
 <template>
   <div v-if='isCurrentPage("expert_new")'>
-    <h1>Добавить эксперта</h1>
+    <h3 class="mt-4">Добавить эксперта</h3>
     <expert-form>
     </expert-form>
     <span class='btn btn-green' @click='selfCreateExpert'>

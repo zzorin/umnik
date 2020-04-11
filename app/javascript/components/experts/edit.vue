@@ -1,6 +1,6 @@
 <template>
   <div v-if='isCurrentPage("expert_edit")'>
-    <h1>Изменить информацию об эксперте</h1>
+    <h3 class="mt-4">Изменить информацию об эксперте</h3>
     <expert-form>
     </expert-form>
     <span class='btn btn-green' @click='selfUpdateExpert'>
