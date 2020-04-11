@@ -32,10 +32,10 @@
 
           <div v-if='editableCriterion.id == criterion.id' class="d-flex mb-2">
             <input type="text" class="form-control input-with-button" v-model='editableCriterion.title'/>
-            <span class='btn btn-blue mr-2' @click='selfUpdateCriterion(editableCriterion)'>
+            <span class='btn btn-green mr-2' @click='selfUpdateCriterion(editableCriterion)'>
               Сохранить
             </span>
-            <span class='btn btn-blue' @click='clearEditableCriterion'>
+            <span class='btn btn-light-blue' @click='clearEditableCriterion'>
               Отменить
             </span>
           </div>

@@ -42,10 +42,10 @@
             <div class="row">
               <div class="col-lg-3"><input type="text" class="form-control" v-model='editableNomination.code'/></div>
               <div class="col-lg-6"><input type="text" class="form-control" v-model='editableNomination.title'/></div>
-              <span class='btn btn-blue mr-2 ml-3' @click='selfUpdateNomination(editableNomination)'>
+              <span class='btn btn-green mr-2 ml-3' @click='selfUpdateNomination(editableNomination)'>
                 Сохранить
               </span>
-              <span class='btn btn-blue' @click='clearEditableNomination'>
+              <span class='btn btn-light-blue' @click='clearEditableNomination'>
                 Отменить
               </span>
             </div>

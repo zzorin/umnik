@@ -6,7 +6,7 @@
     <span class='btn btn-green' @click='selfUpdateExpert'>
       Сохранить
     </span>
-    <span class='btn btn-blue' @click='redirectBack'>
+    <span class='btn btn-light-blue' @click='redirectBack'>
       Отменить
     </span>
   </div>
