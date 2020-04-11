@@ -42,13 +42,13 @@
               title: data.body.notifications.title,
               text: data.body.notifications.text
             })
-            this.clearParticipant()
             this.getParticipants({ contest_id: this.currentContest.id })
             this.redirectBack()
           }
         })
       },
       redirectBack() {
+        this.clearParticipant()
         this.redirectTo('participants', this.currentContest.id )
       }
     }

@@ -40,13 +40,13 @@
               title: data.body.notifications.title,
               text: data.body.notifications.text
             })
-            this.clearExpert()
             this.getExperts({ contest_id: this.currentContest.id })
             this.redirectBack()
           }
         })
       },
       redirectBack() {
+        this.clearExpert()
         this.redirectTo('experts', this.currentContest.id )
       }
     }

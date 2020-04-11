@@ -45,13 +45,13 @@
               text: data.notifications.text,
               type: 'warn'
             })
-            this.clearExpert()
             this.getExperts({ contest_id: this.currentContest.id })
             this.redirectBack()
           }
         })
       },
       redirectBack() {
+        this.clearExpert()
         this.redirectTo('experts', this.currentContest.id )
       }
     }

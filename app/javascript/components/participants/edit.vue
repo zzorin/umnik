@@ -49,13 +49,13 @@
               text: data.notifications.text,
               type: 'warn'
             })
-            this.clearParticipant()
             this.getParticipants({ contest_id: this.currentContest.id })
             this.redirectBack()
           }
         })
       },
       redirectBack() {
+        this.clearParticipant()
         this.redirectTo('participants', this.currentContest.id )
       }
     }
