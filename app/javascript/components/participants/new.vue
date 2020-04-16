@@ -1,7 +1,7 @@
 <template>
   <div v-if='isCurrentPage("participant_new")'>
     <h3 class="mt-4">Добавить участника</h3>
-    <div class="margin-bottom-40">
+    <div>
       <participant-form>
       </participant-form>
       <span class='btn btn-green' @click='selfCreateParticipant'>

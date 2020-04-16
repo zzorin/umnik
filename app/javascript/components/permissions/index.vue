@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-if='isCurrentPage("permissions")'>
+    <div v-if='isCurrentPage("permissions")' class="margin-bottom-40">
       <h1>Права доступа</h1>
       <router-link tag="span"
                    class="btn btn-blue mb-3"

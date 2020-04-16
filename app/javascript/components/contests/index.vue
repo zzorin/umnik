@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-if='isCurrentPage("contests")' class="contests-list">
+    <div v-if='isCurrentPage("contests")' class="contests-list margin-bottom-40">
       <h1>Список конкурсов</h1>
       <div class="mb-1"><strong>Название конкурса</strong></div>
       <div class="d-flex">

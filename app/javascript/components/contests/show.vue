@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="margin-bottom-40">
     <h1>{{currentContest.title}}</h1>
     <div>
       <ul class="nav nav-tabs" id="myTab" role="tablist">
