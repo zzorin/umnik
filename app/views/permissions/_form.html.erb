@@ -1,8 +1,0 @@
-<%= simple_form_for @permission do |f| %>
-  <%= f.input :role %>
-  <%= f.input :user_id, input_html: { class: 'users_autocomplete' }, placeholder: 'Начните вводить ФИО'  %>
-
-  <%= f.button :submit, class: 'btn-green' %>
-<% end %>
-
-<%= link_to 'Отменить', permissions_path, class: 'btn btn-light-blue' %>

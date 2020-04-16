@@ -8,3 +8,8 @@ ru:
         text: 'Конкурс успешно добавлен!'
         errors:
           title: 'Возникли ошибки при добавлении конкурса'
+  permissions:
+    administrator: 'Администратор'
+    tusur_manager: 'Менеджер ТУСУР'
+    university_manager: 'Менеджер организации'
+    expert: 'Эксперт'

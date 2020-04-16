@@ -9,6 +9,8 @@ import ExpertsIndex from 'components/experts/index'
 import ExpertNew from 'components/experts/new'
 import ExpertEdit from 'components/experts/edit'
 import NominationsIndex from 'components/nominations/index'
+import PermissionsIndex from 'components/permissions/index'
+import PermissionNew from 'components/permissions/new'
 
 export const routes = [
   {
@@ -71,6 +73,18 @@ export const routes = [
                 component: NominationsIndex
               },
             ]
+          }
+        ]
+      },
+      {
+        name: 'permissions',
+        path: 'permissions',
+        component: PermissionsIndex,
+        children: [
+          {
+            name: 'permission_new',
+            path: '/permissions/new',
+            component: PermissionNew
           }
         ]
       }

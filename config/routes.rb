@@ -14,5 +14,9 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :permissions
+  resources :permissions, only: [:index, :create, :destroy] do
+    collection do
+      get :available_roles
+    end
+  end
 end

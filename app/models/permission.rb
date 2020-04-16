@@ -8,4 +8,8 @@ class Permission < ActiveRecord::Base
   acts_as_auth_client_permission roles: ROLES
 
   delegate :fullname,  to: :user, allow_nil: true
+
+  def text_role
+    I18n.t "permissions.#{role}"
+  end
 end
