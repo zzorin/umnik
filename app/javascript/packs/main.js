@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import VueResource from 'vue-resource'
 import Vuex from 'vuex'
 import Notifications from 'vue-notification'
+import Autocomplete from 'vuejs-auto-complete'
 import baseStore from 'store/base'
 import { routes } from 'routes/index'
 import interceptorsSetup from 'interceptors'
@@ -12,6 +13,8 @@ Vue.use(VueRouter)
 Vue.use(VueResource)
 Vue.use(Vuex)
 Vue.use(Notifications)
+
+Vue.component('autocomplete', Autocomplete)
 
 interceptorsSetup()
 
