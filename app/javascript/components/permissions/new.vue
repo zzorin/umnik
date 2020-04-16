@@ -7,12 +7,12 @@
               @selected='selectedUser'
               resultsDisplay='label'
               ref="autocomplete"
+              class="mb-3"
               placeholder='Введите фамилию, имя и отчество'>
               <slot slot="noResults">
                 Нет результатов
               </slot>
       </autocomplete>
-      {{this.permission}}
 
       <div v-if='permission.user_id' class="form-group">
         <div class="row">
@@ -54,7 +54,7 @@
       </div>
 
       <span v-if='isValidPermission()'
-            class='btn btn-green'
+            class='btn btn-green mr-2'
             @click='selfCreatePermission'>
         Сохранить
       </span>

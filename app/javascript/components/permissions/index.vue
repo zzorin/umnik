@@ -3,13 +3,18 @@
     <div v-if='isCurrentPage("permissions")'>
       <h1>Права доступа</h1>
       <router-link tag="span"
-                   class="btn btn-blue mt-4 mb-3"
+                   class="btn btn-blue mb-3"
                    :to="{name: 'permission_new'} "
                   >
         Добавить права
       </router-link>
-      <div class="contests-list-table">
-        <table>
+      <div>
+        <table class="table">
+          <tr>
+            <th>ФИО</th>
+            <th>Роль</th>
+            <th>Действия</th>
+          </tr>
           <tr v-for='permission in permissions'>
             <td>
               {{ permission.fullname }}
