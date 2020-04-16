@@ -21,6 +21,7 @@
               <label for="">Роль</label>
             </b>
             <select v-model='permission.role'
+                    @change='clearPermissionContext'
                     class="form-control dark-grey-select">
               <option v-for="(value, key) in available_roles"
                       v-bind:value="key"
@@ -34,13 +35,13 @@
 
       <div v-if="permission.role && available_roles[permission.role].context_type"
            class="form-group">
-        {{permission.context_type = available_roles[permission.role].context_type}}
          <div class="row">
            <div class="col-lg-8">
              <b>
                <label for="">Контекст</label>
              </b>
              <select v-model='permission.context_id'
+                     @change='setContextType(permission.role)'
                      class="form-control dark-grey-select">
                <option v-for="context in available_roles[permission.role].contexts"
                        v-bind:value="context.context_id"
@@ -52,7 +53,7 @@
          </div>
       </div>
 
-      <span v-if='permission.role'
+      <span v-if='isValidPermission()'
             class='btn btn-green'
             @click='selfCreatePermission'>
         Сохранить
@@ -93,6 +94,21 @@
       clearPermissionContext() {
         this.$delete(this.permission, 'context_type')
         this.$delete(this.permission, 'context_id')
+      },
+      setContextType(role) {
+        this.$set(this.permission,
+                  'context_type',
+                  this.available_roles[role].context_type)
+      },
+      isValidPermission() {
+        if (this.permission.role) {
+          if (this.available_roles[this.permission.role].context_type) {
+            if (this.permission.context_id) return true
+          } else {
+            return true
+          }
+        }
+        return false
       },
       selfCreatePermission() {
         let params = { permission: this.permission }
