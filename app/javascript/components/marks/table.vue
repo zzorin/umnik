@@ -15,7 +15,11 @@
         <td>{{participant.organization}}</td>
         <td>{{participant.project_info}}</td>
         <template v-for='criterion in criterions'>
-          <td>{{criterion.title}}</td>
+          <td>
+            <div v-if="marks[criterion.id]">
+              {{marks[criterion.id].grade}}
+            </div>
+          </td>
         </template>
       </tr>
     </table>
@@ -23,11 +27,27 @@
 </template>
 
 <script>
+  import { mapState, mapActions } from 'vuex'
   export default {
-    props: ['participant', 'criterions'],
+    data() {
+      return {
+        marks: {}
+      }
+    },
+    props: ['participant', 'criterions', 'expert_id', 'contest_id'],
     methods: {
+      ...mapActions('marks', ['getMarks']),
       selfGetMarks() {
-
+        let params = {
+          contest_id: this.contest_id,
+          participant_id: this.participant.id,
+          expert_id: this.expert_id,
+        }
+        this.getMarks(params).then(data => {
+          if (data.status == 200) {
+            this.marks = data.body
+          }
+        })
       }
     },
     created () {

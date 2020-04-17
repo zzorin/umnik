@@ -21,7 +21,11 @@
         <ul v-for='participant in participants'>
           <li>
             <h2>{{participant.fullname}}</h2>
-            <marks-table :participant='participant' :criterions='criterions'>
+            <marks-table
+              :contest_id='currentContest.id'
+              :participant='participant'
+              :criterions='criterions'
+              :expert_id='$route.params.expert_id'>
             </marks-table>
           </li>
         </ul>

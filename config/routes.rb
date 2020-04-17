@@ -14,7 +14,11 @@ Rails.application.routes.draw do
       end
     end
     resources :experts do
-      resources :marks
+      resources :marks, only: [] do
+        collection do
+          get :by_participant
+        end
+      end
     end
   end
 
