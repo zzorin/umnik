@@ -9,6 +9,9 @@ export const participantsStore = {
     clearParticipant(state) {
       Vue.set(state, 'participant', {})
     },
+    clearParticipants(state) {
+      Vue.set(state, 'participants', [])
+    },
     setParticipant(state, participant) {
       Vue.set(state, 'participant', participant)
     },
@@ -27,6 +30,9 @@ export const participantsStore = {
   actions: {
     clearParticipant({ commit }) {
       commit('clearParticipant')
+    },
+    clearParticipants({ commit }) {
+      commit('clearParticipants')
     },
     getParticipants({ commit, state }, params) {
       let { contest_id } = params
@@ -68,6 +74,16 @@ export const participantsStore = {
           if (data.status && data.body.status == 200) resolve(data.body)
         })
       })
-    }
+    },
+    getNominationParticipants({ commit, state }, params) {
+      let { contest_id, nomination_id } = params
+      return new Promise((resolve, reject) => {
+        Vue.http.get(`contests/${contest_id}/participants/by_nomination?nomination_id=${nomination_id}`).then(data => {
+          if (data.ok && data.status == 200) {
+            commit('setParticipants', data.body)
+          }
+        })
+      })
+    },
   }
 }

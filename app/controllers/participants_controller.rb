@@ -33,6 +33,11 @@ class ParticipantsController < ApplicationController
     end
   end
 
+  def by_nomination
+    @nomination = Nomination.find(params[:nomination_id])
+    @participants = @nomination.participants
+  end
+
   private
     def participant_params
       params.require(:participant)

@@ -8,7 +8,11 @@ Rails.application.routes.draw do
   resources :contests do
     resources :nominations
     resources :criterions
-    resources :participants
+    resources :participants do
+      collection do
+        get :by_nomination
+      end
+    end
     resources :experts do
       resources :marks
     end

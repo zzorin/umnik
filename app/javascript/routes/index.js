@@ -8,6 +8,7 @@ import ParticipantEdit from 'components/participants/edit'
 import ExpertsIndex from 'components/experts/index'
 import ExpertNew from 'components/experts/new'
 import ExpertEdit from 'components/experts/edit'
+import MarksIndex from 'components/marks/index'
 import NominationsIndex from 'components/nominations/index'
 import PermissionsIndex from 'components/permissions/index'
 import PermissionNew from 'components/permissions/new'
@@ -64,6 +65,11 @@ export const routes = [
                     name: 'expert_edit',
                     path: '/contests/:id/experts/:expert_id/edit',
                     component: ExpertEdit
+                  },
+                  {
+                    name: 'marks',
+                    path: '/contests/:id/experts/:expert_id/marks',
+                    component: MarksIndex
                   }
                 ]
               },
