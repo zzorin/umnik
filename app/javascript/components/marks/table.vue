@@ -1,6 +1,6 @@
 <template>
-  <div class="">
-    <table>
+  <div class="marks-table-wrapper">
+    <table class="table">
       <tr>
         <th>Название доклада</th>
         <th>Организация</th>
@@ -21,6 +21,7 @@
             </div>
           </td>
         </template>
+        <td></td>
       </tr>
     </table>
   </div>

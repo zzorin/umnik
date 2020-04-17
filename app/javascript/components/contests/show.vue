@@ -16,7 +16,7 @@
         </li>
         <li class="nav-item">
              <router-link :to="{name: 'experts'}" class="nav-link"
-                          v-bind:class="{active: isCurrentPage('experts') || isCurrentPage('expert_new') || isCurrentPage('expert_edit')}">
+                          v-bind:class="{active: isCurrentPage('experts') || isCurrentPage('expert_new') || isCurrentPage('expert_edit') || isCurrentPage('marks')}">
                Эксперты
              </router-link>
         </li>

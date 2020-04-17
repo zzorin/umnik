@@ -1,24 +1,25 @@
 <template>
-  <div>
+  <div class="marks-wrapper mt-4">
     <div v-if='isCurrentPage("marks")'>
-      <div class='col-xs-3'>
-        <ul>
-          <li>
-            <span @click='selfGetParticipants()' class=''>
+      <div class="row">
+      <div class='col-md-3 col-lg-2'>
+        <ul class="nav nav-pills">
+          <li class="nav-item">
+            <a class="nav-link" @click='selfGetParticipants()'>
               Все
-            </span>
+            </a>
           </li>
           <template v-for='nomination in nominations'>
-            <li>
-              <span @click='selfGetNominationParticipants(nomination.id)' class=''>
+            <li class="nav-item">
+              <a @click='selfGetNominationParticipants(nomination.id)' class="nav-link">
                 {{ nomination.title }}
-              </span>
+              </a>
             </li>
           </template>
         </ul>
       </div>
-      <div class="col-xs-9">
-        <ul v-for='participant in participants'>
+      <div class="col-md-9 col-lg-10">
+        <ul v-for='participant in participants' class="list-unstyled">
           <li>
             <h2>{{participant.fullname}}</h2>
             <marks-table
@@ -31,6 +32,7 @@
         </ul>
       </div>
     </div>
+  </div>
   </div>
 </template>
 
