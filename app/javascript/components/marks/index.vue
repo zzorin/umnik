@@ -2,16 +2,16 @@
   <div class="marks-wrapper mt-4">
     <div v-if='isCurrentPage("marks")'>
       <div class="row">
-      <div class='col-md-3 col-lg-2'>
+      <div class='col-md-3 col-lg-2 left-menu-nav'>
         <ul class="nav nav-pills">
           <li class="nav-item">
-            <a class="nav-link" @click='selfGetParticipants()'>
+            <a class="nav-link cursor-pointer" @click='selfGetParticipants()'>
               Все
             </a>
           </li>
           <template v-for='nomination in nominations'>
             <li class="nav-item">
-              <a @click='selfGetNominationParticipants(nomination.id)' class="nav-link">
+              <a @click='selfGetNominationParticipants(nomination.id)' class="nav-link cursor-pointer">
                 {{ nomination.title }}
               </a>
             </li>
