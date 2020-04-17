@@ -4,7 +4,7 @@
       <div class='col-xs-3'>
         <ul>
           <li>
-            <span @click='selfGetAllMarks()' class=''>
+            <span @click='selfGetParticipants()' class=''>
               Все
             </span>
           </li>
@@ -47,7 +47,9 @@
     },
     methods: {
       ...mapActions('nominations', ['getNominations']),
-      ...mapActions('participants', ['clearParticipants', 'getNominationParticipants']),
+      ...mapActions('participants',
+        ['clearParticipants', 'getParticipants', 'getNominationParticipants']
+      ),
       ...mapActions('criterions', ['getCriterions']),
       selfGetNominations() {
         let params = {
@@ -60,6 +62,11 @@
           contest_id: this.currentContest.id,
         }
         this.getCriterions(params)
+      },
+      selfGetParticipants() {
+        let params = { contest_id: this.currentContest.id }
+        this.clearParticipants()
+        this.getParticipants(params)
       },
       selfGetNominationParticipants(nomination_id) {
         let params = {
@@ -74,6 +81,7 @@
       console.warn('Marks')
       this.selfGetNominations()
       this.selfGetCriterions()
+      this.selfGetParticipants()
     }
   }
 </script>
