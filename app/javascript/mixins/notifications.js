@@ -6,7 +6,7 @@ export const NotificationsMixin = {
         type: type,
         title: title,
         text: text,
-        group: "manage",
+        group: "notifications",
         position: 'bottom right',
         duration: duration
       })
