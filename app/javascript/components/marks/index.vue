@@ -11,7 +11,8 @@
           </li>
           <template v-for='nomination in nominations'>
             <li class="nav-item">
-              <a @click='selfGetNominationParticipants(nomination.id)' class="nav-link cursor-pointer">
+              <a @click='selfGetNominationParticipants(nomination.id)'
+                 class="nav-link cursor-pointer">
                 {{ nomination.title }}
               </a>
             </li>

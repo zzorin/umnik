@@ -17,7 +17,24 @@
         <template v-for='criterion in criterions'>
           <td>
             <div v-if="marks[criterion.id]">
-              {{marks[criterion.id].grade}}
+              <select v-model='marks[criterion.id].grade'
+                      @change='selfUpdateMark(criterion.id)'
+                      class="form-control dark-grey-select">
+                <option v-for="grade in available_marks"
+                        class="dark-grey-select dark-grey-option">
+                  {{ grade }}
+                </option>
+              </select>
+            </div>
+            <div v-if="!marks[criterion.id]">
+              <select v-model='new_grages[criterion.id]'
+                      @change='selfCreateMark(criterion.id)'
+                      class="form-control dark-grey-select">
+                <option v-for="grade in available_marks"
+                        class="dark-grey-select dark-grey-option">
+                  {{ grade }}
+                </option>
+              </select>
             </div>
           </td>
         </template>
@@ -29,15 +46,22 @@
 
 <script>
   import { mapState, mapActions } from 'vuex'
+  import { NotificationsMixin } from 'mixins/notifications'
   export default {
+    mixins: [NotificationsMixin],
     data() {
       return {
-        marks: {}
+        marks: {},
+        available_marks: [0, 1, 2, 3, 4, 5],
+        new_grages: {},
       }
     },
     props: ['participant', 'criterions', 'expert_id', 'contest_id'],
     methods: {
-      ...mapActions('marks', ['getMarks']),
+      ...mapActions('marks', ['getMarks', 'createMark', 'updateMark']),
+      // sumGrades() {
+      //   return 5
+      // },
       selfGetMarks() {
         let params = {
           contest_id: this.contest_id,
@@ -47,6 +71,53 @@
         this.getMarks(params).then(data => {
           if (data.status == 200) {
             this.marks = data.body
+          }
+        })
+      },
+      selfCreateMark(criterion_id) {
+        let params = {
+          contest_id: this.contest_id,
+          expert_id: this.expert_id,
+          mark: {
+            grade: this.new_grages[criterion_id],
+            criterion_id: criterion_id,
+            participant_id: this.participant.id,
+            expert_id: this.expert_id
+          }
+        }
+        this.createMark(params).then(data => {
+          if (data.status == 200) {
+            this.notificate({
+              title: data.body.notifications.title,
+              text: data.body.notifications.text
+            })
+            // this.new_grages = {}
+            // this.selfGetMarks()
+          }
+        })
+      },
+      selfUpdateMark(criterion_id) {
+        let params = {
+          contest_id: this.contest_id,
+          expert_id: this.expert_id,
+          mark: this.marks[criterion_id]
+        }
+        this.updateMark(params).then(data => {
+          if (data.status == 'error') {
+            this.notificate({
+              title: data.errors.title,
+              text: data.errors.text,
+              type: 'error'
+            })
+            return
+          }
+          if (data.status == 200) {
+            this.notificate({
+              title: data.notifications.title,
+              text: data.notifications.text,
+              type: 'warn'
+            })
+            // this.selfGetMarks()
           }
         })
       }

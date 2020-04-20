@@ -14,7 +14,7 @@ Rails.application.routes.draw do
       end
     end
     resources :experts do
-      resources :marks, only: [] do
+      resources :marks, only: [:create, :update] do
         collection do
           get :by_participant
         end
