@@ -1,7 +1,5 @@
 require("@rails/ujs").start()
-require("turbolinks").start()
+require("turbolinks")
 require("@rails/activestorage").start()
 require("channels")
 require("jquery")
-require("jquery-ui/ui/widgets/autocomplete")
-require("commons/users_autocomplete")
