@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
   root 'dashboard#index'
+  %w(administrator tusur_manager university_manager expert).each do |key|
+    namespace(key) { root to: 'spa#index' }
+  end
   resource :users, only: [] do
     collection do
       get :search

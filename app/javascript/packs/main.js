@@ -28,6 +28,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const app = new Vue({
     store,
     router,
+    methods: {
+      initParams(params) {
+        this.$store.dispatch('common/setUser', params.user)
+        this.$store.dispatch('common/setAccessRules', params.access_rules)
+      }
+    },
     mounted() {
       this.$store.dispatch('common/setAuthenticityToken')
     }

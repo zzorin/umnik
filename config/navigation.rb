@@ -4,8 +4,11 @@ SimpleNavigation::Configuration.run do |navigation|
   navigation.items do |primary|
     primary.item :main_page, 'Главная', root_path
 
-    if current_user&.administrator?
-      primary.item :permissions_item, 'Управление правами', permissions_path if can?(:manage, Permission)
+    if current_user
+      primary.item :administrator, t('permissions.administrator'), administrator_root_path if current_user.administrator?
+      primary.item :tusur_manager, t('permissions.tusur_manager'), tusur_manager_root_path if current_user.tusur_manager?
+      primary.item :university_manager, t('permissions.university_manager'), university_manager_root_path if current_user.university_manager?
+      primary.item :expert, t('permissions.expert'), expert_root_path if current_user.expert?
     end
   end
 end
