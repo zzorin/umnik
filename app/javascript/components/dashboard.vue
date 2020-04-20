@@ -1,7 +1,7 @@
 <template>
   <div>
-      <div v-if='isCurrentPage("dashboard")' class='mt-3'>
-        <router-link :to="{name: 'contests'}" class="mr-2">Конкурсы</router-link>
+      <div v-if='isCurrentPage("dashboard")' class='mt-3 user-nav'>
+        <router-link :to="{name: 'contests'}">Конкурсы</router-link>
         <router-link :to="{name: 'permissions'}">Права доступа</router-link>
       </div>
     <router-view></router-view>
