@@ -5,13 +5,13 @@
       <div class='col-md-3 col-lg-2 left-menu-nav'>
         <ul class="nav nav-pills">
           <li class="nav-item">
-            <a class="nav-link cursor-pointer" @click='selfGetParticipants()'>
+            <a class="nav-link cursor-pointer" @click='selfGetParticipants()' v-bind:class="{active : isActive == '0'}">
               Все
             </a>
           </li>
           <template v-for='nomination in nominations'>
             <li class="nav-item">
-              <a @click='selfGetNominationParticipants(nomination.id)'
+              <a @click='selfGetNominationParticipants(nomination.id)' v-bind:class="{active : nomination.id == isActive}"
                  class="nav-link cursor-pointer">
                 {{ nomination.title }}
               </a>
@@ -42,6 +42,11 @@
   import { CommonMixin } from 'mixins/common'
   import MarksTable from 'components/marks/table'
   export default {
+    data() {
+      return {
+        isActive: ''
+      }
+    },
     mixins: [CommonMixin],
     computed: {
       ...mapState( 'nominations', ['nominations']),
@@ -74,6 +79,7 @@
         let params = { contest_id: this.currentContest.id }
         this.clearParticipants()
         this.getParticipants(params)
+        this.isActive = '0'
       },
       selfGetNominationParticipants(nomination_id) {
         let params = {
@@ -82,10 +88,10 @@
         }
         this.clearParticipants()
         this.getNominationParticipants(params)
+        this.isActive = nomination_id
       }
     },
     created () {
-      console.warn('Marks')
       this.selfGetNominations()
       this.selfGetCriterions()
       this.selfGetParticipants()
