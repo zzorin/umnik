@@ -38,7 +38,7 @@
             </div>
           </td>
         </template>
-        <td></td>
+        <td>{{marks['marks_sum']}}</td>
       </tr>
     </table>
   </div>
@@ -59,9 +59,6 @@
     props: ['participant', 'criterions', 'expert_id', 'contest_id'],
     methods: {
       ...mapActions('marks', ['getMarks', 'createMark', 'updateMark']),
-      // sumGrades() {
-      //   return 5
-      // },
       selfGetMarks() {
         let params = {
           contest_id: this.contest_id,
@@ -91,8 +88,8 @@
               title: data.body.notifications.title,
               text: data.body.notifications.text
             })
-            // this.new_grages = {}
-            // this.selfGetMarks()
+            this.new_grages = {}
+            this.selfGetMarks()
           }
         })
       },
@@ -117,7 +114,7 @@
               text: data.notifications.text,
               type: 'warn'
             })
-            // this.selfGetMarks()
+            this.selfGetMarks()
           }
         })
       }

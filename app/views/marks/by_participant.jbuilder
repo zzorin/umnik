@@ -7,3 +7,4 @@
     json.expert_id mark.expert_id
   end
 end
+json.marks_sum @marks.sum(&:grade)
