@@ -5,13 +5,13 @@
       <div class='col-md-3 col-lg-2 left-menu-nav'>
         <ul class="nav nav-pills">
           <li class="nav-item">
-            <a class="nav-link cursor-pointer" @click='selfGetParticipants()' v-bind:class="{active : isActive == '0'}">
+            <a class="nav-link cursor-pointer" @click='selfGetParticipants()' v-bind:class="{active : activeNomination == false}">
               Все
             </a>
           </li>
           <template v-for='nomination in nominations'>
             <li class="nav-item">
-              <a @click='selfGetNominationParticipants(nomination.id)' v-bind:class="{active : nomination.id == isActive}"
+              <a @click='selfGetNominationParticipants(nomination.id)' v-bind:class="{active : nomination.id == activeNomination}"
                  class="nav-link cursor-pointer">
                 {{ nomination.title }}
               </a>
@@ -44,7 +44,7 @@
   export default {
     data() {
       return {
-        isActive: ''
+        activeNomination: ''
       }
     },
     mixins: [CommonMixin],
@@ -79,7 +79,7 @@
         let params = { contest_id: this.currentContest.id }
         this.clearParticipants()
         this.getParticipants(params)
-        this.isActive = '0'
+        this.activeNomination = false
       },
       selfGetNominationParticipants(nomination_id) {
         let params = {
@@ -88,7 +88,7 @@
         }
         this.clearParticipants()
         this.getNominationParticipants(params)
-        this.isActive = nomination_id
+        this.activeNomination = nomination_id
       }
     },
     created () {
