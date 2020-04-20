@@ -1,2 +1,2 @@
 json.status 200
-json.partial! 'shared/notifications', model: 'Permission'
+json.partial! 'shared/notifications', model: 'permission'

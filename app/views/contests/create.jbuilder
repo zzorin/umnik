@@ -1,2 +1,2 @@
 json.id @contest.id
-json.partial! 'shared/notifications', model: 'Contest'
+json.partial! 'shared/notifications', model: 'contest'

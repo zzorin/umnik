@@ -1,2 +1,2 @@
 json.id @permission.id
-json.partial! 'shared/notifications', model: 'Permission'
+json.partial! 'shared/notifications', model: 'permission'

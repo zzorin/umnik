@@ -1,6 +1,4 @@
-model = model.downcase.pluralize
-
 json.notifications do
-  json.title I18n.t("notifications.#{model}.#{action_name}.title")
-  json.text I18n.t("notifications.#{model}.#{action_name}.text")
+  json.title I18n.t("notifications.model_names.#{model}") +': '+ I18n.t("notifications.#{action_name}.title")
+  json.text I18n.t("notifications.model_names.#{model}") +' - '+ I18n.t("notifications.#{action_name}.text")
 end

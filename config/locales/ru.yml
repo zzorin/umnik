@@ -2,12 +2,30 @@ ru:
   app:
     title: 'Умник'
   notifications:
-    contests:
-      create:
-        title: 'Добавление конкурса'
-        text: 'Конкурс успешно добавлен!'
-        errors:
-          title: 'Возникли ошибки при добавлении конкурса'
+    model_names:
+      contest: 'Конкурс'
+      criterion: 'Критерий'
+      expert: 'Эксперт'
+      mark: 'Оценка'
+      nomination: 'Номинация'
+      participant: 'Участник'
+      permission: 'Разрешение'
+    create:
+      title: 'добавление'
+      text: 'добавление успешно!'
+      errors:
+        title: 'возникли ошибки при добавлении'
+    update:
+      title: 'редактирование'
+      text: 'изменение успешно!'
+      errors:
+        title: 'возникли ошибки при редактировании'
+    destroy:
+      title: 'удаление'
+      text: 'удаление успешно!'
+      errors:
+        title: 'возникли ошибки при удалении'
+
   permissions:
     administrator: 'Администратор'
     tusur_manager: 'Менеджер ТУСУР'

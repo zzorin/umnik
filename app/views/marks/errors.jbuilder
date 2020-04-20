@@ -1,2 +1,2 @@
 json.status 200
-json.partial! 'shared/errors', item: @mark, model: 'Mark'
+json.partial! 'shared/errors', item: @mark, model: 'mark'
