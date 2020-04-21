@@ -1,9 +1,7 @@
 class Permission < ActiveRecord::Base
   include AuthClient::Permission
 
-  ROLES = %i(administrator tusur_manager
-             university_manager expert
-            ).freeze
+  ROLES = %i(administrator university_manager expert).freeze
 
   acts_as_auth_client_permission roles: ROLES
 

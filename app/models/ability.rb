@@ -8,10 +8,6 @@ class Ability
       can :manage, :all
     end
 
-    if user.tusur_manager?
-      can :manage, [Contest, Nomination]
-    end
-
     if user.university_manager?
     end
 

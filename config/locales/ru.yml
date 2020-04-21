@@ -28,6 +28,5 @@ ru:
 
   permissions:
     administrator: 'Администратор'
-    tusur_manager: 'Менеджер ТУСУР'
     university_manager: 'Менеджер организации'
     expert: 'Эксперт'
