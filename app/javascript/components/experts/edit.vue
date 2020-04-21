@@ -29,6 +29,7 @@
     },
     methods: {
       ...mapActions('experts', ['updateExpert', 'getExperts', 'clearExpert']),
+      ...mapActions('permissions', ['createPermission']),
       selfUpdateExpert() {
         this.updateExpert({expert: this.expert} ).then(data => {
           if (data.status == 'error') {
@@ -45,8 +46,23 @@
               text: data.notifications.text,
               type: 'warn'
             })
+            if (this.expert.permission.user_id) {
+              this.selfCreatePermission(this.expert.id)
+            }
             this.getExperts({ contest_id: this.currentContest.id })
             this.redirectBack()
+          }
+        })
+      },
+      selfCreatePermission(expert_id) {
+        this.$set(this.expert.permission, 'context_id', expert_id)
+        let params = { permission: this.expert.permission }
+        this.createPermission(params).then(data => {
+          if (data.status == 200) {
+            this.notificate({
+              title: data.body.notifications.title,
+              text: data.body.notifications.text
+            })
           }
         })
       },

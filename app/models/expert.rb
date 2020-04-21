@@ -1,10 +1,15 @@
 class Expert < ApplicationRecord
   belongs_to :contest
   has_many :marks
+  has_one :permission, as: :context, dependent: :destroy
   validates :surname, :name, presence: true
 
   def fullname
     [surname, name, patronymic].compact.join(' ')
+  end
+
+  def user
+    permission&.user
   end
 
   def shortname
