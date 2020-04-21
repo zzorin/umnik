@@ -1,4 +1,4 @@
-class Administrator::SpaController < Administrator::ApplicationController
+class UniversityManager::SpaController < UniversityManager::ApplicationController
   authorize_resource :spa, class: false
 
   include Manage::AccessRules

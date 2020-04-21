@@ -3,7 +3,7 @@ class ExpertsController < ApplicationController
 
   def index
     @contest = Contest.find(params[:contest_id])
-    @experts = @contest.experts
+    @experts = @contest.experts.accessible_by(current_ability)
   end
 
   def show; end

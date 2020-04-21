@@ -1,8 +1,14 @@
 <template>
   <div class="margin-bottom-40">
     <h1>{{currentContest.title}}</h1>
-    <div>
+    <div v-if='access_rules.contests.new'>
       <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item">
+             <router-link :to="{name: 'experts'}" class="nav-link"
+                          v-bind:class="{active: isCurrentPage('experts') || isCurrentPage('expert_new') || isCurrentPage('expert_edit') || isCurrentPage('marks')}">
+               Эксперты и оценки
+             </router-link>
+        </li>
         <li class="nav-item">
              <router-link :to="{name: 'criterions'}" class="nav-link" v-bind:class="{active: isCurrentPage('criterions')}">
                Критерии обзора
@@ -12,12 +18,6 @@
              <router-link :to="{name: 'participants'}" class="nav-link"
                           v-bind:class="{active: isCurrentPage('participants') || isCurrentPage('participant_new') || isCurrentPage('participant_edit')}">
                Участники
-             </router-link>
-        </li>
-        <li class="nav-item">
-             <router-link :to="{name: 'experts'}" class="nav-link"
-                          v-bind:class="{active: isCurrentPage('experts') || isCurrentPage('expert_new') || isCurrentPage('expert_edit') || isCurrentPage('marks')}">
-               Эксперты
              </router-link>
         </li>
         <li class="nav-item">

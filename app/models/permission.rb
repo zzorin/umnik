@@ -7,6 +7,8 @@ class Permission < ActiveRecord::Base
 
   delegate :fullname,  to: :user, allow_nil: true
 
+  scope :with_context, -> { where.not(context_type: nil, context_id: nil) }
+
   def text_role
     I18n.t "permissions.#{role}"
   end

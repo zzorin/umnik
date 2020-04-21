@@ -2,23 +2,27 @@
   <div>
     <div v-if='isCurrentPage("contests")' class="contests-list margin-bottom-40">
       <h1>Список конкурсов</h1>
-      <div class="mb-1"><strong>Название конкурса</strong></div>
-      <div class="d-flex">
-        <input type="text" class="input-with-button form-control" v-model='newContest.title'/>
-        <span class='btn btn-blue' @click='selfCreateContest' :class="{'disabled': !newContest.title}">
-          Добавить конкурс
-        </span>
-      </div>
+      <template v-if='access_rules.contests.new'>
+        <div class="mb-1"><strong>Название конкурса</strong></div>
+        <div class="d-flex">
+          <input type="text" class="input-with-button form-control" v-model='newContest.title'/>
+          <span class='btn btn-blue' @click='selfCreateContest' :class="{'disabled': !newContest.title}">
+            Добавить конкурс
+          </span>
+        </div>
+      </template>
       <div class="contests-list-table">
         <table>
           <tr v-for='contest in contests'>
             <td>
-              <router-link :to="{name: 'criterions', params: { id: contest.id }}">
+              <router-link :to="{name: 'experts', params: { id: contest.id }}">
                 {{ contest.title }}
               </router-link>
             </td>
             <td>
-              <span @click='selfDeleteContest(contest)' class='cursor-pointer'>
+              <span v-if='access_rules.contests.destroy'
+                    @click='selfDeleteContest(contest)'
+                    class='cursor-pointer'>
                 <svg class="bi bi-x" width="26px" height="26px" viewBox="0 0 16 16" fill="#0390C8" xmlns="http://www.w3.org/2000/svg">
                   <path fill-rule="evenodd" d="M11.854 4.146a.5.5 0 010 .708l-7 7a.5.5 0 01-.708-.708l7-7a.5.5 0 01.708 0z" clip-rule="evenodd"/>
                   <path fill-rule="evenodd" d="M4.146 4.146a.5.5 0 000 .708l7 7a.5.5 0 00.708-.708l-7-7a.5.5 0 00-.708 0z" clip-rule="evenodd"/>
