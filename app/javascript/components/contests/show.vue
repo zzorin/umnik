@@ -1,7 +1,7 @@
 <template>
   <div class="margin-bottom-40">
     <h1>{{currentContest.title}}</h1>
-    <div v-if='access_rules.contests.new'>
+    <div v-if='access_rules.contests.update'>
       <ul class="nav nav-tabs" id="myTab" role="tablist">
         <li class="nav-item">
              <router-link :to="{name: 'experts'}" class="nav-link"

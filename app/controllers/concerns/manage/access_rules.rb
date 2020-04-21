@@ -18,6 +18,7 @@ module Manage::AccessRules
       manage: can?(:manage, Contest),
       index: can?(:index, Contest),
       new: can?(:new, Contest),
+      update: can?(:update, Contest),
       destroy: can?(:destroy, Contest)
     }
   end
