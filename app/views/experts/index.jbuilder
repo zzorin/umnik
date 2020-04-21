@@ -5,4 +5,5 @@ json.array! @experts do |expert|
   json.patronymic expert.patronymic
   json.shortname expert.shortname
   json.contest_id expert.contest_id
+  json.blocked expert.active
 end

@@ -16,6 +16,17 @@
             <input type="text" class="form-control" v-model='expert.patronymic' />
           </div>
         </div>
+        <div class="row">
+          <div class="col-lg-4">
+            <b><label for="">Статус</label><span class="necessary-field text-danger">*</span></b>
+            <br>
+            <input type="radio" value='true' v-model="expert.active">
+            <label>Активен</label>
+            <br>
+            <input type="radio" value='false' v-model="expert.active">
+            <label>Заблокирован</label>
+          </div>
+        </div>
       </div>
     </form>
   </div>
@@ -43,6 +54,7 @@
     created() {
       if (this.isCurrentPage("expert_new")) {
         console.warn('New expert')
+        this.$set(this.expert, 'active', true)
       }
       if (this.isCurrentPage("expert_edit")) {
         console.warn('Edit expert')
