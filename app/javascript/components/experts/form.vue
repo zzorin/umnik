@@ -26,6 +26,21 @@
             <input type="radio" value='false' v-model="expert.active">
             <label>Заблокирован</label>
           </div>
+          <div class="col-lg-8">
+            <b><label for="">Пользователь</label></b>
+            {{permission}}
+            <br>
+            <autocomplete source='/users/search?term='
+                    @selected='selectedUser'
+                    resultsDisplay='label'
+                    ref="autocomplete"
+                    class="mb-3"
+                    placeholder='Введите фамилию, имя и отчество'>
+                    <slot slot="noResults">
+                      Нет результатов
+                    </slot>
+            </autocomplete>
+          </div>
         </div>
       </div>
     </form>
@@ -38,11 +53,16 @@
   export default {
     mixins: [CommonMixin],
     computed: {
-      ...mapState( 'experts', ['expert']),
+      ...mapState( 'experts', ['expert', 'permission']),
       ...mapGetters('contests', ['currentContest'])
     },
     methods: {
       ...mapActions('experts', ['getExpert']),
+      selectedUser(object) {
+        this.$set(this.permission, 'user_id', object.selectedObject.id),
+        this.$set(this.permission, 'context_type', 'Expert')
+        this.$set(this.permission, 'role', 'expert')
+      },
       selfGetExpert() {
         let params = {
           contest_id: this.$route.params.id,

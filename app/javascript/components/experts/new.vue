@@ -21,7 +21,7 @@
   export default {
     mixins: [CommonMixin, NotificationsMixin],
     computed: {
-      ...mapState('experts', ['expert']),
+      ...mapState('experts', ['expert', 'permission']),
       ...mapGetters('contests', ['currentContest'])
     },
     components: {
@@ -29,6 +29,7 @@
     },
     methods: {
       ...mapActions('experts', ['createExpert', 'getExperts', 'clearExpert']),
+      ...mapActions('permissions', ['createPermission']),
       selfCreateExpert() {
         let params = {
           expert: this.expert,
@@ -41,7 +42,22 @@
               text: data.body.notifications.text
             })
             this.getExperts({ contest_id: this.currentContest.id })
+            if (this.permission.user_id) {
+              this.selfCreatePermission(data.body.id)
+            }
             this.redirectBack()
+          }
+        })
+      },
+      selfCreatePermission(expert_id) {
+        this.$set(this.permission, 'context_id', expert_id)
+        let params = { permission: this.permission }
+        this.createPermission(params).then(data => {
+          if (data.status == 200) {
+            this.notificate({
+              title: data.body.notifications.title,
+              text: data.body.notifications.text
+            })
           }
         })
       },

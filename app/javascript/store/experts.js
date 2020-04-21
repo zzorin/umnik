@@ -3,11 +3,13 @@ import Vue from 'vue'
 export const expertsStore = {
   state: {
     experts: [],
-    expert: {}
+    expert: {},
+    permission: {}
   },
   mutations: {
     clearExpert(state) {
-      Vue.set(state, 'expert', {})
+      Vue.set(state, 'expert', {}),
+      Vue.set(state, 'permission', {})
     },
     setExpert(state, expert) {
       Vue.set(state, 'expert', expert)
