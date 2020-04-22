@@ -9,8 +9,6 @@ class ExpertsController < ApplicationController
   def show; end
 
   def create
-    @contest = Contest.find(params[:contest_id])
-    @expert = @contest.experts.build(expert_params)
     if @expert.save
       render :create
     else

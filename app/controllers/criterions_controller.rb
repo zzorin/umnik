@@ -7,8 +7,6 @@ class CriterionsController < ApplicationController
   end
 
   def create
-    @contest = Contest.find(params[:contest_id])
-    @criterion = @contest.criterions.build(criterion_params)
     if @criterion.save
       render :create
     else

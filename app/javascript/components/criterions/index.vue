@@ -74,6 +74,7 @@
         this.getCriterions(params)
       },
       selfCreateCriterion() {
+        this.$set(this.newCriterion, 'contest_id', this.currentContest.id)
         let params = {
           criterion: this.newCriterion,
           contest_id: this.currentContest.id

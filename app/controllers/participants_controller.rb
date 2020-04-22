@@ -9,7 +9,6 @@ class ParticipantsController < ApplicationController
   def show; end
 
   def create
-    @contest = Contest.find(params[:contest_id])
     if @participant.save
       render :create
     else

@@ -7,8 +7,6 @@ class NominationsController < ApplicationController
   end
 
   def create
-    @contest = Contest.find(params[:contest_id])
-    @nomination = @contest.nominations.build(nomination_params)
     if @nomination.save
       render :create
     else

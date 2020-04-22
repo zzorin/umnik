@@ -31,6 +31,7 @@
       ...mapActions('experts', ['createExpert', 'getExperts', 'clearExpert']),
       ...mapActions('permissions', ['createPermission']),
       selfCreateExpert() {
+        this.$set(this.expert, 'contest_id', this.currentContest.id)
         let params = {
           expert: this.expert,
           contest_id: this.currentContest.id

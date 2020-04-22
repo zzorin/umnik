@@ -84,6 +84,7 @@
         this.getNominations(params)
       },
       selfCreateNomination() {
+        this.$set(this.newNomination, 'contest_id', this.currentContest.id)
         let params = {
           nomination: this.newNomination,
           contest_id: this.currentContest.id

@@ -15,14 +15,15 @@ class Ability
                          .where(context_type: 'Contest')
                          .map {|p| p&.context&.id}.compact
         expert_ids = Expert.where(contest_id: contest_ids).ids
+        nomination_ids = Nomination.where(contest_id: contest_ids).ids
         can :manage, :spa
         can [:index, :show, :update], Contest, id: contest_ids
-        can [:manage], Expert, id: contest_ids
         can [:manage], Criterion, contest_id: contest_ids
         can [:manage], Nomination, contest_id: contest_ids
-        can [:manage], Participant, contest_id: contest_ids
+        can [:manage], Participant, nomination_id: nomination_ids
         can [:manage], Expert, contest_id: contest_ids
         can [:manage], Mark, expert_id: expert_ids
+        can [:create, :destroy], Permission, context_id: expert_ids, role: 'expert'
       end
 
       if user.expert?
