@@ -1,53 +1,56 @@
 <template>
   <div>
-    <div v-if='isCurrentPage("results")'>
-      <h3>Критерии отбора:</h3>
+    <div v-if='isCurrentPage("results")' class="mt-3">
+      <h3>Результаты конкурса</h3>
+      <div><strong>Критерии отбора:</strong></div>
       {{getCriterionString()}}
-      <table>
-        <tr>
-          <th rowspan="2"></th>
-          <th rowspan="2">№</th>
-          <th rowspan="2">Организация</th>
-          <th rowspan="2">ФИО участника</th>
-          <th rowspan="2">Название доклада</th>
-          <template v-for='expert in experts'>
-            <th :colspan='criterions.length'>{{expert.shortname}}</th>
-          </template>
-          <th rowspan="2">Итого баллов</th>
-          <th rowspan="2">Количество экспертов</th>
-          <th rowspan="2">Рейтинговый балл</th>
-        </tr>
-        <tr>
-          <template v-for='expert in experts'>
-            <template v-for='index in criterions.length'>
-              <th>К{{index}}</th>
+      <div class="results-table-wrapper">
+        <table class="table results-table">
+          <tr>
+            <th rowspan="2"></th>
+            <th rowspan="2">№</th>
+            <th rowspan="2">Организация</th>
+            <th rowspan="2">ФИО участника</th>
+            <th rowspan="2">Название доклада</th>
+            <template v-for='expert in experts'>
+              <th :colspan='criterions.length'>{{expert.shortname}}</th>
             </template>
-          </template>
-        </tr>
-        <tr v-for='(participant, key) in participants'>
-          <td></td>
-          <td>
-            {{ key + 1 }}
-          </td>
-          <td>
-            {{ participant.organization }}
-          </td>
-          <td>
-            {{ participant.shortname }}
-          </td>
-          <td>
-            {{ participant.project_title }}
-          </td>
-          <template v-for='expert in experts'>
-            <template v-for='criterion in criterions'>
-              <td>{{marks[participant.id][expert.id][criterion.id].grade}}</td>
+            <th rowspan="2">Итого баллов</th>
+            <th rowspan="2">Количество экспертов</th>
+            <th rowspan="2">Рейтинговый балл</th>
+          </tr>
+          <tr>
+            <template v-for='expert in experts'>
+              <template v-for='index in criterions.length'>
+                <th>К{{index}}</th>
+              </template>
             </template>
-          </template>
-          <td>{{marks[participant.id].marks_sum}}</td>
-          <td>{{experts.length}}</td>
-          <td>{{marks[participant.id].marks_sum / experts.length}}</td>
-        </tr>
-      </table>
+          </tr>
+          <tr v-for='(participant, key) in participants'>
+            <td></td>
+            <td>
+              {{ key + 1 }}
+            </td>
+            <td>
+              {{ participant.organization }}
+            </td>
+            <td>
+              {{ participant.shortname }}
+            </td>
+            <td>
+              {{ participant.project_title }}
+            </td>
+            <template v-for='expert in experts'>
+              <template v-for='criterion in criterions'>
+                <td>{{marks[participant.id][expert.id][criterion.id].grade}}</td>
+              </template>
+            </template>
+            <td>{{marks[participant.id].marks_sum}}</td>
+            <td>{{experts.length}}</td>
+            <td>{{marks[participant.id].marks_sum / experts.length}}</td>
+          </tr>
+        </table>
+      </div>
     </div>
   </div>
 </template>
