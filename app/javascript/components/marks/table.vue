@@ -38,7 +38,7 @@
             </div>
           </td>
         </template>
-        <td>{{marks['marks_sum']}}</td>
+        <td class="mark-result">{{marks['marks_sum']}}</td>
       </tr>
     </table>
   </div>

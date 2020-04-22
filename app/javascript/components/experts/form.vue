@@ -18,7 +18,7 @@
         </div>
         <div class="row">
           <div class="col-lg-4">
-            <b><label for="">Статус</label><span class="necessary-field text-danger">*</span></b>
+            <b><label class="mt-3">Статус</label><span class="necessary-field text-danger">*</span></b>
             <br>
             <input type="radio" value='true' v-model="expert.active">
             <label>Активен</label>
@@ -27,7 +27,7 @@
             <label>Заблокирован</label>
           </div>
           <div class="col-lg-8">
-            <b><label for="">Пользователь</label></b>
+            <b><label class="mt-3">Пользователь</label></b>
             <br>
             <div v-if='expert.permission && expert.permission.user_id'>
               {{expert.permission.fullname}}
