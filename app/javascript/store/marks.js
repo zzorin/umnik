@@ -22,6 +22,14 @@ export const marksStore = {
         })
       })
     },
+    getAllMarks({ commit, state }, params) {
+      let { contest_id } = params
+      return new Promise((resolve, reject) => {
+        Vue.http.get(`contests/${contest_id}/marks`).then(data => {
+            resolve(data)
+        })
+      })
+    },
     createMark({ commit }, params) {
       return new Promise((resolve, reject) => {
         commit('createMark', { params, resolve, reject })

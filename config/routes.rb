@@ -16,6 +16,7 @@ Rails.application.routes.draw do
         get :by_nomination
       end
     end
+    resources :marks, only: [:index]
     resources :experts do
       resources :marks, only: [:create, :update] do
         collection do

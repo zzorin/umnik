@@ -9,6 +9,7 @@ import ExpertsIndex from 'components/experts/index'
 import ExpertNew from 'components/experts/new'
 import ExpertEdit from 'components/experts/edit'
 import MarksIndex from 'components/marks/index'
+import ResultsIndex from 'components/results/index'
 import NominationsIndex from 'components/nominations/index'
 import PermissionsIndex from 'components/permissions/index'
 import PermissionNew from 'components/permissions/new'
@@ -78,6 +79,11 @@ export const routes = [
                 path: '/contests/:id/nominations',
                 component: NominationsIndex
               },
+              {
+                name: 'results',
+                path: '/contests/:id/results',
+                component: ResultsIndex
+              }
             ]
           }
         ]
