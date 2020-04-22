@@ -1,7 +1,9 @@
 <template>
   <div>
     <div v-if='isCurrentPage("results")' class="mt-3">
-      <h3>Результаты конкурса</h3>
+      <span class='btn btn-blue'>
+        <a :href="generateRateList()">Экспорт в итоговую таблицу</a>
+      </span>
       <div><strong>Критерии отбора:</strong></div>
       {{getCriterionString()}}
       <div class="results-table-wrapper">
@@ -103,6 +105,9 @@
             this.marks = data.body
           }
         })
+      },
+      generateRateList() {
+        return `contests/${this.currentContest.id}/results/generate_rate_list`
       }
     },
     created() {

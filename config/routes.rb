@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   end
   resources :contests do
     resources :results, only: [] do
-      post 'generate_rate_list', on: :collection
+      get 'generate_rate_list', on: :collection
     end
     resources :nominations
     resources :criterions
