@@ -30,7 +30,7 @@
             <b><label for="">Пользователь</label></b>
             <br>
             <div v-if='expert.permission && expert.permission.user_id'>
-              {{expert.permission.user_id}}
+              {{expert.permission.fullname}}
               <span @click='selfDeletePermission()'
                     class='cursor-pointer'>
                 <svg class="bi bi-x" width="26px" height="26px" viewBox="0 0 16 16" fill="#0390C8" xmlns="http://www.w3.org/2000/svg">
@@ -74,6 +74,7 @@
         this.$set(this.expert.permission, 'user_id', object.selectedObject.id),
         this.$set(this.expert.permission, 'context_type', 'Expert')
         this.$set(this.expert.permission, 'role', 'expert')
+        this.$set(this.expert.permission, 'fullname', object.selectedObject.label)
       },
       clearPermission() {
         this.$set(this.expert, 'permission', {})

@@ -1,6 +1,6 @@
 class Expert < ApplicationRecord
   belongs_to :contest
-  has_many :marks
+  has_many :marks, dependent: :destroy
   has_one :permission, as: :context, dependent: :destroy
   validates :surname, :name, presence: true
 
