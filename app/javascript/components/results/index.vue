@@ -4,6 +4,9 @@
       <span class='btn btn-blue'>
         <a :href="generateRateList()">Экспорт в итоговую таблицу</a>
       </span>
+      <span class='btn btn-blue'>
+        <a :href="generateProtocol()">Экспорт в протокол</a>
+      </span>
       <div><strong>Критерии отбора:</strong></div>
       {{getCriterionString()}}
       <div class="results-table-wrapper">
@@ -108,6 +111,9 @@
       },
       generateRateList() {
         return `contests/${this.currentContest.id}/results/generate_rate_list`
+      },
+      generateProtocol() {
+        return `contests/${this.currentContest.id}/results/generate_protocol`
       }
     },
     created() {

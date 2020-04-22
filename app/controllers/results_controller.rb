@@ -9,5 +9,9 @@ class ResultsController < ApplicationController
   end
 
   def generate_protocol
+    report = Statistic::Protocol.new(params[:contest_id], params[:nomination_id]).generate
+    send_data report.to_stream.read,
+      filename: "protocol.xlsx",
+      type: 'application/vnd.openxmlformates-officedocument.spreadsheetml.sheet'
   end
 end

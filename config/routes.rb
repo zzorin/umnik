@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   resources :contests do
     resources :results, only: [] do
       get 'generate_rate_list', on: :collection
+      get 'generate_protocol', on: :collection
     end
     resources :nominations
     resources :criterions
