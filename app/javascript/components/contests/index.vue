@@ -5,7 +5,9 @@
       <template v-if='access_rules.contests.new'>
         <div class="mb-1"><strong>Название конкурса</strong></div>
         <div class="d-flex">
-          <input type="text" class="input-with-button form-control" v-model='newContest.title'/>
+          <input type="text"
+                 class="input-with-button form-control"
+                 v-model='newContest.title'/>
         </div>
         <div class="mb-1"><strong>Период проведения</strong></div>
         <div class="d-flex">
@@ -22,28 +24,75 @@
             input-class='form-control background-color-white-important'
             :language='ru' />
         </div>
-        <span class='btn btn-blue margin-top-10' @click='selfCreateContest' :class="{'disabled': !newContest.title}">
+        <span class='btn btn-blue margin-top-10'
+              @click='selfCreateContest'
+              :class="{'disabled': !newContest.title}">
           Добавить конкурс
         </span>
       </template>
+
       <div class="contests-list-table">
         <table>
           <tr v-for='contest in contests'>
-            <td>
-              <router-link :to="{name: 'experts', params: { id: contest.id }}">
-                {{ contest.title }}
-              </router-link>
-            </td>
-            <td>
-              <span v-if='access_rules.contests.destroy'
-                    @click='selfDeleteContest(contest)'
-                    class='cursor-pointer'>
-                <svg class="bi bi-x" width="26px" height="26px" viewBox="0 0 16 16" fill="#0390C8" xmlns="http://www.w3.org/2000/svg">
-                  <path fill-rule="evenodd" d="M11.854 4.146a.5.5 0 010 .708l-7 7a.5.5 0 01-.708-.708l7-7a.5.5 0 01.708 0z" clip-rule="evenodd"/>
-                  <path fill-rule="evenodd" d="M4.146 4.146a.5.5 0 000 .708l7 7a.5.5 0 00.708-.708l-7-7a.5.5 0 00-.708 0z" clip-rule="evenodd"/>
-                </svg>
-              </span>
-            </td>
+            <template  v-if='!(editableContest.id == contest.id)'>
+              <td>
+                <router-link :to="{name: 'experts', params: { id: contest.id }}">
+                  {{ contest.title }}
+                </router-link>
+              </td>
+              <td>
+                {{ contest.starts_on_format }}
+              </td>
+              <td>
+                {{ contest.ends_on_format }}
+              </td>
+              <td>
+                <span class='cursor-pointer ml-2' @click='setEditableContest(contest)'>
+                  <svg class="bi bi-pencil" width="16px" height="16px" viewBox="0 0 16 16" fill="#0390C8" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M11.293 1.293a1 1 0 011.414 0l2 2a1 1 0 010 1.414l-9 9a1 1 0 01-.39.242l-3 1a1 1 0 01-1.266-1.265l1-3a1 1 0 01.242-.391l9-9zM12 2l2 2-9 9-3 1 1-3 9-9z" clip-rule="evenodd"/>
+                    <path fill-rule="evenodd" d="M12.146 6.354l-2.5-2.5.708-.708 2.5 2.5-.707.708zM3 10v.5a.5.5 0 00.5.5H4v.5a.5.5 0 00.5.5H5v.5a.5.5 0 00.5.5H6v-1.5a.5.5 0 00-.5-.5H5v-.5a.5.5 0 00-.5-.5H3z" clip-rule="evenodd"/>
+                  </svg>
+                </span>
+                <span v-if='access_rules.contests.destroy'
+                      @click='selfDeleteContest(contest)'
+                      class='cursor-pointer'>
+                  <svg class="bi bi-x" width="26px" height="26px" viewBox="0 0 16 16" fill="#0390C8" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M11.854 4.146a.5.5 0 010 .708l-7 7a.5.5 0 01-.708-.708l7-7a.5.5 0 01.708 0z" clip-rule="evenodd"/>
+                    <path fill-rule="evenodd" d="M4.146 4.146a.5.5 0 000 .708l7 7a.5.5 0 00.708-.708l-7-7a.5.5 0 00-.708 0z" clip-rule="evenodd"/>
+                  </svg>
+                </span>
+              </td>
+            </template>
+            <template  v-if='(editableContest.id == contest.id)'>
+              <td>
+                <input type="text" v-model='editableContest.title'/>
+              </td>
+              <td>
+                <datepicker v-model='editableContest.starts_on'
+                  :value='editableContest.starts_on'
+                  :monday-first='true'
+                  placeholder='Дата начала'
+                  input-class='form-control background-color-white-important'
+                  :language='ru' />
+              </td>
+              <td>
+                <datepicker v-model='editableContest.ends_on'
+                  :value='editableContest.ends_on'
+                  :monday-first='true'
+                  placeholder='Дата начала'
+                  input-class='form-control background-color-white-important'
+                  :language='ru' />
+              </td>
+              <td>
+                <span class='btn btn-green mr-2 ml-3'
+                      @click='selfUpdateContest(editableContest)'>
+                  Сохранить
+                </span>
+                <span class='btn btn-light-blue' @click='clearEditableContest'>
+                  Отменить
+                </span>
+              </td>
+            </template>
           </tr>
         </table>
       </div>
@@ -61,7 +110,8 @@
   export default {
     data: () => {
       return {
-        ru: datepickerRuLocale
+        ru: datepickerRuLocale,
+        editableContest: {}
       }
     },
     mixins: [CommonMixin, NotificationsMixin],
@@ -69,7 +119,7 @@
       ...mapState( 'contests', ['contests', 'newContest'])
     },
     methods: {
-      ...mapActions('contests', ['clearNewContest', 'getContests', 'createContest', 'deleteContest']),
+      ...mapActions('contests', ['clearNewContest', 'updateContest', 'getContests', 'createContest', 'deleteContest']),
       contestsRequester() {
         this.getContests()
       },
@@ -93,6 +143,33 @@
           this.getContests()
         })
       },
+      selfUpdateContest(contest) {
+        this.updateContest({ contest }).then(data => {
+          if (data.status == 'error') {
+            this.notificate({
+              title: data.errors.title,
+              text: data.errors.text,
+              type: 'error'
+            })
+            return
+          }
+          if (data.status == 200) {
+            this.notificate({
+              title: data.notifications.title,
+              text: data.notifications.text,
+              type: 'warn'
+            })
+            this.clearEditableContest()
+            this.contestsRequester()
+          }
+        })
+      },
+      setEditableContest(contest) {
+        this.editableContest = {...contest }
+      },
+      clearEditableContest() {
+        this.editableContest = {}
+      }
     },
     created() {
       console.warn('Конкурсы')

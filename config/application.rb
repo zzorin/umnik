@@ -11,6 +11,9 @@ module Umnik
     config.i18n.default_locale = :ru
     config.i18n.available_locales = [:ru, :en]
 
+    config.active_record.belongs_to_required_by_default = false
+    config.time_zone = 'Krasnoyarsk'
+
     Rails.application.config.active_record.belongs_to_required_by_default = false
   end
 end

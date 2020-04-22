@@ -15,9 +15,9 @@ class ContestsController < ApplicationController
 
   def update
     if @contest.update(contest_params)
-      redirect_to @contest
+      render :update
     else
-      render 'edit'
+      render :errors
     end
   end
 
