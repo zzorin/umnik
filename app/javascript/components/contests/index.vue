@@ -6,10 +6,25 @@
         <div class="mb-1"><strong>Название конкурса</strong></div>
         <div class="d-flex">
           <input type="text" class="input-with-button form-control" v-model='newContest.title'/>
-          <span class='btn btn-blue' @click='selfCreateContest' :class="{'disabled': !newContest.title}">
-            Добавить конкурс
-          </span>
         </div>
+        <div class="mb-1"><strong>Период проведения</strong></div>
+        <div class="d-flex">
+          <datepicker v-model='newContest.starts_on'
+            :value='newContest.starts_on'
+            :monday-first='true'
+            placeholder='Дата начала'
+            input-class='form-control background-color-white-important'
+            :language='ru' />
+          <datepicker v-model='newContest.ends_on'
+            :value='newContest.ends_on'
+            :monday-first='true'
+            placeholder='Дата окончания'
+            input-class='form-control background-color-white-important'
+            :language='ru' />
+        </div>
+        <span class='btn btn-blue margin-top-10' @click='selfCreateContest' :class="{'disabled': !newContest.title}">
+          Добавить конкурс
+        </span>
       </template>
       <div class="contests-list-table">
         <table>
@@ -41,8 +56,14 @@
   import { CommonMixin } from 'mixins/common'
   import { NotificationsMixin } from 'mixins/notifications'
   import { mapState, mapMutations, mapActions } from 'vuex'
+  import datepickerRuLocale from 'vuejs-datepicker/dist/locale/translations/ru'
 
   export default {
+    data: () => {
+      return {
+        ru: datepickerRuLocale
+      }
+    },
     mixins: [CommonMixin, NotificationsMixin],
     computed: {
       ...mapState( 'contests', ['contests', 'newContest'])

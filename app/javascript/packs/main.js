@@ -4,6 +4,7 @@ import VueResource from 'vue-resource'
 import Vuex from 'vuex'
 import Notifications from 'vue-notification'
 import Autocomplete from 'vuejs-auto-complete'
+import Datepicker from 'vuejs-datepicker'
 import baseStore from 'store/base'
 import { routes } from 'routes/index'
 import interceptorsSetup from 'interceptors'
@@ -15,6 +16,7 @@ Vue.use(Vuex)
 Vue.use(Notifications)
 
 Vue.component('autocomplete', Autocomplete)
+Vue.component('datepicker', Datepicker)
 
 interceptorsSetup()
 
