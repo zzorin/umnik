@@ -1,12 +1,8 @@
 <template>
   <div>
     <div v-if='isCurrentPage("results")' class="mt-3">
-      <span class='btn btn-blue'>
-        <a :href="generateRateList()">Экспорт в итоговую таблицу</a>
-      </span>
-      <span class='btn btn-blue'>
-        <a :href="generateProtocol()">Экспорт в протокол</a>
-      </span>
+        <a :href="generateRateList()" class='btn btn-blue mb-2 mr-2'>Экспорт в итоговую таблицу</a>
+        <a :href="generateProtocol()" class='btn btn-blue mb-2'>Экспорт в протокол</a>
       <div><strong>Критерии отбора:</strong></div>
       {{getCriterionString()}}
       <div class="results-table-wrapper">
