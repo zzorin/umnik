@@ -63,6 +63,12 @@ class Statistic::RateList
 
     wb.styles { |s| @style = s.add_style common_styles }
     ws.add_row header[0], style: [@style] * header[0].count
+    merge_start = 5
+    @experts.each do |expert|
+      merge_end = merge_start + @criterions.count
+      ws.merge_cells ws.rows.first.cells[(merge_start..(merge_end-1))]
+      merge_start = merge_end
+    end
     ws.add_row header[1], style: [@style] * header[1].count
   end
 
