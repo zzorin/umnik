@@ -7,14 +7,20 @@
       font-size: 18px
 
       tr
-        &:nth-child(odd)
-          background: #F2F2F2
-
         td
           padding: 5px 10px
 
           &:last-child
-            text-align: right
+            text-align: center
+
+      thead
+        tr th
+          white-space: nowrap
+
+      tbody
+        tr
+          &:nth-child(odd)
+            background: #F2F2F2
 
 .criterions-list, .nominations-list
   margin-top: 40px
