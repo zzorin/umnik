@@ -144,10 +144,10 @@
         this.getNominationParticipants(params)
       },
       generateRateList() {
-        return `contests/${this.currentContest.id}/results/generate_rate_list`
+        return `contests/${this.currentContest.id}/generate_rate_list`
       },
       generateProtocol() {
-        return `contests/${this.currentContest.id}/results/generate_protocol`
+        return `contests/${this.currentContest.id}/generate_protocol`
       }
     },
     created() {

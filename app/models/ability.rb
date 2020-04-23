@@ -18,6 +18,7 @@ class Ability
         nomination_ids = Nomination.where(contest_id: contest_ids).ids
         can :manage, :spa
         can [:index, :show, :update], Contest, id: contest_ids
+        can [:generate_rate_list, :generate_protocol], Contest, id: contest_ids
         can [:manage], Criterion, contest_id: contest_ids
         can [:manage], Nomination, contest_id: contest_ids
         can [:manage], Participant, nomination_id: nomination_ids
