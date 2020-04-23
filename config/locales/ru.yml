@@ -4,6 +4,15 @@ ru:
   activerecord:
     errors:
       models:
+        nomination:
+          attributes:
+            code:
+              blank: 'Необходимо указать код номинации'
+            title:
+              blank: 'Необходимо указать название номинации'
+            contest:
+              blank: 'Необходимо указать конкурс'
+
         participant:
           attributes:
             surname:

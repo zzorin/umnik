@@ -90,6 +90,14 @@
           contest_id: this.currentContest.id
         }
         this.createNomination(params).then(data => {
+          if (data.status == 'error') {
+            this.notificate({
+              title: data.errors.title,
+              text: data.errors.text,
+              type: 'error'
+            })
+            return
+          }
           if (data.status == 200) {
             this.notificate({
               title: data.body.notifications.title,
