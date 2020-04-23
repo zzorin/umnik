@@ -11,6 +11,15 @@
           Разбить баллы экспертов по критериям
         </label>
       </div>
+      <div>
+        <b><label for="">Сортировать по номинациям: </label></b>
+        <select v-model='currentNomination' @change='updateParticipants()' class="form-control dark-grey-select">
+          <option value="all">Все</option>
+          <option v-for="nomination in nominations" v-bind:value="nomination.id" class="dark-grey-select dark-grey-option">
+            {{ nomination.code +'. '+nomination.title}}
+          </option>
+        </select>
+      </div>
       <div class="results-table-wrapper">
         <table class="table results-table">
           <tr>
@@ -69,7 +78,8 @@
     data() {
       return {
         marks: {},
-        showExperts: true
+        showExperts: true,
+        currentNomination: 'all'
       }
     },
     mixins: [CommonMixin],
@@ -77,13 +87,15 @@
       ...mapState( 'participants', ['participants']),
       ...mapState( 'criterions', ['criterions']),
       ...mapState( 'experts', ['experts']),
+      ...mapState( 'nominations', ['nominations']),
       ...mapGetters('contests', ['currentContest'])
     },
     methods: {
-      ...mapActions('participants', ['getParticipants']),
+      ...mapActions('participants', ['clearParticipants', 'getParticipants', 'getNominationParticipants']),
       ...mapActions('criterions', ['getCriterions']),
       ...mapActions('experts', ['getExperts']),
       ...mapActions('marks', ['getAllMarks']),
+      ...mapActions('nominations', ['getNominations']),
       getCriterionString() {
         let criterion_string = ''
         for (let [key, criterion] of Object.entries(this.criterions)) {
@@ -112,6 +124,25 @@
           }
         })
       },
+      updateParticipants() {
+        this.clearParticipants()
+        if (this.currentNomination == 'all') {
+          this.selfGetParticipants()
+        } else {
+          this.selfGetNominationParticipants(this.currentNomination)
+        }
+      },
+      selfGetNominations() {
+        let params = { contest_id: this.currentContest.id }
+        this.getNominations(params)
+      },
+      selfGetNominationParticipants(nomination_id) {
+        let params = {
+          contest_id: this.currentContest.id,
+          nomination_id: nomination_id
+        }
+        this.getNominationParticipants(params)
+      },
       generateRateList() {
         return `contests/${this.currentContest.id}/results/generate_rate_list`
       },
@@ -122,6 +153,7 @@
     created() {
       this.selfGetParticipants()
       this.selfGetCriterions()
+      this.selfGetNominations()
       this.selfGetExperts()
       this.selfGetMarks()
     }
