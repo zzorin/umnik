@@ -29,9 +29,9 @@ export const expertsStore = {
       commit('clearExpert')
     },
     getExperts({ commit, state }, params) {
-      let { contest_id } = params
+      let { contest_id, active } = params
       return new Promise((resolve, reject) => {
-        Vue.http.get(`contests/${contest_id}/experts`).then(data => {
+        Vue.http.get(`contests/${contest_id}/experts?active=${active}`).then(data => {
           if (data.ok && data.status == 200) {
             commit('setExperts', data.body)
           }

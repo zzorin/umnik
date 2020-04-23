@@ -3,7 +3,7 @@ class MarksController < ApplicationController
   def index
     @contest = Contest.find(params[:contest_id])
     @participants = @contest.participants
-    @experts = @contest.experts
+    @experts = @contest.experts.active
     @criterions = @contest.criterions
   end
 

@@ -94,7 +94,7 @@
         this.getCriterions(params)
       },
       selfGetExperts() {
-        let params = { contest_id: this.currentContest.id }
+        let params = { contest_id: this.currentContest.id, active: true }
         this.getExperts(params)
       },
       selfGetMarks() {

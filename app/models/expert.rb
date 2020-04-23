@@ -3,6 +3,7 @@ class Expert < ApplicationRecord
   has_many :marks, dependent: :destroy
   has_one :permission, as: :context, dependent: :destroy
   validates :surname, :name, presence: true
+  scope :active, -> { where(active: true) }
 
   def fullname
     [surname, name, patronymic].compact.join(' ')

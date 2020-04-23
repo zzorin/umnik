@@ -8,7 +8,7 @@ class Statistic::RateList
     end
     @criterions = @contest.criterions
     @participants = @contest.participants
-    @experts = @contest.experts
+    @experts = @contest.experts.active
     @report = Axlsx::Package.new
   end
 
