@@ -13,6 +13,13 @@ ru:
             contest:
               blank: 'Необходимо указать конкурс'
 
+        criterion:
+          attributes:
+            title:
+              blank: 'Необходимо указать название критерия'
+            contest:
+              blank: 'Необходимо указать конкурс'
+
         participant:
           attributes:
             surname:
