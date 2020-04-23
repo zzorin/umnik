@@ -5,6 +5,12 @@
         <a :href="generateProtocol()" class='btn btn-blue mb-2'>Экспорт в протокол</a>
       <div><strong>Критерии отбора:</strong></div>
       {{getCriterionString()}}
+      <div>
+        <input type="checkbox" v-model='showExperts' name='showExperts'>
+        <label for="showExperts">
+          Разбить баллы экспертов по критериям
+        </label>
+      </div>
       <div class="results-table-wrapper">
         <table class="table results-table">
           <tr>
@@ -13,7 +19,7 @@
             <th rowspan="2">Организация</th>
             <th rowspan="2">ФИО участника</th>
             <th rowspan="2">Название доклада</th>
-            <template v-for='expert in experts'>
+            <template v-if='showExperts' v-for='expert in experts'>
               <th :colspan='criterions.length'>{{expert.shortname}}</th>
             </template>
             <th rowspan="2">Итого баллов</th>
@@ -21,7 +27,7 @@
             <th rowspan="2">Рейтинговый балл</th>
           </tr>
           <tr>
-            <template v-for='expert in experts'>
+            <template v-if='showExperts' v-for='expert in experts'>
               <template v-for='index in criterions.length'>
                 <th>К{{index}}</th>
               </template>
@@ -41,7 +47,7 @@
             <td>
               {{ participant.project_title }}
             </td>
-            <template v-for='expert in experts'>
+            <template v-if='showExperts' v-for='expert in experts'>
               <template v-for='criterion in criterions'>
                 <td>{{marks[participant.id][expert.id][criterion.id].grade}}</td>
               </template>
@@ -62,7 +68,8 @@
   export default {
     data() {
       return {
-        marks: {}
+        marks: {},
+        showExperts: true
       }
     },
     mixins: [CommonMixin],
