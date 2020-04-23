@@ -20,7 +20,7 @@
           </option>
         </select>
       </div>
-      <div class="results-table-wrapper">
+      <div v-if='Object.keys(marks).length !== 0' class="results-table-wrapper">
         <table class="table results-table">
           <tr>
             <th rowspan="2"></th>
