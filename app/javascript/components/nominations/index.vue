@@ -11,11 +11,12 @@
           <input type="text" class="form-control" v-model='newNomination.title'/>
         </div>
         <div class="col-lg-3">
-          <span class='btn btn-blue margin-top-30'
-                @click='selfCreateNomination'
-                :class="{'disabled': (!newNomination.title || !newNomination.code)}">
+          <button type="button"
+                  class='btn btn-blue margin-top-30'
+                  @click='selfCreateNomination'
+                  :disabled='!(newNomination.title && newNomination.code)'>
               Добавить номинацию
-          </span>
+          </button>
         </div>
       </div>
 

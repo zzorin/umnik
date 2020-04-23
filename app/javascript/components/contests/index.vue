@@ -26,11 +26,12 @@
             input-class='form-control background-color-white-important'
             :language='ru' />
         </div>
-        <span class='btn btn-blue mt-3'
-              @click='selfCreateContest'
-              :class="{'disabled': !newContest.title}">
+        <button type="button"
+                class='btn btn-blue mt-3'
+                @click='selfCreateContest'
+                :disabled='!(newContest.title && newContest.starts_on &&  newContest.ends_on)'>
           Добавить конкурс
-        </span>
+        </button>
       </template>
 
       <div class="contests-list-table">

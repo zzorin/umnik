@@ -4,9 +4,12 @@
       <div class="mt-4 mb-1"><strong>Название критерия</strong></div>
       <div class="d-flex">
         <input type="text" class="form-control input-with-button" v-model='newCriterion.title'/>
-        <span class='btn btn-blue' @click='selfCreateCriterion' :class="{'disabled': !newCriterion.title}">
+        <button type="button"
+                class='btn btn-blue'
+                @click='selfCreateCriterion'
+                :disabled='!newCriterion.title'>
             Добавить критерий
-        </span>
+        </button>
       </div>
 
       <div class="criterions-list">
