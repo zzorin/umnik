@@ -8,7 +8,7 @@ export const marksStore = {
       let { contest_id, expert_id, mark } = params.params
       Vue.http.post(`contests/${contest_id}/experts/${expert_id}/marks`, mark).then(data => {
         if (data.ok) {
-          resolve(data)
+          resolve(data.body)
         }
       })
     }

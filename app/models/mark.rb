@@ -3,4 +3,6 @@ class Mark < ApplicationRecord
   belongs_to :expert
   belongs_to :participant
   has_one :nomination, through: :participant
+
+  validates :criterion, :expert, :participant, :grade, presence: true
 end
