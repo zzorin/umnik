@@ -113,10 +113,18 @@
       selfCreatePermission() {
         let params = { permission: this.permission }
         this.createPermission(params).then(data => {
+          if (data.status == 'error') {
+            this.notificate({
+              title: data.errors.title,
+              text: data.errors.text,
+              type: 'error'
+            })
+            return
+          }
           if (data.status == 200) {
             this.notificate({
-              title: data.body.notifications.title,
-              text: data.body.notifications.text
+              title: data.notifications.title,
+              text: data.notifications.text
             })
             this.getPermissions()
             this.redirectBack()

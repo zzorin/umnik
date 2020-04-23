@@ -18,7 +18,7 @@ export const permissionsStore = {
       let { resolve, reject } = params
       Vue.http.post('/permissions', params.params).then(data => {
         if (data.ok) {
-          resolve(data)
+          resolve(data.body)
         }
       })
     }
