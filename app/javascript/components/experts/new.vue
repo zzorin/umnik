@@ -37,13 +37,21 @@
           contest_id: this.currentContest.id
         }
         this.createExpert(params).then(data => {
+          if (data.status == 'error') {
+            this.notificate({
+              title: data.errors.title,
+              text: data.errors.text,
+              type: 'error'
+            })
+            return
+          }
           if (data.status == 200) {
             this.notificate({
-              title: data.body.notifications.title,
-              text: data.body.notifications.text
+              title: data.notifications.title,
+              text: data.notifications.text
             })
             if (this.expert.permission.user_id) {
-              this.selfCreatePermission(data.body.id)
+              this.selfCreatePermission(data.id)
             }
             this.getExperts({ contest_id: this.currentContest.id })
             this.redirectBack()

@@ -37,6 +37,14 @@ ru:
             nomination:
               blank: 'Необходимо выбрать номинацию'
 
+        expert:
+          attributes:
+            surname:
+              blank: 'Необходимо указать фамилию'
+            name:
+              blank: 'Необходимо указать имя'
+            contest:
+              blank: 'Необходимо указать конкурс'
 
   notifications:
     model_names:

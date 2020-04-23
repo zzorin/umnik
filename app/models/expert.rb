@@ -2,7 +2,8 @@ class Expert < ApplicationRecord
   belongs_to :contest
   has_many :marks, dependent: :destroy
   has_one :permission, as: :context, dependent: :destroy
-  validates :surname, :name, presence: true
+  validates :surname, :name, :contest, presence: true
+  validates :active, inclusion: { in: [ true, false ] }
   scope :active, -> { where(active: true) }
 
   def fullname
