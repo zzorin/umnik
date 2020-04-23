@@ -11,7 +11,9 @@
           <input type="text" class="form-control" v-model='newNomination.title'/>
         </div>
         <div class="col-lg-3">
-          <span class='btn btn-blue margin-top-30' @click='selfCreateNomination' :class="{'disabled': (!newNomination.title || !newNomination.code)}">
+          <span class='btn btn-blue margin-top-30'
+                @click='selfCreateNomination'
+                :class="{'disabled': (!newNomination.title || !newNomination.code)}">
               Добавить номинацию
           </span>
         </div>
@@ -100,8 +102,8 @@
           }
           if (data.status == 200) {
             this.notificate({
-              title: data.body.notifications.title,
-              text: data.body.notifications.text
+              title: data.notifications.title,
+              text: data.notifications.text
             })
             this.clearNewNomination()
             this.selfGetNominations()

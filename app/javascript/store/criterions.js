@@ -16,7 +16,7 @@ export const criterionsStore = {
       let { resolve, reject } = params
       Vue.http.post(`contests/${params.params.contest_id}/criterions`, params.params).then(data => {
         if (data.ok) {
-          resolve(data)
+          resolve(data.body)
         }
       })
     }

@@ -37,18 +37,18 @@
           contest_id: this.currentContest.id
         }
         this.createParticipant(params).then(data => {
-          if (data.body.status == 'error') {
+          if (data.status == 'error') {
             this.notificate({
-              title: data.body.errors.title,
-              text: data.body.errors.text,
+              title: data.errors.title,
+              text: data.errors.text,
               type: 'error'
             })
             return
           }
-          if (data.status == 200 && !data.body.error) {
+          if (data.status == 200 && !data.error) {
             this.notificate({
-              title: data.body.notifications.title,
-              text: data.body.notifications.text
+              title: data.notifications.title,
+              text: data.notifications.text
             })
             this.getParticipants({ contest_id: this.currentContest.id })
             this.redirectBack()
