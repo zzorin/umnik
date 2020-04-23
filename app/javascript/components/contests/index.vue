@@ -48,9 +48,13 @@
             <tr v-for='contest in contests'>
               <template  v-if='!(editableContest.id == contest.id)'>
                 <td>
-                  <router-link :to="{name: 'experts', params: { id: contest.id }}">
+                  <router-link v-if="(contest.is_active || access_rules.contests.manage)"
+                  :to="{name: 'experts', params: { id: contest.id }}">
                     {{ contest.title }}
                   </router-link>
+                  <template v-if="!(contest.is_active || access_rules.contests.manage)">
+                    {{ contest.title }} (закончен)
+                  </template>
                 </td>
                 <td>
                   {{ contest.starts_on_format }}
