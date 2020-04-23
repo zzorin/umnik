@@ -46,6 +46,15 @@ ru:
             contest:
               blank: 'Необходимо указать конкурс'
 
+        contest:
+          attributes:
+            title:
+              blank: 'Необходимо указать название конкурса'
+            starts_on:
+              blank: 'Необходимо указать дату начала конкурса'
+            ends_on:
+              blank: 'Необходимо указать дату окончания конкурса'
+
   notifications:
     model_names:
       contest: 'Конкурс'
