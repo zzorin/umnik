@@ -1,6 +1,27 @@
 ru:
   app:
     title: 'Умник'
+  activerecord:
+    errors:
+      models:
+        participant:
+          attributes:
+            surname:
+              blank: 'Необходимо указать фамилию'
+            name:
+              blank: 'Необходимо указать имя'
+            project_title:
+              blank: 'Необходимо указать название доклада'
+            project_info:
+              blank: 'Необходимо заполнить описание проекта'
+            organization:
+              blank: 'Необходимо указать организацию'
+            contact_info:
+              blank: 'Необходимо указать контактные данные'
+            nomination:
+              blank: 'Необходимо выбрать номинацию'
+
+
   notifications:
     model_names:
       contest: 'Конкурс'

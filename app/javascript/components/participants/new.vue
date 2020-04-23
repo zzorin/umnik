@@ -37,7 +37,15 @@
           contest_id: this.currentContest.id
         }
         this.createParticipant(params).then(data => {
-          if (data.status == 200) {
+          if (data.body.status == 'error') {
+            this.notificate({
+              title: data.body.errors.title,
+              text: data.body.errors.text,
+              type: 'error'
+            })
+            return
+          }
+          if (data.status == 200 && !data.body.error) {
             this.notificate({
               title: data.body.notifications.title,
               text: data.body.notifications.text
