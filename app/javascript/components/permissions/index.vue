@@ -12,12 +12,16 @@
         <table class="table">
           <tr>
             <th>ФИО</th>
+            <th>Эл. почта</th>
             <th>Роль</th>
             <th>Действия</th>
           </tr>
           <tr v-for='permission in permissions'>
             <td>
               {{ permission.fullname }}
+            </td>
+            <td>
+              {{ permission.email }}
             </td>
             <td>
               {{ permission.text_role }}
