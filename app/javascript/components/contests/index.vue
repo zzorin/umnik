@@ -102,7 +102,7 @@
                     :language='ru' />
                 </td>
                 <td>
-                  <span class='btn btn-green mr-2 ml-3'
+                  <span class='btn btn-green mr-2'
                         @click='selfUpdateContest(editableContest)'>
                     Сохранить
                   </span>

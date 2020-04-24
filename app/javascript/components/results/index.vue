@@ -6,14 +6,14 @@
       <div><strong>Критерии отбора:</strong></div>
       {{getCriterionString()}}
       <div>
-        <input type="checkbox" v-model='showExperts' name='showExperts'>
+        <input type="checkbox" v-model='showExperts' name='showExperts' class="mt-3">
         <label for="showExperts">
           Разбить баллы экспертов по критериям
         </label>
       </div>
-      <div>
-        <b><label for="">Сортировать по номинациям: </label></b>
-        <select v-model='currentNomination' @change='updateParticipants()' class="form-control dark-grey-select">
+      <div class="d-flex">
+        <label class="mr-2 mt-auto"><b>Сортировать по номинациям:</b></label>
+        <select v-model='currentNomination' @change='updateParticipants()' class="form-control input-with-button dark-grey-select">
           <option value="all">Все</option>
           <option v-for="nomination in nominations" v-bind:value="nomination.id" class="dark-grey-select dark-grey-option">
             {{ nomination.code +'. '+nomination.title}}
@@ -23,7 +23,6 @@
       <div v-if='Object.keys(marks).length !== 0' class="results-table-wrapper">
         <table class="table results-table">
           <tr>
-            <th rowspan="2"></th>
             <th rowspan="2">№</th>
             <th rowspan="2">Организация</th>
             <th rowspan="2">ФИО участника</th>
@@ -43,7 +42,6 @@
             </template>
           </tr>
           <tr v-for='(participant, key) in participants'>
-            <td></td>
             <td>
               {{ key + 1 }}
             </td>
