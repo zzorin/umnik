@@ -4,29 +4,41 @@
     <div v-if='access_rules.contests.update'>
       <ul class="nav nav-tabs" id="myTab" role="tablist">
         <li class="nav-item">
-             <router-link :to="{name: 'experts'}" class="nav-link"
-                          v-bind:class="{active: isCurrentPage('experts') || isCurrentPage('expert_new') || isCurrentPage('expert_edit') || isCurrentPage('marks')}">
-               Эксперты и оценки
-             </router-link>
-        </li>
-        <li class="nav-item">
-             <router-link :to="{name: 'criterions'}" class="nav-link" v-bind:class="{active: isCurrentPage('criterions')}">
+             <router-link :to="{name: 'criterions'}"
+                          class="nav-link"
+                          v-bind:class="{active: isCurrentPage('criterions')}">
                Критерии обзора
              </router-link>
         </li>
         <li class="nav-item">
-             <router-link :to="{name: 'participants'}" class="nav-link"
-                          v-bind:class="{active: isCurrentPage('participants') || isCurrentPage('participant_new') || isCurrentPage('participant_edit')}">
-               Участники
-             </router-link>
-        </li>
-        <li class="nav-item">
-             <router-link :to="{name: 'nominations'}" class="nav-link" v-bind:class="{active: isCurrentPage('nominations')}">
+             <router-link :to="{name: 'nominations'}"
+                          class="nav-link"
+                          v-bind:class="{active: isCurrentPage('nominations')}">
                Номинации
              </router-link>
         </li>
         <li class="nav-item">
-             <router-link :to="{name: 'results'}" class="nav-link" v-bind:class="{active: isCurrentPage('results')}">
+             <router-link :to="{name: 'participants'}"
+                          class="nav-link"
+                          v-bind:class="{active: isCurrentPage('participants') ||
+                                                 isCurrentPage('participant_new') ||
+                                                 isCurrentPage('participant_edit')}">
+               Участники
+             </router-link>
+        </li>
+        <li class="nav-item">
+             <router-link :to="{name: 'experts'}" class="nav-link"
+                          v-bind:class="{active: isCurrentPage('experts') ||
+                                                 isCurrentPage('expert_new') ||
+                                                 isCurrentPage('expert_edit') ||
+                                                 isCurrentPage('marks')}">
+               Эксперты и оценки
+             </router-link>
+        </li>
+        <li class="nav-item">
+             <router-link :to="{name: 'results'}"
+                          class="nav-link"
+                          v-bind:class="{active: isCurrentPage('results')}">
                Результаты конкурса
              </router-link>
         </li>
