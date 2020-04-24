@@ -30,8 +30,6 @@ document.addEventListener('DOMContentLoaded', () => {
     router,
     methods: {
       initParams(params) {
-        console.log(router)
-        console.log(params)
         this.$store.dispatch('common/setUser', params.user)
         this.$store.dispatch('common/setAccessRules', params.access_rules)
       }
