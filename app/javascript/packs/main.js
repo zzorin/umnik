@@ -20,12 +20,10 @@ Vue.component('datepicker', Datepicker)
 
 interceptorsSetup()
 
-
-const router = new VueRouter({
-  routes
-})
-
 document.addEventListener('DOMContentLoaded', () => {
+  const router = new VueRouter({
+    routes
+  })
   const store = new Vuex.Store(baseStore)
   const app = new Vue({
     store,
