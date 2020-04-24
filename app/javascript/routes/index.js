@@ -19,6 +19,7 @@ export const routes = [
     name: 'dashboard',
     path: '/',
     component: Dashboard,
+    props: true,
     children: [
       {
         name: 'contests',
