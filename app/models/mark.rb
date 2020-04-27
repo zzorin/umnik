@@ -5,4 +5,6 @@ class Mark < ApplicationRecord
   has_one :nomination, through: :participant
 
   validates :criterion, :expert, :participant, :grade, presence: true
+
+  scope :rated, -> { where.not(grade: nil) }
 end

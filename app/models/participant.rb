@@ -15,7 +15,15 @@ class Participant < ApplicationRecord
     self.marks.sum(&:grade)
   end
 
+  def rated_experts
+    contest.experts.rated_for_participant(self)
+  end
+
   def rate_mark
-    (marks_sum / contest.experts.active.count.to_f).round(2)
+    if rated_experts.present?
+      (marks_sum / rated_experts.count.to_f).round(2)
+    else
+      0.00
+    end
   end
 end

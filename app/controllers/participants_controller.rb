@@ -6,6 +6,11 @@ class ParticipantsController < ApplicationController
     @participants = @contest.participants
   end
 
+  def for_results
+    @contest = Contest.find(params[:contest_id])
+    @participants = @contest.participants
+  end
+
   def show; end
 
   def create
@@ -33,6 +38,11 @@ class ParticipantsController < ApplicationController
   end
 
   def by_nomination
+    @nomination = Nomination.find(params[:nomination_id])
+    @participants = @nomination.participants
+  end
+
+  def by_nomination_results
     @nomination = Nomination.find(params[:nomination_id])
     @participants = @nomination.participants
   end

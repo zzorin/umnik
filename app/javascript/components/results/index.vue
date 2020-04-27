@@ -60,7 +60,7 @@
               </template>
             </template>
             <td>{{marks[participant.id].marks_sum}}</td>
-            <td>{{experts.length}}</td>
+            <td>{{participant.experts_count}}</td>
             <td>{{marks[participant.id].rate_mark}}</td>
           </tr>
         </table>
@@ -89,7 +89,7 @@
       ...mapGetters('contests', ['currentContest'])
     },
     methods: {
-      ...mapActions('participants', ['clearParticipants', 'getParticipants', 'getNominationParticipants']),
+      ...mapActions('participants', ['clearParticipants', 'getResultParticipants', 'getResultNominationParticipants']),
       ...mapActions('criterions', ['getCriterions']),
       ...mapActions('experts', ['getExperts']),
       ...mapActions('marks', ['getAllMarks']),
@@ -104,7 +104,7 @@
       },
       selfGetParticipants() {
         let params = { contest_id: this.currentContest.id }
-        this.getParticipants(params)
+        this.getResultParticipants(params)
       },
       selfGetCriterions() {
         let params = { contest_id: this.currentContest.id }
@@ -139,7 +139,7 @@
           contest_id: this.currentContest.id,
           nomination_id: nomination_id
         }
-        this.getNominationParticipants(params)
+        this.getResultNominationParticipants(params)
       },
       generateRateList() {
         return `contests/${this.currentContest.id}/generate_rate_list`

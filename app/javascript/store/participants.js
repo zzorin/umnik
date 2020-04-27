@@ -44,6 +44,16 @@ export const participantsStore = {
         })
       })
     },
+    getResultParticipants({ commit, state }, params) {
+      let { contest_id } = params
+      return new Promise((resolve, reject) => {
+        Vue.http.get(`contests/${contest_id}/participants/for_results`).then(data => {
+          if (data.ok && data.status == 200) {
+            commit('setParticipants', data.body)
+          }
+        })
+      })
+    },
     getParticipant({ commit, state }, params) {
       let { contest_id, participant_id } = params
       return new Promise((resolve, reject) => {
@@ -85,5 +95,15 @@ export const participantsStore = {
         })
       })
     },
+    getResultNominationParticipants({ commit, state }, params) {
+      let { contest_id, nomination_id } = params
+      return new Promise((resolve, reject) => {
+        Vue.http.get(`contests/${contest_id}/participants/by_nomination_results?nomination_id=${nomination_id}`).then(data => {
+          if (data.ok && data.status == 200) {
+            commit('setParticipants', data.body)
+          }
+        })
+      })
+    }
   }
 }

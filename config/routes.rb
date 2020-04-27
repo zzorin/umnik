@@ -16,6 +16,8 @@ Rails.application.routes.draw do
     resources :participants do
       collection do
         get :by_nomination
+        get :by_nomination_results
+        get :for_results
       end
     end
     resources :marks, only: [:index]
