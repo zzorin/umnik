@@ -17,7 +17,8 @@ class Statistic::Protocol
       "Название доклада",
       "Направление",
       "Организация",
-      "Контактные данные"
+      "Контактные данные",
+      "Итого баллов"
     ]
   end
 
@@ -53,14 +54,15 @@ class Statistic::Protocol
   def set_data
     common_styles.merge!(b: false)
     wb.styles { |s| @style = s.add_style common_styles }
-    @participants.each_with_index do |participant, index|
+    @participants.ordered_by_name.each_with_index do |participant, index|
       data = [
         index + 1,
         participant.name,
         participant.project_title,
         participant.nomination.title,
         participant.organization,
-        participant.contact_info
+        participant.contact_info,
+        participant.marks_sum
       ]
       ws.add_row data, types: [:string]  * data.count, style: [@style] * data.count
     end
