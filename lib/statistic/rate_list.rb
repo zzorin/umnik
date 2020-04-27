@@ -28,7 +28,7 @@ class Statistic::RateList
         else
           header.push('')
         end
-        second_header.push(criterion.title)
+        second_header.push('К '+(index + 1).to_s)
       end
     end
     header.push('Итого баллов', 'Количество экспертов', 'Рейтинговый балл')
@@ -75,7 +75,7 @@ class Statistic::RateList
   def set_data
     common_styles.merge!(b: false)
     wb.styles { |s| @style = s.add_style common_styles }
-    @participants.each_with_index do |participant, index|
+    @participants.sort_by {|p| p.rate_mark }.reverse.each_with_index do |participant, index|
       data = [
         index + 1,
         participant.organization,
@@ -93,7 +93,7 @@ class Statistic::RateList
       end
       data.push(participant.marks.sum(&:grade))
       data.push(@experts.count)
-      data.push((participant.marks.sum(&:grade) / @experts.count.to_f).round(2))
+      data.push(participant.rate_mark)
       ws.add_row data, types: [:string]  * data.count, style: [@style] * data.count
     end
   end

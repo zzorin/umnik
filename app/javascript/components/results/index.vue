@@ -61,7 +61,7 @@
             </template>
             <td>{{marks[participant.id].marks_sum}}</td>
             <td>{{experts.length}}</td>
-            <td>{{marks[participant.id].marks_sum / experts.length}}</td>
+            <td>{{marks[participant.id].rate_mark}}</td>
           </tr>
         </table>
       </div>

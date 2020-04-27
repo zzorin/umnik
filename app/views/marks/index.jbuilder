@@ -13,6 +13,7 @@
 
       end
     end
-    json.marks_sum participant.marks.sum(&:grade)
+    json.marks_sum participant.marks_sum
+    json.rate_mark participant.rate_mark
   end
 end
