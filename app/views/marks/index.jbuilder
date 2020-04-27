@@ -7,7 +7,7 @@
             mark = Mark.find_by(participant_id: participant.id,
                                 expert_id: expert.id,
                                 criterion_id: criterion.id)
-            json.grade mark.present? ? mark.grade : 0
+            json.grade mark.present? ? mark.grade : ''
           end
         end
 
