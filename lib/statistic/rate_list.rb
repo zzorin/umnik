@@ -92,7 +92,7 @@ class Statistic::RateList
         end
       end
       data.push(participant.marks_sum)
-      data.push(@experts.count)
+      data.push(participant.rated_experts.count)
       data.push(participant.rate_mark)
       ws.add_row data, types: [:string]  * data.count, style: [@style] * data.count
     end
