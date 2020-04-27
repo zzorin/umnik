@@ -26,8 +26,6 @@ ru:
               blank: 'Необходимо указать имя'
             project_title:
               blank: 'Необходимо указать название доклада'
-            project_info:
-              blank: 'Необходимо заполнить описание проекта'
             organization:
               blank: 'Необходимо указать организацию'
             contact_info:

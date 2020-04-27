@@ -41,6 +41,6 @@ class ParticipantsController < ApplicationController
     def participant_params
       params.require(:participant)
             .permit(:name, :organization, :project_title,
-                    :project_info, :contact_info, :nomination_id)
+                    :contact_info, :nomination_id)
     end
 end

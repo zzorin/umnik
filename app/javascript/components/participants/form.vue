@@ -48,15 +48,6 @@
           </div>
         </div>
       </div>
-
-      <div class="form-group">
-        <div class="row">
-          <div class="col">
-            <b><label for="">Описание проекта</label><span class="necessary-field text-danger">*</span></b>
-            <textarea type="text" v-model='participant.project_info' class="form-control" />
-          </div>
-        </div>
-      </div>
     </form>
   </div>
 </template>

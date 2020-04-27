@@ -4,7 +4,6 @@
       <tr>
         <th>Название доклада</th>
         <th>Организация</th>
-        <th>Описание проекта</th>
         <template v-for='criterion in criterions'>
           <th>{{criterion.title}}</th>
         </template>
@@ -13,7 +12,6 @@
       <tr>
         <td>{{participant.project_title}}</td>
         <td>{{participant.organization}}</td>
-        <td>{{participant.project_info}}</td>
         <template v-for='criterion in criterions'>
           <td>
             <div v-if="marks[criterion.id]">
