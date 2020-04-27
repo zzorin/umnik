@@ -30,10 +30,19 @@ class ContestsController < ApplicationController
   end
 
   def generate_rate_list
-    report = Statistic::RateList.new(params[:contest_id], params[:nomination_id]).generate
-    send_data report.to_stream.read,
-      filename: "rate_list.xlsx",
-      type: 'application/vnd.openxmlformates-officedocument.spreadsheetml.sheet'
+    if params[:nomination_id].present? && params[:nomination_id] != 'all'
+      report = Statistic::NominationRateList.
+        new(params[:contest_id], params[:nomination_id]).
+        generate
+      send_data report.to_stream.read,
+        filename: "nomination_rate_list.xlsx",
+        type: 'application/vnd.openxmlformates-officedocument.spreadsheetml.sheet'
+    else
+      report = Statistic::RateList.new(params[:contest_id]).generate
+      send_data report.to_stream.read,
+        filename: "rate_list.xlsx",
+        type: 'application/vnd.openxmlformates-officedocument.spreadsheetml.sheet'
+    end
   end
 
   def generate_protocol

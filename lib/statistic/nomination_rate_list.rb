@@ -1,10 +1,11 @@
-class Statistic::RateList
+class Statistic::NominationRateList
   attr_accessor :ws, :wb, :style, :report, :common_styles
 
-  def initialize(contest_id)
+  def initialize(contest_id, nomination_id)
     @contest = Contest.find(contest_id)
     @criterions = @contest.criterions
-    @participants = @contest.participants
+    @nomination = Nomination.find(nomination_id)
+    @participants = @nomination.participants
     @experts = @contest.experts.active
     @report = Axlsx::Package.new
   end
@@ -14,10 +15,9 @@ class Statistic::RateList
       "№",
       "Организация",
       "ФИО участника",
-      "Название доклада",
-      "Направление"
+      "Название доклада"
     ]
-    second_header = ['', '', '', '', '']
+    second_header = ['', '', '', '']
     @experts.each do |expert|
       @criterions.each_with_index do |criterion, index|
         if index == 0
@@ -37,7 +37,7 @@ class Statistic::RateList
   def generate
     report.use_shared_strings = true
     @wb = report.workbook
-    @ws = wb.add_worksheet(name: 'Итоговый рейтинг')
+    @ws = wb.add_worksheet(name: @nomination.code + '- итоговый рейтинг')
     set_header
     set_data
     serialize_report
@@ -60,7 +60,7 @@ class Statistic::RateList
 
     wb.styles { |s| @style = s.add_style common_styles }
     ws.add_row header[0], style: [@style] * header[0].count
-    merge_start = 5
+    merge_start = 4
     @experts.each do |expert|
       merge_end = merge_start + @criterions.count
       ws.merge_cells ws.rows.first.cells[(merge_start..(merge_end-1))]
@@ -96,6 +96,6 @@ class Statistic::RateList
   end
 
   def serialize_report
-    report.serialize(Rails.root.join(%(rate_list.xlsx)))
+    report.serialize(Rails.root.join(%(nomination_rate_list.xlsx)))
   end
 end

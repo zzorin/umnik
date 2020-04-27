@@ -142,7 +142,7 @@
         this.getResultNominationParticipants(params)
       },
       generateRateList() {
-        return `contests/${this.currentContest.id}/generate_rate_list`
+        return `contests/${this.currentContest.id}/generate_rate_list?nomination_id=${this.currentNomination}`
       },
       generateProtocol() {
         return `contests/${this.currentContest.id}/generate_protocol`
