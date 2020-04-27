@@ -91,7 +91,7 @@ class Statistic::RateList
           mark.present? ? data.push(mark.grade) : data.push(0)
         end
       end
-      data.push(participant.marks.sum(&:grade))
+      data.push(participant.marks_sum)
       data.push(@experts.count)
       data.push(participant.rate_mark)
       ws.add_row data, types: [:string]  * data.count, style: [@style] * data.count

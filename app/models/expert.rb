@@ -6,7 +6,7 @@ class Expert < ApplicationRecord
   validates :active, inclusion: { in: [ true, false ] }
   scope :active, -> { where(active: true) }
   scope :rated_for_participant, ->(participant) do
-    active.joins(:marks).where(marks: {participant_id: participant.id})
+    active.joins(:marks).merge(Mark.rated).where(marks: {participant_id: participant.id}).uniq
   end
 
   def user

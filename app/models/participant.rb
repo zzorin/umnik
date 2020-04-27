@@ -12,7 +12,7 @@ class Participant < ApplicationRecord
   end
 
   def marks_sum
-    self.marks.sum(&:grade)
+    self.marks.map(&:grade).compact.sum
   end
 
   def rated_experts

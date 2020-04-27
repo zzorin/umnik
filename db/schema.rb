@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_22_035744) do
+ActiveRecord::Schema.define(version: 2020_04_27_081418) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,7 +43,7 @@ ActiveRecord::Schema.define(version: 2020_04_22_035744) do
   end
 
   create_table "marks", force: :cascade do |t|
-    t.integer "grade", default: 0, null: false
+    t.integer "grade"
     t.bigint "criterion_id"
     t.bigint "expert_id"
     t.bigint "participant_id"

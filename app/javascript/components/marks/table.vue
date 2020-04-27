@@ -18,6 +18,7 @@
               <select v-model='marks[criterion.id].grade'
                       @change='selfUpdateMark(criterion.id)'
                       class="form-control dark-grey-select mark-slecting">
+                <option value=''>-</option>
                 <option v-for="grade in available_marks"
                         class="dark-grey-select dark-grey-option">
                   {{ grade }}
@@ -28,6 +29,7 @@
               <select v-model='new_grages[criterion.id]'
                       @change='selfCreateMark(criterion.id)'
                       class="form-control dark-grey-select mark-slecting">
+                <option value=''>-</option>
                 <option v-for="grade in available_marks"
                         class="dark-grey-select dark-grey-option">
                   {{ grade }}
