@@ -7,7 +7,7 @@
              <router-link :to="{name: 'criterions'}"
                           class="nav-link"
                           v-bind:class="{active: isCurrentPage('criterions')}">
-               Критерии обзора
+               Критерии оценки проекта
              </router-link>
         </li>
         <li class="nav-item">
