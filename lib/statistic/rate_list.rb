@@ -78,7 +78,7 @@ class Statistic::RateList
         participant.organization,
         participant.name,
         participant.project_title,
-        participant.nomination.title,
+        participant.nomination.code,
       ]
       @experts.each do |expert|
         @criterions.each do |criterion|
