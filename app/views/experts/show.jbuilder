@@ -1,4 +1,4 @@
-json.call(@expert, :id, :surname, :name, :patronymic, :contest_id, :active)
+json.call(@expert, :id, :name, :contest_id, :active)
 json.permission do
   json.id @expert.permission&.id
   json.user_id @expert.permission&.user_id

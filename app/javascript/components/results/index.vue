@@ -28,7 +28,7 @@
             <th rowspan="2">ФИО участника</th>
             <th rowspan="2">Название доклада</th>
             <template v-if='showExperts' v-for='expert in experts'>
-              <th :colspan='criterions.length'>{{expert.shortname}}</th>
+              <th :colspan='criterions.length'>{{expert.name}}</th>
             </template>
             <th rowspan="2">Итого баллов</th>
             <th rowspan="2">Количество экспертов</th>
@@ -49,7 +49,7 @@
               {{ participant.organization }}
             </td>
             <td>
-              {{ participant.shortname }}
+              {{ participant.name }}
             </td>
             <td>
               {{ participant.project_title }}

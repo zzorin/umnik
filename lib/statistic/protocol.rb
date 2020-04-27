@@ -56,7 +56,7 @@ class Statistic::Protocol
     @participants.each_with_index do |participant, index|
       data = [
         index + 1,
-        participant.shortname,
+        participant.name,
         participant.project_title,
         participant.nomination.title,
         participant.organization,

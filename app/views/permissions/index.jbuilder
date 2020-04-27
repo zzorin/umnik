@@ -6,7 +6,7 @@ json.array! @permissions do |permission|
   if permission.role == 'university_manager'
     json.text_role permission.text_role + '-' + permission.context.title
   elsif permission.role == 'expert'
-    json.text_role permission.text_role + '-' + permission.context.shortname
+    json.text_role permission.text_role + '-' + permission.context.name
   else
     json.text_role permission.text_role
   end

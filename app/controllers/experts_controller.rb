@@ -38,6 +38,6 @@ class ExpertsController < ApplicationController
 
   private
     def expert_params
-      params.require(:expert).permit(:surname, :name, :patronymic, :contest_id, :active)
+      params.require(:expert).permit(:name, :contest_id, :active)
     end
 end

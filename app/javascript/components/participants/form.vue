@@ -3,17 +3,9 @@
     <form>
       <div class="form-group">
         <div class="row">
-          <div class="col-lg-4">
-            <b><label for="">Фамилия</label><span class="necessary-field text-danger">*</span></b>
-            <input type="text" class="form-control" v-model='participant.surname' />
-          </div>
-          <div class="col-lg-4">
-            <b><label for="">Имя</label><span class="necessary-field text-danger">*</span></b>
+          <div class="col">
+            <b><label for="">ФИО</label><span class="necessary-field text-danger">*</span></b>
             <input type="text" class="form-control" v-model='participant.name' />
-          </div>
-          <div class="col-lg-4">
-            <b><label for="">Отчество</label></b>
-            <input type="text" class="form-control" v-model='participant.patronymic' />
           </div>
         </div>
       </div>

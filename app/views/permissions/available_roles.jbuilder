@@ -15,7 +15,7 @@ Permission.available_roles.each do |role|
       json.contexts do
         json.array! Expert.all do |expert|
           json.context_id expert.id
-          json.title expert.fullname + '-'+ expert.contest.title
+          json.title expert.name + '-'+ expert.contest.title
         end
       end
     end

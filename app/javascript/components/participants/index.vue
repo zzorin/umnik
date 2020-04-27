@@ -18,7 +18,7 @@
             {{participant.organization}}
           </td>
           <td>
-            {{participant.fullname}}
+            {{participant.name}}
           </td>
           <td>
             {{participant.project_title}}

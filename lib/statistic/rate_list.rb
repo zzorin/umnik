@@ -24,7 +24,7 @@ class Statistic::RateList
     @experts.each do |expert|
       @criterions.each_with_index do |criterion, index|
         if index == 0
-          header.push(expert.shortname)
+          header.push(expert.name)
         else
           header.push('')
         end
@@ -79,7 +79,7 @@ class Statistic::RateList
       data = [
         index + 1,
         participant.organization,
-        participant.shortname,
+        participant.name,
         participant.project_title,
         participant.nomination.title,
       ]

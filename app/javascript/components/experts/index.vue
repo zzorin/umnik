@@ -8,7 +8,7 @@
       <ul v-for='expert in experts' class="list-unstyled">
         <li>
           <router-link :to="{name: 'marks', params: { id: currentContest.id, expert_id: expert.id }}">
-            {{ expert.shortname }}
+            {{ expert.name }}
           </router-link>
           <template v-if='access_rules.experts.manage'>
             <router-link :to="{name: 'expert_edit', params: { id: currentContest.id, expert_id: expert.id }} ">

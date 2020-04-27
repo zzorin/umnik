@@ -22,7 +22,7 @@
       <div class="col-md-9 col-lg-10">
         <ul v-for='participant in participants' class="list-unstyled">
           <li>
-            <h2>{{participant.fullname}}</h2>
+            <h2>{{participant.name}}</h2>
             <marks-table
               :contest_id='currentContest.id'
               :participant='participant'

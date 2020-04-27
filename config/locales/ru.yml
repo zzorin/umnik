@@ -22,8 +22,6 @@ ru:
 
         participant:
           attributes:
-            surname:
-              blank: 'Необходимо указать фамилию'
             name:
               blank: 'Необходимо указать имя'
             project_title:
@@ -39,8 +37,6 @@ ru:
 
         expert:
           attributes:
-            surname:
-              blank: 'Необходимо указать фамилию'
             name:
               blank: 'Необходимо указать имя'
             contest:
