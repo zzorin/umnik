@@ -1,7 +1,7 @@
 class Permission < ActiveRecord::Base
   include AuthClient::Permission
 
-  ROLES = %i(administrator university_manager expert).freeze
+  ROLES = %i(administrator university_manager expert participant).freeze
 
   acts_as_auth_client_permission roles: ROLES
   validates_uniqueness_of :role,

@@ -8,6 +8,7 @@ SimpleNavigation::Configuration.run do |navigation|
       primary.item :administrator, t('permissions.administrator'), administrator_root_path if current_user.administrator?
       primary.item :university_manager, t('permissions.university_manager'), university_manager_root_path if current_user.university_manager?
       primary.item :expert, t('permissions.expert'), expert_root_path if current_user.expert?
+      primary.item :participant, t('permissions.participant'), participant_root_path if current_user.participant?
     end
   end
 end

@@ -19,5 +19,14 @@ Permission.available_roles.each do |role|
         end
       end
     end
+    if role == 'participant'
+      json.context_type 'Nomination'
+      json.contexts do
+        json.array! Nomination.all do |nomination|
+          json.context_id nomination.id
+          json.title nomination.title + '-'+ nomination.contest.title
+        end
+      end
+    end
   end
 end
