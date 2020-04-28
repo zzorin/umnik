@@ -3,6 +3,7 @@ class Participant < ApplicationRecord
   has_one :contest, through: :nomination
   has_many :marks, dependent: :destroy
   scope :ordered_by_name, -> { order('name') }
+  scope :active, -> { joins(:nomination).merge(Nomination.active) }
 
   validates :name, :project_title, :organization,
             :contact_info, :nomination, presence: true

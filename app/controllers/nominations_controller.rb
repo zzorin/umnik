@@ -3,7 +3,7 @@ class NominationsController < ApplicationController
 
   def index
     @contest = Contest.find(params[:contest_id])
-    @nominations = @contest.nominations
+    @nominations = params[:active] == 'true' ? @contest.nominations.active : @contest.nominations
   end
 
   def create

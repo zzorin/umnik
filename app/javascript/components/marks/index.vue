@@ -58,16 +58,16 @@
       MarksTable
     },
     methods: {
-      ...mapActions('nominations', ['getNominations']),
+      ...mapActions('nominations', ['getActiveNominations']),
       ...mapActions('participants',
-        ['clearParticipants', 'getParticipants', 'getNominationParticipants']
+        ['clearParticipants', 'getActiveParticipants', 'getNominationParticipants']
       ),
       ...mapActions('criterions', ['getCriterions']),
       selfGetNominations() {
         let params = {
           contest_id: this.currentContest.id,
         }
-        this.getNominations(params)
+        this.getActiveNominations(params)
       },
       selfGetCriterions() {
         let params = {
@@ -78,7 +78,7 @@
       selfGetParticipants() {
         let params = { contest_id: this.currentContest.id }
         this.clearParticipants()
-        this.getParticipants(params)
+        this.getActiveParticipants(params)
         this.activeNomination = false
       },
       selfGetNominationParticipants(nomination_id) {

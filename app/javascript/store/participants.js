@@ -44,6 +44,16 @@ export const participantsStore = {
         })
       })
     },
+    getActiveParticipants({ commit, state }, params) {
+      let { contest_id } = params
+      return new Promise((resolve, reject) => {
+        Vue.http.get(`contests/${contest_id}/participants?active=true`).then(data => {
+          if (data.ok && data.status == 200) {
+            commit('setParticipants', data.body)
+          }
+        })
+      })
+    },
     getResultParticipants({ commit, state }, params) {
       let { contest_id } = params
       return new Promise((resolve, reject) => {

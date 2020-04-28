@@ -36,6 +36,16 @@ export const nominationsStore = {
         })
       })
     },
+    getActiveNominations({ commit, state }, params) {
+      let { contest_id } = params
+      return new Promise((resolve, reject) => {
+        Vue.http.get(`contests/${contest_id}/nominations?active=true`).then(data => {
+          if (data.ok && data.status == 200) {
+            commit('setNominations', data.body)
+          }
+        })
+      })
+    },
     createNomination({ commit }, params) {
       return new Promise((resolve, reject) => {
         commit('createNomination', { params, resolve, reject })
