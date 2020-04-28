@@ -91,7 +91,7 @@
     methods: {
       ...mapActions('participants', ['clearParticipants', 'getResultParticipants', 'getResultNominationParticipants']),
       ...mapActions('criterions', ['getCriterions']),
-      ...mapActions('experts', ['getExperts']),
+      ...mapActions('experts', ['getResultsExperts']),
       ...mapActions('marks', ['getAllMarks']),
       ...mapActions('nominations', ['getNominations']),
       getCriterionString() {
@@ -112,7 +112,7 @@
       },
       selfGetExperts() {
         let params = { contest_id: this.currentContest.id, active: true }
-        this.getExperts(params)
+        this.getResultsExperts(params)
       },
       selfGetMarks() {
         let params = { contest_id: this.currentContest.id }

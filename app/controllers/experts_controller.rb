@@ -10,6 +10,15 @@ class ExpertsController < ApplicationController
     end
   end
 
+  def for_results
+    @contest = Contest.find(params[:contest_id])
+    @experts = if params[:active] == 'true'
+      @contest.experts.active
+    else
+      @contest.experts
+    end
+  end
+
   def show; end
 
   def create

@@ -35,11 +35,14 @@ class Ability
         contest_ids = Expert.where(id: expert_ids).active.pluck(:contest_id).uniq
         can :manage, :spa
         can [:index, :show], Contest, id: contest_ids
+        can [:generate_rate_list, :generate_protocol], Contest, id: contest_ids, show_results: true
         can [:index], Expert, id: expert_ids
+        can [:for_results], Expert, contest_id: contest_ids
         can [:index], Criterion, contest_id: contest_ids
         can [:index], Nomination, contest_id: contest_ids
-        can [:index, :by_nomination], Participant
+        can [:index, :by_nomination, :for_results, :by_nomination_results], Participant
         can [:by_participant, :create, :update], Mark, expert_id: expert_ids
+        can [:index], Mark
       end
     end
   end

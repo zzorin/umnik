@@ -22,6 +22,9 @@ Rails.application.routes.draw do
     end
     resources :marks, only: [:index]
     resources :experts do
+      collection do
+        get :for_results
+      end
       resources :marks, only: [:create, :update] do
         collection do
           get :by_participant

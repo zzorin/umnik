@@ -38,6 +38,16 @@ export const expertsStore = {
         })
       })
     },
+    getResultsExperts({ commit, state }, params) {
+      let { contest_id, active } = params
+      return new Promise((resolve, reject) => {
+        Vue.http.get(`contests/${contest_id}/experts/for_results?active=${active}`).then(data => {
+          if (data.ok && data.status == 200) {
+            commit('setExperts', data.body)
+          }
+        })
+      })
+    },
     getExpert({ commit, state }, params) {
       let { contest_id, expert_id } = params
       return new Promise((resolve, reject) => {
