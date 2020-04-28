@@ -32,7 +32,7 @@ class Ability
                          .with_context
                          .where(context_type: 'Expert')
                          .map {|p| p&.context&.id}.compact
-        contest_ids = Expert.where(id: expert_ids).pluck(:contest_id).uniq
+        contest_ids = Expert.where(id: expert_ids).active.pluck(:contest_id).uniq
         can :manage, :spa
         can [:index, :show], Contest, id: contest_ids
         can [:index], Expert, id: expert_ids
