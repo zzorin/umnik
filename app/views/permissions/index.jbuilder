@@ -8,7 +8,7 @@ json.array! @permissions do |permission|
   elsif permission.role == 'expert'
     json.text_role permission.text_role + '-' + permission.context.name
   elsif permission.role == 'participant'
-    json.text_role permission.text_role + '-' + permission.context.title
+    json.text_role permission.text_role + '-' + permission.context.name
   else
     json.text_role permission.text_role
   end
