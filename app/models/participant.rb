@@ -1,6 +1,7 @@
 class Participant < ApplicationRecord
   belongs_to :nomination
   has_one :contest, through: :nomination
+  has_one :permission, as: :context, dependent: :destroy
   has_many :marks, dependent: :destroy
   scope :ordered_by_name, -> { order('name') }
   scope :active, -> { joins(:nomination).merge(Nomination.active) }
@@ -10,6 +11,10 @@ class Participant < ApplicationRecord
 
   def contest
     nomination.contest
+  end
+
+  def user
+    permission&.user
   end
 
   def marks_sum

@@ -29,6 +29,7 @@
     },
     methods: {
       ...mapActions('participants', ['updateParticipant', 'getParticipants', 'clearParticipant']),
+      ...mapActions('permissions', ['createPermission']),
       selfUpdateParticipant() {
         let params = {
           contest_id: this.currentContest.id,
@@ -49,8 +50,23 @@
               text: data.notifications.text,
               type: 'warn'
             })
+            if (this.participant.permission.user_id) {
+              this.selfCreatePermission(data.id)
+            }
             this.getParticipants({ contest_id: this.currentContest.id })
             this.redirectBack()
+          }
+        })
+      },
+      selfCreatePermission(participant_id) {
+        this.$set(this.participant.permission, 'context_id', participant_id)
+        let params = { permission: this.participant.permission }
+        this.createPermission(params).then(data => {
+          if (data.status == 200) {
+            this.notificate({
+              title: data.notifications.title,
+              text: data.notifications.text
+            })
           }
         })
       },

@@ -64,8 +64,8 @@
         this.createPermission(params).then(data => {
           if (data.status == 200) {
             this.notificate({
-              title: data.body.notifications.title,
-              text: data.body.notifications.text
+              title: data.notifications.title,
+              text: data.notifications.text
             })
           }
         })
