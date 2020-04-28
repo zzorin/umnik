@@ -55,6 +55,6 @@ class ContestsController < ApplicationController
   private
 
     def contest_params
-      params.require(:contest).permit(:title, :starts_on, :ends_on)
+      params.require(:contest).permit(:title, :starts_on, :ends_on, :show_results)
     end
 end

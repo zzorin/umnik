@@ -26,6 +26,10 @@
             input-class='form-control background-color-white-important'
             :language='ru' />
         </div>
+        <div class="d-flex align-items-baseline mt-3">
+          <input type="checkbox" v-model="newContest.show_results">
+          <label>Показывать экспертам результаты голосования</label>
+        </div>
         <button type="button"
                 class='btn btn-blue mt-3'
                 @click='selfCreateContest'
@@ -41,6 +45,7 @@
               <th>Название конкурса</th>
               <th>Дата начала</th>
               <th>Дата окончания</th>
+              <th>Показывать результаты</th>
               <th>Действия</th>
             </tr>
           </thead>
@@ -61,6 +66,9 @@
                 </td>
                 <td>
                   {{ contest.ends_on_format }}
+                </td>
+                <td>
+                  <input type="checkbox" v-model="contest.show_results" disabled>
                 </td>
                 <td>
                   <span v-if='access_rules.contests.update'
@@ -100,6 +108,9 @@
                     placeholder='Дата окончания'
                     input-class='form-control background-color-white-important'
                     :language='ru' />
+                </td>
+                <td>
+                  <input type="checkbox" v-model="editableContest.show_results">
                 </td>
                 <td>
                   <span class='btn btn-green mr-2'
