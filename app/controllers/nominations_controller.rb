@@ -32,6 +32,6 @@ class NominationsController < ApplicationController
 
   private
     def nomination_params
-      params.require(:nomination).permit(:code, :title, :contest_id)
+      params.require(:nomination).permit(:code, :title, :contest_id, :active)
     end
 end

@@ -8,6 +8,7 @@ export const nominationsStore = {
   mutations: {
     clearNewNomination(state) {
       Vue.set(state, 'newNomination', {})
+      Vue.set(state.newNomination, 'active', true)
     },
     setNominations(state, nominations) {
       state.nominations = nominations

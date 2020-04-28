@@ -2,13 +2,17 @@
   <div>
     <div v-if='isCurrentPage("nominations")' class="mt-4">
       <div class="row">
-        <div class="col-lg-3">
+        <div class="col-lg-2">
           <label><strong>Код номинации</strong></label>
           <input type="text" class="form-control" v-model='newNomination.code'/>
         </div>
-        <div class="col-lg-6">
+        <div class="col-lg-5">
           <label><strong>Название номинации</strong></label>
           <input type="text" class="form-control" v-model='newNomination.title'/>
+        </div>
+        <div class="col-lg-2 padding-top-40">
+          <input type="checkbox" v-model="newNomination.active">
+          <label>Открыта</label>
         </div>
         <div class="col-lg-3">
           <button type="button"
@@ -43,8 +47,16 @@
 
           <div v-if='editableNomination.id == nomination.id' class="mb-2">
             <div class="row">
-              <div class="col-lg-3"><input type="text" class="form-control" v-model='editableNomination.code'/></div>
-              <div class="col-lg-6"><input type="text" class="form-control" v-model='editableNomination.title'/></div>
+              <div class="col-lg-2">
+                <input type="text" class="form-control" v-model='editableNomination.code'/>
+              </div>
+              <div class="col-lg-5">
+                <input type="text" class="form-control" v-model='editableNomination.title'/>
+              </div>
+              <div class="col-lg-2 padding-top-5">
+                <input type="checkbox" v-model="editableNomination.active">
+                <label>Открыта</label>
+              </div>
               <span class='btn btn-green mr-2 ml-3' @click='selfUpdateNomination(editableNomination)'>
                 Сохранить
               </span>
@@ -147,6 +159,7 @@
     },
     created() {
       console.warn('Номинации')
+      this.$set(this.newNomination, 'active', true)
       this.selfGetNominations()
     }
   }

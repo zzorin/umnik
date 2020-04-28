@@ -1,7 +1,7 @@
 class Participant < ApplicationRecord
   belongs_to :nomination
   has_one :contest, through: :nomination
-  has_many :marks
+  has_many :marks, dependent: :destroy
   scope :ordered_by_name, -> { order('name') }
 
   validates :name, :project_title, :organization,
