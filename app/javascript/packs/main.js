@@ -8,12 +8,13 @@ import Datepicker from 'vuejs-datepicker'
 import baseStore from 'store/base'
 import { routes } from 'routes/index'
 import interceptorsSetup from 'interceptors'
-
+import VModal from 'vue-js-modal'
 
 Vue.use(VueRouter)
 Vue.use(VueResource)
 Vue.use(Vuex)
 Vue.use(Notifications)
+Vue.use(VModal)
 
 Vue.component('autocomplete', Autocomplete)
 Vue.component('datepicker', Datepicker)

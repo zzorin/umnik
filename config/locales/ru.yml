@@ -79,3 +79,14 @@ ru:
     university_manager: 'Менеджер организации'
     expert: 'Эксперт'
     participant: 'Участник'
+
+  paper_trail:
+    mark:
+      grade: ''
+      male:
+        create: 'Поставил оценку'
+        update: 'Изменил оценку'
+      female:
+        create: 'Поставила оценку'
+        update: 'Изменила оценку'
+>>>>>>> added mark history and versions

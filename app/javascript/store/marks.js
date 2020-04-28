@@ -43,5 +43,13 @@ export const marksStore = {
         })
       })
     },
+    getHistory({ state }, params) {
+      let { contest_id, mark_id } = params
+      return new Promise((resolve, reject) => {
+        Vue.http.get(`contests/${contest_id}/marks/${mark_id}/history`).then(data => {
+          if (data.status) resolve(data.body)
+        })
+      })
+    },
   }
 }

@@ -1,8 +1,41 @@
 <template>
   <div>
     <div v-if='isCurrentPage("results")' class="mt-3">
-        <a :href="generateRateList()" class='btn btn-blue mb-2 mr-2'>Экспорт в итоговую таблицу</a>
-        <a :href="generateProtocol()" class='btn btn-blue mb-2'>Экспорт в протокол</a>
+      <modal name="mark-history" @before-open="getMarkHistory"
+                                 @before-close='clearMarkHistory'
+                                 :adaptive="true"
+                                 width="70%"
+                                 :classes="['overflow-auto']"
+                                 :max-height='500'>
+        <table class='table table-bordered' v-if='markHistory.length'>
+          <thead>
+            <tr>
+              <th>Инициатор</th>
+              <th>От имени эксперта</th>
+              <th>Дата</th>
+              <th>Действие</th>
+              <th>Изменения</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for='version in markHistory'>
+              <td>{{ version.whodunnit.fullname }}</td>
+              <td>{{ version.expert }}</td>
+              <td>{{ version.created_at }}</td>
+              <td>{{ version.event }}</td>
+              <td>
+                <div v-for='(v, k) in version.changes' class='d-flex'>
+                  <span>{{ k }}</span>
+                  <span>{{ v }}</span>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <p v-if='!markHistory.length' class="alert alert-danger" role="alert">История отсутствует</p>
+      </modal>
+      <a :href="generateRateList()" class='btn btn-blue mb-2 mr-2'>Экспорт в итоговую таблицу</a>
+      <a :href="generateProtocol()" class='btn btn-blue mb-2'>Экспорт в протокол</a>
       <div><strong>Критерии отбора:</strong></div>
       {{getCriterionString()}}
       <div>
@@ -56,7 +89,11 @@
             </td>
             <template v-if='showExperts' v-for='expert in experts'>
               <template v-for='criterion in criterions'>
-                <td>{{marks[participant.id][expert.id][criterion.id].grade}}</td>
+                <td>
+                  <span @click='openModal(marks[participant.id][expert.id][criterion.id])' class='cursor-pointer'>
+                    {{marks[participant.id][expert.id][criterion.id].grade}}
+                  </span>
+                </td>
               </template>
             </template>
             <td>{{marks[participant.id].marks_sum}}</td>
@@ -72,9 +109,11 @@
 <script>
   import { CommonMixin } from 'mixins/common'
   import { mapState, mapActions, mapGetters} from 'vuex'
+
   export default {
     data() {
       return {
+        markHistory: [],
         marks: {},
         showExperts: true,
         currentNomination: 'all'
@@ -86,13 +125,13 @@
       ...mapState( 'criterions', ['criterions']),
       ...mapState( 'experts', ['experts']),
       ...mapState( 'nominations', ['nominations']),
-      ...mapGetters('contests', ['currentContest'])
+      ...mapGetters('contests', ['currentContest']),
     },
     methods: {
       ...mapActions('participants', ['clearParticipants', 'getResultParticipants', 'getResultNominationParticipants']),
       ...mapActions('criterions', ['getCriterions']),
       ...mapActions('experts', ['getResultsExperts']),
-      ...mapActions('marks', ['getAllMarks']),
+      ...mapActions('marks', ['getAllMarks', 'getHistory']),
       ...mapActions('nominations', ['getNominations']),
       getCriterionString() {
         let criterion_string = ''
@@ -146,6 +185,23 @@
       },
       generateProtocol() {
         return `contests/${this.currentContest.id}/generate_protocol`
+      },
+      openModal(mark) {
+        this.$modal.show('mark-history', { mark })
+      },
+      clearMarkHistory() {
+        this.$set(this, 'markHistory', [])
+      },
+      getMarkHistory(event) {
+        let mark = event.params.mark
+        if (!mark.id) return
+        let params = {
+          contest_id: this.currentContest.id,
+          mark_id: mark.id
+        }
+        this.getHistory(params).then(data => {
+          this.$set(this, 'markHistory', data.history)
+        })
       }
     },
     created() {

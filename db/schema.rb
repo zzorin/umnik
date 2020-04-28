@@ -90,6 +90,18 @@ ActiveRecord::Schema.define(version: 2020_04_28_071026) do
     t.index ["user_id", "role", "context_id", "context_type"], name: "by_user_and_role_and_context"
   end
 
+  create_table "versions", force: :cascade do |t|
+    t.string "item_type", null: false
+    t.bigint "item_id", null: false
+    t.string "event", null: false
+    t.string "whodunnit"
+    t.text "object"
+    t.text "additional_info"
+    t.datetime "created_at"
+    t.text "object_changes"
+    t.index ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id"
+  end
+
   add_foreign_key "criterions", "contests"
   add_foreign_key "experts", "contests"
   add_foreign_key "marks", "criterions"

@@ -1,5 +1,6 @@
 class MarksController < ApplicationController
   load_and_authorize_resource
+
   def index
     @contest = Contest.find(params[:contest_id])
     @participants = @contest.participants

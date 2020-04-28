@@ -8,6 +8,7 @@
                                 expert_id: expert.id,
                                 criterion_id: criterion.id)
             json.grade mark.present? ? mark.grade : ''
+            json.id mark&.id
           end
         end
 

@@ -20,7 +20,11 @@ Rails.application.routes.draw do
         get :for_results
       end
     end
-    resources :marks, only: [:index]
+    resources :marks, only: [:index] do
+      member do
+        get :history
+      end
+    end
     resources :experts do
       collection do
         get :for_results
