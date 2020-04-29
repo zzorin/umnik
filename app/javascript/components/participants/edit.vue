@@ -51,7 +51,7 @@
               type: 'warn'
             })
             if (this.participant.permission.user_id) {
-              this.selfCreatePermission(data.id)
+              this.selfCreatePermission(this.participant.id)
             }
             this.getParticipants({ contest_id: this.currentContest.id })
             this.redirectBack()

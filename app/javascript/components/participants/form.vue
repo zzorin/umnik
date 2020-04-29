@@ -74,6 +74,15 @@
           </div>
         </div>
       </div>
+
+      <div class="form-group">
+        <div class="row">
+          <div class="col">
+            <b><label for="">URL видеконференции</label></b>
+            <input type="text" v-model='participant.chat_link' class="form-control" />
+          </div>
+        </div>
+      </div>
     </form>
   </div>
 </template>

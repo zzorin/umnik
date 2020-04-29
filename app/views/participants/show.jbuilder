@@ -1,5 +1,5 @@
 json.call(@participant, :id, :name, :organization,
-  :project_title, :contact_info, :nomination_id)
+  :project_title, :contact_info, :nomination_id, :chat_link)
 json.permission do
   json.id @participant.permission&.id
   json.user_id @participant.permission&.user_id
