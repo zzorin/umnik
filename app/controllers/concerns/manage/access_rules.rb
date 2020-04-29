@@ -29,7 +29,8 @@ module Manage::AccessRules
       manage: can?(:manage, Expert),
       index: can?(:index, Expert),
       new: can?(:new, Expert),
-      destroy: can?(:destroy, Expert)
+      destroy: can?(:destroy, Expert),
+      index_for_results: can?(:for_results, Expert)
     }
   end
 

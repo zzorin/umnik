@@ -35,7 +35,9 @@
                Эксперты и оценки
              </router-link>
         </li>
-        <li v-if='access_rules.contests.update || currentContest.show_results' class="nav-item">
+        <li v-if='access_rules.contests.update ||
+                  (access_rules.experts.index_for_results && currentContest.show_results)'
+                  class="nav-item">
              <router-link :to="{name: 'results'}"
                           class="nav-link"
                           v-bind:class="{active: isCurrentPage('results')}">

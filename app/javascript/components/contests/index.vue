@@ -3,13 +3,19 @@
     <div v-if='isCurrentPage("contests")' class="contests-list margin-bottom-40">
       <h1>Список конкурсов</h1>
       <template v-if='access_rules.contests.new'>
-        <div class="mb-1"><strong>Название конкурса</strong><span class="text-danger">*</span></div>
+        <div class="mb-1">
+          <strong>Название конкурса</strong>
+          <span class="text-danger">*</span>
+        </div>
         <div class="d-flex">
           <input type="text"
                  class="input-with-button form-control"
                  v-model='newContest.title'/>
         </div>
-        <div class="mb-1 mt-3"><strong>Период проведения</strong><span class="text-danger">*</span></div>
+        <div class="mb-1 mt-3">
+          <strong>Период проведения</strong>
+          <span class="text-danger">*</span>
+        </div>
         <div class="d-flex">
           <datepicker v-model='newContest.starts_on'
             class='mr-3'
@@ -33,7 +39,7 @@
         <button type="button"
                 class='btn btn-blue mt-3'
                 @click='selfCreateContest'
-                :disabled='!(newContest.title && newContest.starts_on &&  newContest.ends_on)'>
+                :disabled='!(newContest.title && newContest.starts_on && newContest.ends_on)'>
           Добавить конкурс
         </button>
       </template>
