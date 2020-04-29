@@ -17,7 +17,7 @@
                Номинации
              </router-link>
         </li>
-        <li v-if='access_rules.contests.update' class="nav-item">
+        <li class="nav-item">
              <router-link :to="{name: 'participants'}"
                           class="nav-link"
                           v-bind:class="{active: isCurrentPage('participants') ||
@@ -26,7 +26,7 @@
                Участники
              </router-link>
         </li>
-        <li class="nav-item">
+        <li v-if='access_rules.experts.index' class="nav-item">
              <router-link :to="{name: 'experts'}" class="nav-link"
                           v-bind:class="{active: isCurrentPage('experts') ||
                                                  isCurrentPage('expert_new') ||

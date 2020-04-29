@@ -44,6 +44,17 @@ class Ability
         can [:by_participant, :create, :update], Mark, expert_id: expert_ids
         can [:index], Mark
       end
+
+      if user.participant?
+        participant_ids = user.permissions
+                         .with_context
+                         .where(context_type: 'Participant')
+                         .map {|p| p&.context&.id}.compact
+        contest_ids = Participant.where(id: participant_ids).map(&:contest).map(&:id).uniq
+        can :manage, :spa
+        can [:index, :show], Contest, id: contest_ids
+        can [:index], Participant, id: participant_ids
+      end
     end
   end
 end

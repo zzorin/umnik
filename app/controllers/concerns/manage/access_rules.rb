@@ -3,7 +3,8 @@ module Manage::AccessRules
     {
       permissions: permissions_rules,
       contests: contests_rules,
-      experts: experts_rules
+      experts: experts_rules,
+      participants: participants_rules
     }
   end
 
@@ -29,6 +30,13 @@ module Manage::AccessRules
       index: can?(:index, Expert),
       new: can?(:new, Expert),
       destroy: can?(:destroy, Expert)
+    }
+  end
+
+  def participants_rules
+    {
+      manage: can?(:manage, Participant),
+      new: can?(:new, Participant)
     }
   end
 end

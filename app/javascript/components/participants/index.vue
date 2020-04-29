@@ -1,7 +1,10 @@
 <template>
   <div>
     <div v-if='isCurrentPage("participants")'>
-        <router-link tag="span" class="btn btn-blue mt-4 mb-3" :to="{name: 'participant_new', params: { id: currentContest.id }} ">
+        <router-link v-if='access_rules.participants.new'
+                     tag="span"
+                     class="btn btn-blue mt-4 mb-3"
+                     :to="{name: 'participant_new', params: { id: currentContest.id }} ">
           Добавить участника
         </router-link>
 
@@ -11,7 +14,8 @@
           <th>ФИО</th>
           <th>Проект</th>
           <th>Направление</th>
-          <th>Действия</th>
+          <th>URL видеконференции</th>
+          <th v-if='access_rules.participants.manage'>Действия</th>
         </tr>
         <tr v-for='participant in participants'>
           <td>
@@ -27,6 +31,13 @@
             {{participant.nomination.title}}
           </td>
           <td>
+            <a v-if='participant.chat_link'
+               :href="participant.chat_link"
+               target="_blank">
+               {{participant.chat_link}}
+            </a>
+          </td>
+          <td v-if='access_rules.participants.manage'>
             <router-link :to="{name: 'participant_edit', params: { id: currentContest.id, participant_id: participant.id }} ">
               <svg class="bi bi-pencil" width="16px" height="16px" viewBox="0 0 16 16" fill="#0390C8" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" d="M11.293 1.293a1 1 0 011.414 0l2 2a1 1 0 010 1.414l-9 9a1 1 0 01-.39.242l-3 1a1 1 0 01-1.266-1.265l1-3a1 1 0 01.242-.391l9-9zM12 2l2 2-9 9-3 1 1-3 9-9z" clip-rule="evenodd"/>

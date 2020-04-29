@@ -3,7 +3,11 @@ class ParticipantsController < ApplicationController
 
   def index
     @contest = Contest.find(params[:contest_id])
-    @participants = params[:active] == 'true' ? @contest.participants.active : @contest.participants
+    @participants = if params[:active] == 'true'
+      @contest.participants.active.accessible_by(current_ability)
+    else
+    @contest.participants.accessible_by(current_ability)
+    end
   end
 
   def for_results
