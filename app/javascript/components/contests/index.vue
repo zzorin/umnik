@@ -45,8 +45,8 @@
               <th>Название конкурса</th>
               <th>Дата начала</th>
               <th>Дата окончания</th>
-              <th>Показывать результаты</th>
-              <th>Действия</th>
+              <th v-if='access_rules.contests.update'>Показывать результаты</th>
+              <th v-if='access_rules.contests.update'>Действия</th>
             </tr>
           </thead>
           <tbody>
@@ -54,7 +54,7 @@
               <template  v-if='!(editableContest.id == contest.id)'>
                 <td>
                   <router-link v-if="(contest.is_active || access_rules.contests.manage)"
-                  :to="{name: 'experts', params: { id: contest.id }}">
+                  :to="{name: 'participants', params: { id: contest.id }}">
                     {{ contest.title }}
                   </router-link>
                   <template v-if="!(contest.is_active || access_rules.contests.manage)">
@@ -67,10 +67,10 @@
                 <td>
                   {{ contest.ends_on_format }}
                 </td>
-                <td>
+                <td v-if='access_rules.contests.update'>
                   <input type="checkbox" v-model="contest.show_results" disabled>
                 </td>
-                <td>
+                <td v-if='access_rules.contests.update'>
                   <span v-if='access_rules.contests.update'
                         class='cursor-pointer'
                         @click='setEditableContest(contest)'>
