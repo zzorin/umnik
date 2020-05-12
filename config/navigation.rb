@@ -3,6 +3,7 @@ SimpleNavigation::Configuration.run do |navigation|
 
   navigation.items do |primary|
     primary.item :main_page, 'Главная', root_path
+    primary.item :instruction, 'Как пользоваться?', instruction_path
 
     if current_user
       primary.item :administrator, t('permissions.administrator'), administrator_root_path if current_user.administrator?
