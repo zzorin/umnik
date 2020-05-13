@@ -31,6 +31,11 @@
             </marks-table>
           </li>
         </ul>
+        <pagination :page-count='paginationInfo.total_pages'
+              :page='paginationInfo.current_page'
+              :click-handler='paginateHandler'
+              v-if='paginationInfoIsLoaded'>
+        </pagination>
       </div>
     </div>
   </div>
@@ -39,6 +44,8 @@
 
 <script>
   import { mapState, mapMutations, mapActions, mapGetters } from 'vuex'
+  import Pagination from 'components/common/pagination'
+  import { PaginationMixin } from 'mixins/pagination'
   import { CommonMixin } from 'mixins/common'
   import MarksTable from 'components/marks/table'
   export default {
@@ -47,20 +54,21 @@
         activeNomination: ''
       }
     },
-    mixins: [CommonMixin],
+    mixins: [CommonMixin, PaginationMixin],
     computed: {
       ...mapState( 'nominations', ['nominations']),
-      ...mapState( 'participants', ['participants']),
+      ...mapState( 'participants', ['participants', 'paginationInfo']),
       ...mapState( 'criterions', ['criterions']),
       ...mapGetters('contests', ['currentContest'])
     },
     components: {
-      MarksTable
+      MarksTable,
+      Pagination
     },
     methods: {
       ...mapActions('nominations', ['getActiveNominations']),
       ...mapActions('participants',
-        ['clearParticipants', 'getActiveParticipants', 'getNominationParticipants']
+        ['clearParticipants', 'getActiveParticipants', 'getActivePaginationParticipants', 'getNominationParticipants']
       ),
       ...mapActions('criterions', ['getCriterions']),
       selfGetNominations() {
@@ -79,6 +87,13 @@
         let params = { contest_id: this.currentContest.id }
         this.clearParticipants()
         this.getActiveParticipants(params)
+        this.activeNomination = false
+      },
+      paginateHandler(page) { this.indexRequester(page) },
+      indexRequester(page = 0) {
+        let params = { contest_id: this.currentContest.id, page: page }
+        this.clearParticipants()
+        this.getActivePaginationParticipants(params)
         this.activeNomination = false
       },
       selfGetNominationParticipants(nomination_id) {

@@ -66,7 +66,20 @@ export const participantsStore = {
       return new Promise((resolve, reject) => {
         Vue.http.get(`contests/${contest_id}/participants?active=true`).then(data => {
           if (data.ok && data.status == 200) {
-            commit('setParticipants', data.body)
+            commit('setParticipants', data.body.participants)
+            commit('setPaginationInfo', data.body.pagination_info)
+          }
+        })
+      })
+    },
+    getActivePaginationParticipants({ commit, state }, params) {
+      let { contest_id, page } = params
+      return new Promise((resolve, reject) => {
+        Vue.http.get(`contests/${contest_id}/participants?active=true&page=${page}`).then(data => {
+          if (data.ok && data.status == 200) {
+            console.log(data.body)
+            commit('setParticipants', data.body.participants)
+            commit('setPaginationInfo', data.body.pagination_info)
           }
         })
       })
