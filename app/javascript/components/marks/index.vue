@@ -68,7 +68,7 @@
     methods: {
       ...mapActions('nominations', ['getActiveNominations']),
       ...mapActions('participants',
-        ['clearParticipants', 'getActiveParticipants', 'getActivePaginationParticipants', 'getNominationParticipants']
+        ['clearParticipants', 'getParticipants', 'getNominationParticipants']
       ),
       ...mapActions('criterions', ['getCriterions']),
       selfGetNominations() {
@@ -83,19 +83,17 @@
         }
         this.getCriterions(params)
       },
-      selfGetParticipants() {
-        let params = { contest_id: this.currentContest.id }
+      selfGetParticipants(page = 0) {
+        let params = {
+          contest_id: this.currentContest.id,
+          page: page,
+          active: true
+        }
         this.clearParticipants()
-        this.getActiveParticipants(params)
+        this.getParticipants(params)
         this.activeNomination = false
       },
-      paginateHandler(page) { this.indexRequester(page) },
-      indexRequester(page = 0) {
-        let params = { contest_id: this.currentContest.id, page: page }
-        this.clearParticipants()
-        this.getActivePaginationParticipants(params)
-        this.activeNomination = false
-      },
+      paginateHandler(page) { this.selfGetParticipants(page) },
       selfGetNominationParticipants(nomination_id) {
         let params = {
           contest_id: this.currentContest.id,

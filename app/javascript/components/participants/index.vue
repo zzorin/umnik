@@ -89,16 +89,12 @@
       ...mapGetters('contests', ['currentContest'])
     },
     methods: {
-      ...mapActions('participants', ['getParticipants', 'getPaginationParticipants', 'deleteParticipant']),
-      selfGetParticipants() {
-        let params = { contest_id: this.currentContest.id }
+      ...mapActions('participants', ['getParticipants', 'deleteParticipant']),
+      selfGetParticipants(page = 0) {
+        let params = { contest_id: this.currentContest.id, page: page }
         this.getParticipants(params)
       },
-      paginateHandler(page) { this.indexRequester(page) },
-      indexRequester(page = 0) {
-        let params = { contest_id: this.currentContest.id, page: page }
-        this.getPaginationParticipants(params)
-      },
+      paginateHandler(page) { this.selfGetParticipants(page) },
       selfDeleteParticipant(participant) {
         if (!confirm('Точно хотите удалить?')) return
         let params = {
