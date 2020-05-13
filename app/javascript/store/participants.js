@@ -13,6 +13,9 @@ export const participantsStore = {
     clearParticipants(state) {
       Vue.set(state, 'participants', [])
     },
+    clearPagination(state) {
+      Vue.set(state, 'paginationInfo', {})
+    },
     setParticipant(state, participant) {
       Vue.set(state, 'participant', participant)
     },
@@ -37,6 +40,9 @@ export const participantsStore = {
     },
     clearParticipants({ commit }) {
       commit('clearParticipants')
+    },
+    clearPagination({ commit }) {
+      commit('clearPagination')
     },
     getParticipants({ commit, state }, params) {
       let { contest_id, page, active } = params

@@ -68,7 +68,7 @@
     methods: {
       ...mapActions('nominations', ['getActiveNominations']),
       ...mapActions('participants',
-        ['clearParticipants', 'getParticipants', 'getNominationParticipants']
+        ['clearParticipants', 'clearPagination', 'getParticipants', 'getNominationParticipants']
       ),
       ...mapActions('criterions', ['getCriterions']),
       selfGetNominations() {
@@ -100,6 +100,7 @@
           nomination_id: nomination_id
         }
         this.clearParticipants()
+        this.clearPagination()
         this.getNominationParticipants(params)
         this.activeNomination = nomination_id
       }
