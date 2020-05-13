@@ -10,7 +10,7 @@ class ParticipantsController < ApplicationController
     end
     @participants = Kaminari.paginate_array(@participants.ordered_by_name)
                          .page(params[:page])
-                         .per(10)
+                         .per(8)
   end
 
   def for_results
