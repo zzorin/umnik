@@ -5,6 +5,7 @@ import Vuex from 'vuex'
 import Notifications from 'vue-notification'
 import Autocomplete from 'vuejs-auto-complete'
 import Datepicker from 'vuejs-datepicker'
+import Paginate from 'vuejs-paginate'
 import baseStore from 'store/base'
 import { routes } from 'routes/index'
 import interceptorsSetup from 'interceptors'
@@ -18,6 +19,7 @@ Vue.use(VModal)
 
 Vue.component('autocomplete', Autocomplete)
 Vue.component('datepicker', Datepicker)
+Vue.component('paginate', Paginate)
 
 interceptorsSetup()
 

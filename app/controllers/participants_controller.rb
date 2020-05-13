@@ -6,8 +6,11 @@ class ParticipantsController < ApplicationController
     @participants = if params[:active] == 'true'
       @contest.participants.active.accessible_by(current_ability)
     else
-    @contest.participants.accessible_by(current_ability)
+      @contest.participants.accessible_by(current_ability)
     end
+    @participants = Kaminari.paginate_array(@participants.ordered_by_name)
+                         .page(params[:page])
+                         .per(10)
   end
 
   def for_results

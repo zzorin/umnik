@@ -65,6 +65,11 @@
           </td>
         </tr>
       </table>
+      <pagination :page-count='paginationInfo.total_pages'
+            :page='paginationInfo.current_page'
+            :click-handler='paginateHandler'
+            v-if='paginationInfoIsLoaded'>
+      </pagination>
     </div>
     <router-view></router-view>
   </div>
@@ -72,19 +77,27 @@
 
 <script>
   import { mapState, mapMutations, mapActions, mapGetters } from 'vuex'
+  import Pagination from 'components/common/pagination'
+  import { PaginationMixin } from 'mixins/pagination'
   import { CommonMixin } from 'mixins/common'
 
   export default {
-    mixins: [CommonMixin],
+    mixins: [CommonMixin, PaginationMixin],
+    components: { Pagination },
     computed: {
-      ...mapState( 'participants', ['participants']),
+      ...mapState( 'participants', ['participants', 'paginationInfo']),
       ...mapGetters('contests', ['currentContest'])
     },
     methods: {
-      ...mapActions('participants', ['getParticipants', 'deleteParticipant']),
+      ...mapActions('participants', ['getParticipants', 'getPaginationParticipants', 'deleteParticipant']),
       selfGetParticipants() {
         let params = { contest_id: this.currentContest.id }
         this.getParticipants(params)
+      },
+      paginateHandler(page) { this.indexRequester(page) },
+      indexRequester(page = 0) {
+        let params = { contest_id: this.currentContest.id, page: page }
+        this.getPaginationParticipants(params)
       },
       selfDeleteParticipant(participant) {
         if (!confirm('Точно хотите удалить?')) return

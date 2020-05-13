@@ -3,7 +3,8 @@ import Vue from 'vue'
 export const participantsStore = {
   state: {
     participants: [],
-    participant: {}
+    participant: {},
+    paginationInfo: {}
   },
   mutations: {
     clearParticipant(state) {
@@ -17,6 +18,9 @@ export const participantsStore = {
     },
     setParticipants(state, participants) {
       state.participants = participants
+    },
+    setPaginationInfo(state, paginationInfo) {
+      state.paginationInfo = paginationInfo
     },
     createParticipant(state, params) {
       let { resolve, reject } = params
@@ -39,7 +43,20 @@ export const participantsStore = {
       return new Promise((resolve, reject) => {
         Vue.http.get(`contests/${contest_id}/participants`).then(data => {
           if (data.ok && data.status == 200) {
-            commit('setParticipants', data.body)
+            commit('setParticipants', data.body.participants)
+            commit('setPaginationInfo', data.body.pagination_info)
+          }
+        })
+      })
+    },
+    getPaginationParticipants({ commit, state }, params) {
+      let { contest_id, page } = params
+      console.log(params)
+      return new Promise((resolve, reject) => {
+        Vue.http.get(`contests/${contest_id}/participants?page=${page}`).then(data => {
+          if (data.ok && data.status == 200) {
+            commit('setParticipants', data.body.participants)
+            commit('setPaginationInfo', data.body.pagination_info)
           }
         })
       })
