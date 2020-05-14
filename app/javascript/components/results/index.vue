@@ -55,51 +55,55 @@
       </div>
       <div v-if='Object.keys(marks).length !== 0' class="results-table-wrapper">
         <table class="table results-table">
-          <tr>
-            <th rowspan="2">№</th>
-            <th rowspan="2">Организация</th>
-            <th rowspan="2">ФИО участника</th>
-            <th rowspan="2">Название доклада</th>
-            <template v-if='showExperts' v-for='expert in experts'>
-              <th :colspan='criterions.length'>{{expert.name}}</th>
-            </template>
-            <th rowspan="2">Итого баллов</th>
-            <th rowspan="2">Количество экспертов</th>
-            <th rowspan="2">Рейтинговый балл</th>
-          </tr>
-          <tr>
-            <template v-if='showExperts' v-for='expert in experts'>
-              <template v-for='index in criterions.length'>
-                <th>К{{index}}</th>
+          <thead>
+            <tr class="sticky-header">
+              <th rowspan="2">№</th>
+              <th rowspan="2">Организация</th>
+              <th rowspan="2">ФИО участника</th>
+              <th rowspan="2">Название доклада</th>
+              <template v-if='showExperts' v-for='expert in experts'>
+                <th :colspan='criterions.length'>{{expert.name}}</th>
               </template>
-            </template>
-          </tr>
-          <tr v-for='(participant, key) in participants'>
-            <td>
-              {{ key + 1 }}
-            </td>
-            <td>
-              {{ participant.organization }}
-            </td>
-            <td>
-              {{ participant.name }}
-            </td>
-            <td>
-              {{ participant.project_title }}
-            </td>
-            <template v-if='showExperts' v-for='expert in experts'>
-              <template v-for='criterion in criterions'>
-                <td>
-                  <span @click='openModal(marks[participant.id][expert.id][criterion.id])' class='cursor-pointer'>
-                    {{marks[participant.id][expert.id][criterion.id].grade}}
-                  </span>
-                </td>
+              <th rowspan="2">Итого баллов</th>
+              <th rowspan="2">Количество экспертов</th>
+              <th rowspan="2">Рейтинговый балл</th>
+            </tr>
+            <tr class="sticky-criterion">
+              <template v-if='showExperts' v-for='expert in experts'>
+                <template v-for='index in criterions.length'>
+                  <th>К{{index}}</th>
+                </template>
               </template>
-            </template>
-            <td>{{marks[participant.id].marks_sum}}</td>
-            <td>{{participant.experts_count}}</td>
-            <td>{{marks[participant.id].rate_mark}}</td>
-          </tr>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for='(participant, key) in participants'>
+              <td>
+                {{ key + 1 }}
+              </td>
+              <td>
+                {{ participant.organization }}
+              </td>
+              <td>
+                {{ participant.name }}
+              </td>
+              <td>
+                {{ participant.project_title }}
+              </td>
+              <template v-if='showExperts' v-for='expert in experts'>
+                <template v-for='criterion in criterions'>
+                  <td>
+                    <span @click='openModal(marks[participant.id][expert.id][criterion.id])' class='cursor-pointer'>
+                      {{marks[participant.id][expert.id][criterion.id].grade}}
+                    </span>
+                  </td>
+                </template>
+              </template>
+              <td>{{marks[participant.id].marks_sum}}</td>
+              <td>{{participant.experts_count}}</td>
+              <td>{{marks[participant.id].rate_mark}}</td>
+            </tr>
+          </tbody>
         </table>
       </div>
     </div>
