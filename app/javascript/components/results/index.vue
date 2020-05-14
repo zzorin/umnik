@@ -78,15 +78,28 @@
           </thead>
           <tbody>
             <tr v-for='(participant, key) in participants'>
-              <td>
-                {{ key + 1 }}
-              </td>
-              <td>
-                {{ participant.organization }}
-              </td>
-              <td>
-                {{ participant.name }}
-              </td>
+              <template v-if='showExperts'>
+                <td class="sticky-left left-number">
+                  {{ key + 1 }}
+                </td>
+                <td class="sticky-left left-organization">
+                  {{ participant.organization }}
+                </td>
+                <td class="sticky-left left-name">
+                  {{ participant.name }}
+                </td>
+              </template>
+              <template v-if='!showExperts'>
+                <td>
+                  {{ key + 1 }}
+                </td>
+                <td>
+                  {{ participant.organization }}
+                </td>
+                <td>
+                  {{ participant.name }}
+                </td>
+              </template>
               <td>
                 {{ participant.project_title }}
               </td>
