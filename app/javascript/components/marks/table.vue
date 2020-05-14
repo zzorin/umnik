@@ -52,7 +52,7 @@
     data() {
       return {
         marks: {},
-        available_marks: [0, 1, 2, 3, 4, 5],
+        available_marks: [1, 2, 3, 4, 5],
         new_grages: {},
       }
     },
