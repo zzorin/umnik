@@ -54,7 +54,7 @@ class Statistic::Protocol
   def set_data
     common_styles.merge!(b: false)
     wb.styles { |s| @style = s.add_style common_styles }
-    @participants.ordered_by_name.each_with_index do |participant, index|
+    @participants.sort_by {|p| p.rate_mark }.reverse.each_with_index do |participant, index|
       data = [
         index + 1,
         participant.name,
@@ -62,7 +62,7 @@ class Statistic::Protocol
         participant.nomination.title,
         participant.organization,
         participant.contact_info,
-        participant.marks_sum
+        participant.rate_mark
       ]
       ws.add_row data, types: [:string]  * data.count, style: [@style] * data.count
     end
