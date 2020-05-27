@@ -6,6 +6,6 @@ class Contest < ApplicationRecord
   validates :title, :starts_on, :ends_on, presence: true
 
   def active?
-    Time.zone.now < ends_on && Time.zone.now > starts_on
+    Time.zone.now < ends_on.end_of_day && Time.zone.now > starts_on.beginning_of_day
   end
 end
