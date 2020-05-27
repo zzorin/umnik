@@ -36,6 +36,7 @@ gem 'webpacker', '~> 3.0'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'rspec-rails', '~> 4.0.0'
 end
 
 group :development do
@@ -46,6 +47,7 @@ group :development do
   gem 'openteam-capistrano', '~> 1.0.15'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'spring-commands-rspec'
   gem 'web-console', '>= 3.3.0'
 end
 
