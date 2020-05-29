@@ -7,6 +7,8 @@ class Mark < ApplicationRecord
   has_one :nomination, through: :participant
 
   validates :criterion, :expert, :participant, presence: true
+  validates :participant, uniqueness: { scope: [:criterion, :expert] }
+  validates :grade, inclusion: { in: [ nil, 1, 2, 3, 4, 5 ] }
 
   scope :rated, -> { where.not(grade: nil) }
 
