@@ -2,6 +2,7 @@ FactoryBot.define do
   factory :nomination do
     code { "N1" }
     title { "Nomination" }
+    association :contest
 
     trait :with_participant do
       after(:create) { |nomination| create_list(:participant, 1, nomination: nomination) }
