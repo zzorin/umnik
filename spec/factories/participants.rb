@@ -4,5 +4,6 @@ FactoryBot.define do
     project_title { 'project_title' }
     organization { 'organization' }
     contact_info { 'contact_info' }
+    association :nomination
   end
 end
