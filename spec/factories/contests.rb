@@ -15,5 +15,10 @@ FactoryBot.define do
     title {"Contest"}
     starts_on { DateTime.now - 1.days }
     ends_on { DateTime.now }
+
+    trait :inactive do
+      starts_on { DateTime.now - 2.days }
+      ends_on { DateTime.now-1.days }
+    end
   end
 end

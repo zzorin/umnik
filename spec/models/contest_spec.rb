@@ -33,10 +33,10 @@ RSpec.describe Contest, type: :model do
   end
   it "returns active 'true' state for one day contests" do
     contest = FactoryBot.build(:contest, starts_on: DateTime.now)
-    expect(contest.active?).to eq true
+    expect(contest).to be_active
   end
   it "returns active 'false' state for past contests" do
-    contest = FactoryBot.build(:contest, ends_on: DateTime.now-1.days)
-    expect(contest.active?).to eq false
+    contest = FactoryBot.build(:contest, :inactive)
+    expect(contest).not_to be_active
   end
 end

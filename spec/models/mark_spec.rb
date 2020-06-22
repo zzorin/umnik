@@ -17,16 +17,8 @@ RSpec.describe Mark, type: :model do
     @contest = FactoryBot.create(:contest)
     @expert = @contest.experts.create(name: "Ivanov Ivan")
     @criterion = @contest.criterions.create(title: "Criterion")
-    @nomination = @contest.nominations.create(
-      code: "N1",
-      title: "Nomination"
-    )
-    @participant = @nomination.participants.create(
-      name: 'Participant',
-      project_title: 'project_title',
-      organization: 'organization',
-      contact_info: 'contact_info'
-    )
+    @nomination = FactoryBot.create(:nomination, :with_participant, contest_id: @contest.id)
+    @participant = @nomination.participants.first
   end
 
   it "is valid with an expert, criterion and participant" do
