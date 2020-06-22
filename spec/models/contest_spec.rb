@@ -2,12 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Contest, type: :model do
   it "is valid with a title, starts_on and ends_on" do
-    contest = Contest.new(
-      title: "Contest",
-      starts_on: DateTime.now - 1.days,
-      ends_on: DateTime.now
-    )
-    expect(contest).to be_valid
+    expect(FactoryBot.build(:contest)).to be_valid
   end
   it "is invalid without a title" do
     contest = Contest.new(title: nil)
