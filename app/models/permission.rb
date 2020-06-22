@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: permissions
+#
+#  id           :bigint           not null, primary key
+#  user_id      :string
+#  role         :string
+#  context_type :string
+#  context_id   :bigint
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#
 class Permission < ActiveRecord::Base
   include AuthClient::Permission
 

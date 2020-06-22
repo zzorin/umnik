@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: marks
+#
+#  id             :bigint           not null, primary key
+#  grade          :integer
+#  criterion_id   :bigint
+#  expert_id      :bigint
+#  participant_id :bigint
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#
 require 'rails_helper'
 
 RSpec.describe Mark, type: :model do

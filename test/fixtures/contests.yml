@@ -1,4 +1,15 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+# == Schema Information
+#
+# Table name: contests
+#
+#  id           :bigint           not null, primary key
+#  title        :string
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#  starts_on    :datetime
+#  ends_on      :datetime
+#  show_results :boolean          default("false")
+#
 
 # This model initially had no columns defined. If you add columns to the
 # model remove the '{}' from the fixture names and add the columns immediately
