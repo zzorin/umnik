@@ -2,11 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Mark, type: :model do
   before do
-    @contest = Contest.create(
-      title: "Contest",
-      starts_on: DateTime.now - 1.days,
-      ends_on: DateTime.now
-    )
+    @contest = FactoryBot.create(:contest)
     @expert = @contest.experts.create(name: "Ivanov Ivan")
     @criterion = @contest.criterions.create(title: "Criterion")
     @nomination = @contest.nominations.create(

@@ -3,35 +3,31 @@ require 'rails_helper'
 RSpec.describe Expert, type: :model do
 
   before do
-    @contest = Contest.create(
-      title: "Contest",
-      starts_on: DateTime.now - 1.days,
-      ends_on: DateTime.now
-    )
+    @contest = FactoryBot.create(:contest)
   end
 
   it "is valid with a name and contest" do
-    expert = @contest.experts.new(name: "Ivanov Ivan")
+    expert = FactoryBot.build(:expert, name: "Ivanov Ivan")
     expect(expert).to be_valid
   end
 
   it "is invalid without a name" do
-    expert = @contest.experts.new(name: nil)
+    expert = FactoryBot.build(:expert, name: nil)
     expert.valid?
     expect(expert.errors[:name]).to include("Необходимо указать имя")
   end
 
   it "is invalid without a contest" do
-    expert = Expert.new(contest_id: nil)
+    expert = FactoryBot.build(:expert, contest_id: nil)
     expert.valid?
     expect(expert.errors[:contest]).to include("Необходимо указать конкурс")
   end
 
   describe "search active experts" do
     before do
-      @expert1 = @contest.experts.create(name: 'expert1', active: true)
-      @expert2 = @contest.experts.create(name: 'expert2', active: false)
-      @expert3 = @contest.experts.create(name: 'expert3')
+      @expert1 = FactoryBot.create(:expert, name: 'expert1', active: true)
+      @expert2 = FactoryBot.create(:expert, name: 'expert2', active: false)
+      @expert3 = FactoryBot.create(:expert, name: 'expert3')
     end
 
     context "when a match is found" do
