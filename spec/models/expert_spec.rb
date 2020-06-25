@@ -14,11 +14,6 @@
 require 'rails_helper'
 
 RSpec.describe Expert, type: :model do
-
-  before do
-    @contest = FactoryBot.create(:contest)
-  end
-
   it "is valid with a name and contest" do
     expert = FactoryBot.build(:expert, name: "Ivanov Ivan")
     expect(expert).to be_valid

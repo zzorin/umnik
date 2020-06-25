@@ -24,8 +24,6 @@ RSpec.describe Nomination, type: :model do
     expect(nomination.errors[:title]).to include("Необходимо указать название номинации")
   end
 
-  it "returns a nomination full title as a string" do
-    nomination = FactoryBot.build(:nomination, code: 'code', title: 'nomination')
-    expect(nomination.full_title).to eq 'code nomination'
-  end
+  subject(:nomination) { FactoryBot.build(:nomination, code: 'code', title: 'nomination') }
+  it { is_expected.to satisfy { |nomination| nomination.full_title == 'code nomination' }}
 end
