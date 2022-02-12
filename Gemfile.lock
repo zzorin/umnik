@@ -214,7 +214,7 @@ GEM
       net-ssh (>= 2.6.5)
     net-ssh (6.0.0)
     netrc (0.11.0)
-    nio4r (2.5.2)
+    nio4r (2.5.8)
     nokogiri (1.10.9)
       mini_portile2 (~> 2.4.0)
     non-stupid-digest-assets (1.0.9)
@@ -242,7 +242,7 @@ GEM
     pg (1.2.2)
     popper_js (1.16.0)
     public_suffix (4.0.3)
-    puma (4.3.1)
+    puma (4.3.11)
       nio4r (~> 2.0)
     rack (2.2.2)
     rack-protection (2.0.8.1)
@@ -436,7 +436,7 @@ DEPENDENCIES
   paper_trail
   petrovich (~> 1.0)
   pg (>= 0.18, < 2.0)
-  puma (~> 4.1)
+  puma (~> 4.3)
   rails (~> 6.0.2)
   redis-session-store
   rspec-rails (~> 4.0.0)
